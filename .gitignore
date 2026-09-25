@@ -1,0 +1,39 @@
+# ──────────────────────────────────────────────
+# Raw dataset — never commit syscall capture data
+# ──────────────────────────────────────────────
+ids_dataset/
+*.csv
+*.parquet
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Model artifacts (large binaries — track with Git LFS if needed later)
+models/output/*.joblib
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+desktop.ini
+
+# Secrets / credentials — absolute never
+*.pem
+*.key
+id_rsa
+id_ed25519
+.env
