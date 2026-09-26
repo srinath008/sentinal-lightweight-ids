@@ -1,102 +1,178 @@
-# eBPF-Based Host Intrusion Detection System
+# eBPF-Based Intrusion Detection System
 
-> **Amrita Vishwa Vidyapeetham — B.Tech AIM, Semester 3**  
-> Operating Systems Course Project | Team 2
-
----
-
-## Overview
-
-A lightweight **host-based intrusion detection system (IDS)** that:
-
-- Captures live system activity at the **syscall level** using **eBPF** (process execution, file opens, TCP connections)
-- Detects anomalous behaviour using **unsupervised machine learning** — trained only on normal behaviour, no labeled attack data required
-- Built as a proof-of-concept demonstrating the use of fresh, self-sourced syscall data on real current hardware
-
-### Why this matters
-
-Existing syscall-based IDS research relies on the **ADFA-LD** dataset (10+ years old). This project collects a fresh dataset on a real Ubuntu 26.04 / kernel 7.0 machine, which is itself a meaningful contribution independent of model accuracy.
+An unsupervised anomaly detection system that passively monitors Linux kernel
+events via eBPF tracing tools and detects multi-stage cyber attacks using
+Isolation Forest and One-Class SVM.
 
 ---
 
-## Repository Structure
+## Project Overview
 
-```
-ebpf-detection/
-├── collection/              # eBPF data collection script (runs on Ubuntu/IdeaPad)
-│   └── collect_dataset.sh
-├── docs/                    # Project documentation
-│   └── PROJECT_HANDOFF.md   # Full technical handoff — read this first
-├── feature_engineering/     # Parsing, labeling, feature extraction (WP-03 → WP-06)
-│   ├── parsing.py
-│   ├── labeling.py
-│   ├── features.py
-│   ├── tests/
-│   ├── notebooks/
-│   └── output/              # Generated .parquet feature tables (gitignored)
-├── models/                  # Model training and evaluation (WP-07 → WP-09)
-│   ├── train_isolation_forest.py
-│   ├── train_ocsvm.py
-│   ├── evaluation.py
-│   ├── notebooks/
-│   └── output/              # Trained .joblib models (gitignored)
-├── inference/               # Real-time inference pipeline (WP-11)
-│   └── live_pipeline.py
-├── requirements.txt         # Python dependencies
-└── .gitignore
-```
+This system collects three types of kernel-level telemetry using BCC tools:
 
-> **Raw dataset (`ids_dataset/`) is NOT committed to this repo** — it lives locally on the TUF at  
-> `E:\Amrita Academics\SEM3 AIM\OS\project\ids_dataset\`
+| Source | Tool | Events captured |
+|---|---|---|
+| Process execution | `execsnoop` | Every exec syscall — command, PID, return code |
+| File access | `opensnoop` | Every open syscall — path, file descriptor, error |
+| Network connections | `tcpconnect` | Every outbound TCP connection — IP version, addresses, port |
+
+Events are aggregated into **5-second windows** and scored by two trained models.
+A window is flagged as anomalous when it deviates significantly from the
+**baseline (normal operation)** behaviour learned during training.
 
 ---
 
-## Tech Stack
+## Attack Scenario
 
-| Layer | Tools |
-|---|---|
-| Data collection | eBPF CO-RE (`execsnoop`, `opensnoop`, `tcpconnect`), `libbpf-tools`, Bash |
-| OS (collection machine) | Ubuntu 26.04 LTS, kernel 7.0.0-31-generic |
-| ML / feature engineering | Python 3.x, pandas, numpy, scikit-learn |
-| Training machine | ASUS TUF F16 (Windows, RTX 5060, i7-14650HX) |
+The dataset simulates a realistic multi-stage intrusion:
+
+| Phase | Duration | Activity |
+|---|---|---|
+| `baseline` | 60 min | Normal workload — Firefox browsing, background daemons |
+| `attack_recon` | 15 min | `nmap` port scans — burst TCP connection events |
+| `attack_privesc` | 15 min | `getcap`/`find` filesystem crawls — massive file access volume |
+| `attack_fileaccess` | 15 min | Targeted credential harvesting — elevated exec activity |
+
+---
+
+## Results
+
+Both models trained **only on baseline data** (unsupervised — no attack labels used during training):
+
+| Metric | Isolation Forest | One-Class SVM |
+|---|---|---|
+| **Precision** | 0.905 | 0.900 |
+| **Recall** | **1.000** | 0.993 |
+| **F1** | **0.950** | 0.944 |
+| **ROC-AUC** | **0.997** | 0.996 |
+| **PR-AUC** | 0.990 | **0.997** |
+
+**Per-phase detection rate:**
+
+| Phase | Isolation Forest | One-Class SVM |
+|---|---|---|
+| `attack_recon` | 100.0% | 97.8% |
+| `attack_privesc` | 100.0% | 100.0% |
+| `attack_fileaccess` | 100.0% | 100.0% |
+| `baseline` (FP rate) | 7.8% | 8.2% |
+
+> **Recommendation:** Use Isolation Forest as the primary detector (perfect recall —
+> zero missed attacks). Use the OC-SVM score as a secondary severity signal to
+> rank and filter alerts.
 
 ---
 
 ## Dataset
 
-Two verified collection sessions (total ~16M+ events):
+Collected on a Ubuntu 22.04 VM with BCC tools during two independent sessions:
 
-| Session | Baseline activity | execsnoop | opensnoop | tcpconnect |
-|---|---|---|---|---|
-| `20260914_120411` | Idle / light usage | 10,496 | 8,195,946 | 165,191 |
-| `20260916_185643` | YouTube + browser | 10,804 | 7,777,434 | 164,288 |
+| File | Session 1 | Session 2 |
+|---|---|---|
+| `execsnoop.csv` | 10,496 rows | 10,804 rows |
+| `opensnoop.csv` | 8,195,946 rows | 7,777,434 rows |
+| `tcpconnect.csv` | 165,191 rows | 164,288 rows |
 
-Each session captures 4 phases: `baseline` (60 min) → `attack_recon` → `attack_privesc` → `attack_fileaccess` (15 min each).
+Raw dataset is **not committed** (gitignored). Contact project owner for access.
+
+---
+
+## Tech Stack
+
+- **Python 3.14** — pandas 3.0, scikit-learn 1.9, numpy 2.5, pyarrow 25
+- **eBPF / BCC** — execsnoop, opensnoop, tcpconnect (data collection, Linux only)
+- **Models** — `sklearn.ensemble.IsolationForest`, `sklearn.svm.OneClassSVM`
+- **Storage** — Apache Parquet (feature table + model scores)
+- **Tests** — pytest 9.1 — **72 unit tests, 100% passing**
+
+---
+
+## Repo Structure
+
+```
+.
+├── collection/                   # BCC collection scripts (Linux only)
+├── feature_engineering/
+│   ├── parsing.py                # Raw CSV loaders (3 eBPF tools)
+│   ├── labeling.py               # Phase-label joining via IntervalIndex
+│   ├── features.py               # Windowed feature aggregation
+│   ├── eda.py                    # Exploratory analysis + plots
+│   ├── output/                   # features_window5s.parquet + EDA plots
+│   └── tests/                    # 72 unit tests (pytest)
+├── models/
+│   ├── train_isolation_forest.py # WP-07: IF training
+│   ├── train_ocsvm.py            # WP-08: OC-SVM + StandardScaler training
+│   ├── evaluation.py             # WP-09: Side-by-side comparison
+│   └── output/                   # .joblib models + score parquets (gitignored)
+├── inference/
+│   └── live_pipeline.py          # WP-11: End-to-end scoring pipeline
+├── docs/
+│   └── PROJECT_HANDOFF.md        # Full technical specification
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Quick Start
+
+```bash
+# 1. Create and activate the virtual environment
+python -m venv .venv
+source .venv/bin/activate        # Linux/macOS
+.venv\Scripts\Activate.ps1       # Windows PowerShell
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run tests
+pytest feature_engineering/tests/
+
+# 4. Build feature table (requires dataset in ids_dataset/)
+python feature_engineering/features.py   # not a script — use the pipeline below
+
+# 5. Train models
+python models/train_isolation_forest.py
+python models/train_ocsvm.py
+
+# 6. Evaluate
+python models/evaluation.py
+
+# 7. Run live inference on a session
+python inference/live_pipeline.py --session-dir ids_dataset/20260914_120411
+```
 
 ---
 
 ## Progress
 
-- [x] WP-00 — Dataset transfer verified  
-- [x] WP-01 — Version control initialized  
-- [ ] WP-02 — Python environment setup  
-- [ ] WP-03 — Raw log parsing utilities  
-- [ ] WP-04 — Phase-label joining  
-- [ ] WP-05 — Feature engineering  
-- [ ] WP-06 — Exploratory data analysis  
-- [ ] WP-07 — Isolation Forest training  
-- [ ] WP-08 — One-Class SVM training  
-- [ ] WP-09 — Model evaluation & comparison  
-- [ ] WP-10 — Optional 3rd baseline session  
-- [ ] WP-11 — Real-time inference pipeline  
-- [ ] WP-12 — Final documentation update  
+- [x] WP-00 — Dataset verification (row counts, schema, phase timestamps)
+- [x] WP-01 — Repository structure and version control
+- [x] WP-02 — Python environment and dependencies
+- [x] WP-03 — Raw log parsing (`parsing.py` — 29 unit tests)
+- [x] WP-04 — Phase-label joining (`labeling.py` — 21 unit tests)
+- [x] WP-05 — Feature engineering (`features.py` — 22 unit tests)
+- [x] WP-06 — Exploratory data analysis (`eda.py` — 4 plot types)
+- [x] WP-07 — Isolation Forest training (F1=0.950, ROC-AUC=0.997)
+- [x] WP-08 — One-Class SVM training (F1=0.944, ROC-AUC=0.996)
+- [x] WP-09 — Model evaluation and comparison report
+- [x] WP-11 — Live inference pipeline (`live_pipeline.py`)
+- [x] WP-12 — Documentation and final report
 
 ---
 
-## Team
+## Key Engineering Decisions
 
-**Team 2 — Amrita AIM SEM3**
+| Decision | Rationale |
+|---|---|
+| **log1p on opensnoop counts** | `attack_privesc` crawls generate up to 87k opens/window vs baseline's ~200. log1p prevents scale dominance while preserving ordering |
+| **Baseline-only training** | True unsupervised IDS — no attack labels needed. Contamination set to `'auto'` (IF) and `nu=0.05` (OC-SVM) |
+| **Right-anchored COMM parsing** | Real data had multi-word process names (`Socket Thread`, `StreamT~ns #132`) — simple split misaligns FD/ERR columns |
+| **ERR range constraint (±4096)** | Dataset folder names (e.g. `20260914_120411`) are valid integers but not errno codes — range check prevents misclassification |
+| **5-second windows** | Balances temporal resolution vs noise. Tunable via `--window` flag |
+| **IF as primary detector** | Perfect recall (zero missed attacks) is critical for a security system |
 
 ---
 
-*For full technical context, architecture decisions, known issues, and work package specifications — see [`docs/PROJECT_HANDOFF.md`](docs/PROJECT_HANDOFF.md).*
+## Authors
+
+Team 2 — Amrita Vishwa Vidyapeetham, SEM3 AIM OS Project
