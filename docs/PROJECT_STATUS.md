@@ -1,3 +1,17 @@
+# Sentinel — live QA fixes — 2026-10-25
+
+Live QA found that export looked broken (its confirmation sat off-screen), that
+popups were suppressed during the model's 60 s notification cooldown, and that
+live evidence was only visible after an incident. Fixed: floating dismissible
+message with the Windows-visible report path and an "Open reports folder"
+button; readable HTML report; an alert on every live incident (keep-above
+dialog, beep, sound and title flash in the page); a live per-window feed with
+commands started, busiest non-infrastructure processes, paths and destinations,
+heartbeat and early warning. Re-tested on Ubuntu WSL (two incidents inside the
+cooldown produced two popups). 121 tests pass, one Linux-only skip on Windows.
+The password prompt itself was not exercised (a QA stand-in ran the helper).
+Installed copy updated; originals are in /opt/sentinel/.backup-pre-fixes-20261025.
+
 # eBPF IDS Project — Status and Historical Report
 
 ## Final QA — 2026-10-18

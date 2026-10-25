@@ -33,7 +33,7 @@ def native_popup(window, title, message):
     """Nonblocking GTK popup fallback when WSL has no notification daemon."""
     import gi
     gi.require_version('Gtk', '3.0')
-    from gi.repository import Gtk, GLib
+    from gi.repository import Gtk, GLib, Gdk
     if not isinstance(window.native, Gtk.Window):
         return False
     def show():
@@ -43,7 +43,13 @@ def native_popup(window, title, message):
         dialog.set_title('Sentinel alert')
         dialog.format_secondary_text(message[:1200])
         dialog.connect('response', lambda widget, _: widget.destroy())
+        dialog.set_keep_above(True)  # a non-modal dialog must not hide behind the dashboard
         dialog.show_all()
+        dialog.present()
+        try:
+            Gdk.beep()
+        except Exception:
+            pass
         return False
     GLib.idle_add(show)
     return True

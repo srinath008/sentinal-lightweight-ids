@@ -77,3 +77,54 @@ def test_native_popup_does_not_depend_on_broken_system_notifications(tmp_path, m
     assert calls == [('Test alert','No threat detected')]
     assert service.notification_status['delivered']
     service.close()
+
+
+def test_every_live_incident_alerts_even_during_model_cooldown(tmp_path, monkeypatch):
+    service = Service(data_dir=tmp_path)
+    notified = []
+    monkeypatch.setattr(service, '_notify', lambda *args: notified.append(args))
+    service.mode = 'live'
+    features = dict(n_exec=55, n_open_errors=547, n_open=8, n_tcp_connect=0)
+    service.record(dict(type='incident_start', notification=False, features=features))
+    import time
+    time.sleep(.2)
+    assert len(notified) == 1
+    service.close()
+
+
+def test_evidence_ranks_actionable_processes_and_lists_commands():
+    live = EvidenceWindow()
+    for _ in range(50):
+        live.add('opensnoop', dict(pid=333, comm='init', fd=3, err=0, path='/proc/x'))
+    for _ in range(3):
+        live.add('opensnoop', dict(pid=900, comm='find', fd=3, err=0, path='/etc/passwd'))
+    for pid in range(4):
+        live.add('execsnoop', dict(pid=1000 + pid, pcomm='curl', ppid=1, ret=0, args='curl x'))
+    evidence = live.row('live', 0, 0, 5)['evidence']
+    assert evidence['processes'][0]['name'] != 'init'
+    assert evidence['exec_commands'][0] == dict(name='curl', count=4)
+
+
+def test_html_report_is_readable_and_escapes_evidence(tmp_path, monkeypatch):
+    from pathlib import Path
+    service = Service(data_dir=tmp_path / 'state', report_dir=tmp_path / 'reports')
+    service.mode = 'replay'
+    service.record(dict(type='incident_start', notification=True, features=dict(n_exec=1, n_open_errors=0, n_open=1, n_tcp_connect=0),
+                        evidence=dict(exec_commands=[dict(name='<b>x</b>', count=2)], processes=[], sample_paths=[], sample_destinations=[])))
+    result = service.export_report()
+    page = Path(result['saved_files'][1]).read_text()
+    assert '<table>' in page and 'Incident and health history' in page
+    assert '&lt;b&gt;x&lt;/b&gt;' in page and '<b>x</b>' not in page
+    assert result['folder'] == str(tmp_path / 'reports')
+    service.close()
+
+
+def test_windows_path_is_derived_only_under_wsl(tmp_path, monkeypatch):
+    service = Service(data_dir=tmp_path / 'state', report_dir=tmp_path / 'r')
+    monkeypatch.setenv('WSL_DISTRO_NAME', 'Ubuntu')
+    monkeypatch.setattr('platform.release', lambda: '6.6-microsoft-standard-WSL2')
+    expected = '\\\\wsl.localhost\\Ubuntu\\home\\u\\Documents\\x.json'
+    assert service._windows_path('/home/u/Documents/x.json') == expected
+    monkeypatch.setattr('platform.release', lambda: '6.8-generic')
+    assert service._windows_path('/home/u/x') is None
+    service.close()

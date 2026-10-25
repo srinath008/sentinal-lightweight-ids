@@ -100,7 +100,9 @@ class Service:
                 with sqlite3.connect(self.db) as db:
                     db.execute('INSERT INTO events(created,payload) VALUES (?,?)', (time.time(), json.dumps(event)))
                     db.execute('DELETE FROM events WHERE id NOT IN (SELECT id FROM events ORDER BY id DESC LIMIT 1000)')
-        if event['type'] == 'incident_start' and event['mode'] == 'live' and event.get('notification'):
+        # Every live incident alerts (incidents are already grouped, so this cannot spam);
+        # the model's 60 s cooldown only decides the quiet 'notification' flag.
+        if event['type'] == 'incident_start' and event['mode'] == 'live':
             threading.Thread(target=self._notify, args=('Unusual Linux activity', '; '.join(event['explanation']['observations'])), daemon=True).start()
         if event['type'] == 'file_scan_result' and event.get('scan', {}).get('detections'):
             threading.Thread(target=self._notify, args=('ClamAV scan needs review', event['message']), daemon=True).start()
@@ -120,6 +122,58 @@ class Service:
         self._notify('Sentinel test alert', 'This is a notification test, not a threat detection.')
         return self.notification_status
 
+    def _windows_path(self, path):
+        """Windows-visible form of a Linux path when running under WSL, else None."""
+        distro = os.environ.get('WSL_DISTRO_NAME')
+        if not distro or 'microsoft' not in platform.release().lower():
+            return None
+        return '\\\\wsl.localhost\\' + distro + str(path).replace('/', '\\')
+
+    def open_reports_folder(self):
+        self.report_dir.mkdir(parents=True, exist_ok=True)
+        windows = self._windows_path(self.report_dir)
+        if windows and shutil.which('explorer.exe'):
+            subprocess.Popen(['explorer.exe', windows], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return dict(opened=True, folder=str(self.report_dir), windows_folder=windows)
+        opener = shutil.which('xdg-open')
+        if opener:
+            subprocess.Popen([opener, str(self.report_dir)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return dict(opened=True, folder=str(self.report_dir), windows_folder=None)
+        return dict(opened=False, folder=str(self.report_dir), windows_folder=None)
+
+    def _report_html(self, report):
+        esc = html.escape
+        session, history = report['session'], report['history']
+        def when(stamp):
+            return datetime.fromtimestamp(stamp, timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC') if stamp else ''
+        rows = []
+        for e in history:
+            x = e.get('explanation') or {}
+            ctx = x.get('context') or {}
+            detail = [e.get('message') or '']
+            detail += x.get('observations', [])
+            if ctx.get('exec_commands'):
+                detail.append('Commands started: ' + ', '.join(f"{c['name']} x{c['count']}" for c in ctx['exec_commands']))
+            if ctx.get('processes'):
+                detail.append('Processes: ' + ', '.join(f"{p['name']} (PID {p['pid']}, {p['observed_events']} {p['source']})" for p in ctx['processes']))
+            if ctx.get('sample_paths'):
+                detail.append('Paths: ' + '; '.join(ctx['sample_paths']))
+            if ctx.get('sample_destinations'):
+                detail.append('Destinations: ' + '; '.join(ctx['sample_destinations']))
+            rows.append('<tr><td>' + esc(when(e.get('created'))) + '</td><td>' + esc(str(e.get('type'))) + '</td><td>' + esc(str(e.get('mode') or '')) + '</td><td>' + '<br>'.join(esc(str(d)) for d in detail if d) + '</td></tr>')
+        summary = [('Status', session['status']), ('Mode', session['mode'] or 'none'), ('Windows analyzed', session['total']),
+                   ('Flagged windows', session['flagged']), ('Incident groups', session['incidents']), ('Model', session['model'])]
+        return ('<!doctype html><meta charset="utf-8"><title>Sentinel report</title>'
+                '<style>body{font:14px system-ui,Arial;max-width:1100px;margin:30px auto;padding:0 16px;color:#1c2420}'
+                'table{border-collapse:collapse;width:100%}td,th{border:1px solid #c8d2cb;padding:6px 9px;text-align:left;vertical-align:top;font-size:13px}'
+                'th{background:#eef3ef}.note{background:#fff4e5;border:1px solid #e0b36f;padding:10px;border-radius:6px}</style>'
+                '<h1>Sentinel activity report</h1><p>Exported ' + esc(report['exported_at']) + '</p>'
+                '<p class="note">' + esc(report['note']) + '</p><h2>Session summary</h2><table>'
+                + ''.join(f'<tr><th>{esc(k)}</th><td>{esc(str(v))}</td></tr>' for k, v in summary)
+                + '</table><h2>Incident and health history (' + str(len(history)) + ' events)</h2><table><tr><th>Time</th><th>Event</th><th>Mode</th><th>Detail</th></tr>'
+                + ''.join(rows) + '</table><details><summary>Raw data (JSON)</summary><pre>'
+                + esc(json.dumps(report, indent=2, allow_nan=False)) + '</pre></details>')
+
     def export_report(self):
         report = dict(application='Sentinel', exported_at=datetime.now(timezone.utc).isoformat(),
                       session=self.snapshot(), protection=self.protection_state(), history=self.history(),
@@ -128,12 +182,13 @@ class Service:
         base = 'sentinel-' + datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S-%f')
         content = json.dumps(report, indent=2, allow_nan=False)
         paths = []
-        for suffix, text in (('.json', content), ('.html', '<!doctype html><meta charset="utf-8"><title>Sentinel report</title><h1>Sentinel activity report</h1><p>Local research prototype. Review findings; anomalies are not proof of malware.</p><pre>' + html.escape(content) + '</pre>')):
+        for suffix, text in (('.json', content), ('.html', self._report_html(report))):
             path = self.report_dir / (base + suffix)
             with path.open('x', encoding='utf-8') as output:
                 output.write(text)
             paths.append(str(path))
-        return dict(saved_files=paths, message='Report saved locally as JSON and readable HTML.')
+        return dict(saved_files=paths, windows_files=[self._windows_path(p) for p in paths] if self._windows_path(paths[0]) else [],
+                    folder=str(self.report_dir), message='Report saved locally as JSON and readable HTML.')
 
     def history(self):
         with sqlite3.connect(self.db) as db:

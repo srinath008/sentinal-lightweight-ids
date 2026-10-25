@@ -149,6 +149,8 @@ def make_server(service, port=0):
                     self.reply({'ok': True})
                 elif self.path == '/api/export':
                     self.reply(service.export_report())
+                elif self.path == '/api/open-reports':
+                    self.reply(service.open_reports_folder())
                 elif self.path == '/api/test-alert':
                     self.reply(service.test_alert())
                 elif self.path == '/api/scan':
