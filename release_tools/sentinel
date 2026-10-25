@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ ${EUID} -eq 0 ]]; then echo 'Launch the desktop as your ordinary user.' >&2; exit 1; fi
+cd /opt/sentinel
+exec /opt/sentinel/.venv/bin/python -I -c "import sys; sys.path.insert(0, '/opt/sentinel'); from desktop.app import main; main()" "$@"

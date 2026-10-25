@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd /opt/sentinel
+exec /opt/sentinel/.venv/bin/python -I -c "import sys; sys.path.insert(0, '/opt/sentinel'); from desktop.collector_helper import main; sys.exit(main())"

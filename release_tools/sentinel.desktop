@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Sentinel
+Comment=Linux behavioral detection research prototype
+Exec=/opt/sentinel/bin/sentinel
+Icon=/opt/sentinel/desktop/web/icon.svg
+Terminal=false
+Type=Application
+Categories=System;Monitor;
