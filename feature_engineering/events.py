@@ -25,13 +25,14 @@ def parse_event(source, raw):
     if source == 'opensnoop':
         # Fixed-width spacing identifies the FD/ERR pair before PATH; first
         # plausible pair avoids interpreting numbers in the trailing path.
-        match = re.match(r'^(\d+)\s+(.*?)\s+(-?\d+)\s+(-?\d+)\s+(.*)$', raw)
+        # PATH may be empty: programs such as python3 call open("") and opensnoop prints no path.
+        match = re.match(r'^(\d+)\s+(.*?)\s+(-?\d+)\s+(-?\d+)(?:\s+(.*))?$', raw)
         if not match:
             raise ValueError('invalid opensnoop row')
         pid, comm, fd, err, path = match.groups()
-        if int(fd) < -1 or not -4096 <= int(err) <= 4096 or not comm or not path:
+        if int(fd) < -1 or not -4096 <= int(err) <= 4096 or not comm:
             raise ValueError('invalid opensnoop fields')
-        return dict(pid=int(pid), comm=comm, fd=int(fd), err=int(err), path=path)
+        return dict(pid=int(pid), comm=comm, fd=int(fd), err=int(err), path=path or '')
     if source == 'tcpconnect':
         tokens = raw.split()
         if len(tokens) < 6 or tokens[-4] not in ('4', '6'):

@@ -176,3 +176,19 @@ def test_streaming_collector_failure_cleans_processes(monkeypatch, tmp_path, cap
                                 grace=.25, consecutive=2, cooldown=60))
     assert killed == [999]
     assert 'monitor_stopped' in capsys.readouterr().out
+
+
+def test_opensnoop_row_with_empty_path_is_valid_not_fatal():
+    # python3 calls open("") during startup; opensnoop prints the row with no PATH column.
+    row = parse_event('opensnoop', '261481 python3           -1   2 \n')
+    assert row == dict(pid=261481, comm='python3', fd=-1, err=2, path='')
+    assert parse_event('opensnoop', '100 Socket Thread -1 13 /tmp/12 34 file')['path'] == '/tmp/12 34 file'
+    assert parse_event('opensnoop', '100 sh 3 0 12 34')['path'] == '12 34'
+    import pytest
+    with pytest.raises(ValueError):
+        parse_event('opensnoop', 'garbage')
+
+
+def test_streaming_tolerates_a_few_unparseable_rows_but_not_a_flood():
+    from inference import streaming
+    assert 0 < streaming.MAX_MALFORMED_ROWS <= 100

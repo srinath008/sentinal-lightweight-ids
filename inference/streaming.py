@@ -15,6 +15,10 @@ from inference.detector import Detector, IncidentGrouper
 from inference.evidence import EvidenceWindow
 
 
+# Tolerated unparseable collector rows per run before monitoring is declared unreliable.
+MAX_MALFORMED_ROWS = 25
+
+
 def emit(event):
     print(json.dumps(event), flush=True)
 
@@ -49,8 +53,11 @@ def run(args):
                         stamp = origin + time.monotonic() - monotonic_origin
                         pending.put_nowait((stamp, source, event))
             except ValueError:
+                # A few unparseable rows are counted and reported in monitor_stopped; a flood means the
+                # collector output is incompatible and the results can no longer be trusted.
                 stats['malformed'] += 1
-                failure.set()
+                if stats['malformed'] > MAX_MALFORMED_ROWS:
+                    failure.set()
             except queue.Full:
                 failure.set()
                 return
