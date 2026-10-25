@@ -84,7 +84,7 @@ def test_every_live_incident_alerts_even_during_model_cooldown(tmp_path, monkeyp
     notified = []
     monkeypatch.setattr(service, '_notify', lambda *args: notified.append(args))
     service.mode = 'live'
-    features = dict(n_exec=55, n_open_errors=547, n_open=8, n_tcp_connect=0)
+    features = dict(n_exec=300, n_open_errors=547, n_open=8, n_tcp_connect=0)   # medium severity
     service.record(dict(type='incident_start', notification=False, features=features))
     import time
     time.sleep(.2)
@@ -229,4 +229,50 @@ def test_live_windows_are_logged_privately_and_replay_is_not(tmp_path):
     assert '/secret/x' not in lines[0]          # sample file paths are not retained
     if sys.platform != 'win32':
         assert stat.S_IMODE(path.stat().st_mode) == 0o600
+    service.close()
+
+
+def test_low_severity_live_incident_stays_in_app_without_popup(tmp_path, monkeypatch):
+    import time
+    service = Service(data_dir=tmp_path)
+    notified = []
+    monkeypatch.setattr(service, '_notify', lambda *args: notified.append(args))
+    service.mode = 'live'
+    low = dict(n_exec=20, n_open_errors=10, n_open=6, n_tcp_connect=0)
+    medium = dict(n_exec=300, n_open_errors=10, n_open=6, n_tcp_connect=0)
+    service.record(dict(type='incident_start', features=low))
+    service.record(dict(type='incident_start', features=medium))
+    time.sleep(.2)
+    assert service.events[1]['popup'] is False and service.events[1]['explanation']['severity'] == 'low'
+    assert service.events[0]['popup'] is True
+    assert len(notified) == 1 and 'MEDIUM' in notified[0][0]
+    service.close()
+
+
+def test_worse_window_inside_a_low_incident_escalates_to_a_popup(tmp_path, monkeypatch):
+    import time
+    service = Service(data_dir=tmp_path)
+    notified = []
+    monkeypatch.setattr(service, '_notify', lambda *args: notified.append(args))
+    service.mode = 'live'
+
+    def window(start, execs, sensitive=()):
+        return dict(type='window', window_start=start, anomaly=True, scores={'m': -1.0}, n_exec=execs, n_unique_pcomm=1,
+                    n_open=5.0, n_unique_paths=4.0, n_open_errors=0, n_tcp_connect=0, n_unique_daddr=0,
+                    evidence=dict(exec_commands=[], processes=[], sample_paths=[], sample_destinations=[],
+                                  sensitive_paths=list(sensitive)))
+    service.record(dict(type='incident_start', features=dict(n_exec=20, n_open_errors=1, n_open=5, n_tcp_connect=0)))
+    service.record(window(10, 25))                 # same low severity: no escalation
+    assert service.incidents == 1
+    service.record(window(15, 25, sensitive=['/etc/shadow']))   # credential path: escalates to high
+    time.sleep(.2)
+    top = service.events[0]
+    assert top.get('escalated') and top['explanation']['severity'] == 'high' and top['popup']
+    assert service.incidents == 1                  # an escalation is not a new incident group
+    assert len(notified) == 1 and 'HIGH' in notified[0][0]
+    service.record(window(20, 25, sensitive=['/etc/shadow']))   # already high: no repeat
+    service.record(dict(type='incident_end', window_start=40))
+    service.record(window(45, 25, sensitive=['/etc/shadow']))   # no active incident: grouper decides, not escalation
+    time.sleep(.2)
+    assert len(notified) == 1
     service.close()

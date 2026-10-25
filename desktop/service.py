@@ -2,6 +2,7 @@
 from collections import deque
 import json
 import html
+import math
 from datetime import datetime, timezone
 import os
 from pathlib import Path
@@ -16,10 +17,11 @@ from contextlib import nullcontext
 
 from feature_engineering.events import FEATURES
 from inference.detector import Detector, IncidentGrouper
-from desktop.alerts import explain, desktop_notify, windows_alert, expected_maintenance
+from desktop.alerts import explain, severity, desktop_notify, windows_alert, expected_maintenance
 from desktop.scanner import Scanner
 
 ROOT = Path(__file__).resolve().parents[1]
+SEVERITY_RANK = dict(low=0, medium=1, high=2)
 
 
 class Service:
@@ -35,6 +37,7 @@ class Service:
         self.worker = None
         self.process = None
         self.window_log = None
+        self._incident_rank = None
         self.windows = deque(maxlen=120)
         self.events = deque(maxlen=100)
         self.status, self.mode, self.error = 'idle', None, None
@@ -124,6 +127,23 @@ class Service:
                                                        'no popup was shown. Review it if you did not expect an update.')
                     event['explanation']['severity'] = 'low'
                     event['explanation']['severity_reason'] = 'Matches routine system maintenance.'
+                # Only medium/high live incidents open a popup; low ones stay in the app (banner, feed, history).
+                event['popup'] = (event['mode'] == 'live' and not event.get('expected')
+                                  and event['explanation']['severity'] != 'low')
+            escalation = None
+            if event['type'] == 'incident_start':
+                self._incident_rank = 0 if event.get('expected') else SEVERITY_RANK[event['explanation']['severity']]
+            elif event['type'] == 'incident_end':
+                self._incident_rank = None
+            elif event['type'] == 'window' and event['mode'] == 'live' and event['anomaly'] and self._incident_rank is not None:
+                # A worse window inside an ongoing (low or expected) incident must not go unnoticed.
+                level, _ = severity(event, event.get('evidence') or {})
+                if SEVERITY_RANK[level] > self._incident_rank:
+                    self._incident_rank = SEVERITY_RANK[level]
+                    features = {k: event[k] for k in FEATURES}
+                    features['n_open_raw'] = event.get('n_open_raw', round(math.expm1(event['n_open'])))
+                    escalation = dict(type='incident_start', escalated=True, mode='live', window_start=event['window_start'],
+                                      scores=event['scores'], features=features, evidence=event.get('evidence') or {})
             if event['type'] == 'window':
                 self._log_window(event)
                 self.total += 1
@@ -131,13 +151,16 @@ class Service:
                 self.windows.append(event)
             else:
                 self.events.appendleft(event)
-                self.incidents += int(event['type'] == 'incident_start')
+                self.incidents += int(event['type'] == 'incident_start' and not event.get('escalated'))
                 with sqlite3.connect(self.db) as db:
                     db.execute('INSERT INTO events(created,payload) VALUES (?,?)', (time.time(), json.dumps(event)))
                     db.execute('DELETE FROM events WHERE id NOT IN (SELECT id FROM events ORDER BY id DESC LIMIT 1000)')
+        if escalation:
+            self.record(escalation)
         # Every live incident alerts (incidents are already grouped, so this cannot spam);
         # the model's 60 s cooldown only decides the quiet 'notification' flag.
-        if event['type'] == 'incident_start' and event['mode'] == 'live' and not event.get('expected'):
+        # Low-severity incidents stay in the app (banner, feed, history); only medium/high open a popup.
+        if event['type'] == 'incident_start' and event['popup']:
             x = event['explanation']
             lines = [x['severity_reason']] + x['observations']
             ctx = x.get('context') or {}
