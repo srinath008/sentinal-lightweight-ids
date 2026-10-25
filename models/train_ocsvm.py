@@ -153,5 +153,6 @@ def train(window_seconds: float = DEFAULT_WINDOW_SECONDS) -> dict:
 
 
 if __name__ == '__main__':
+    raise SystemExit('Legacy resubstitution training retired: use python -m models.validated_training --help')
     result = train()
     log.info('Done. F1=%.3f', result['metrics']['f1'])

@@ -3,6 +3,11 @@ models/evaluation.py
 ----------------------
 WP-09: Compare Isolation Forest and One-Class SVM side-by-side.
 
+HISTORICAL EVALUATION ONLY: includes training baseline in evaluation.
+Use models.validated_training for new evaluation or models.cross_session
+for exploratory session holdout. Historical metrics do not establish
+general virus detection or performance on unseen normal workloads.
+
 Loads the saved score parquets from WP-07 and WP-08, then produces:
   1. A unified confusion-matrix comparison (printed to stdout)
   2. Per-phase detection rate table for both models
