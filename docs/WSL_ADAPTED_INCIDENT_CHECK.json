@@ -1,0 +1,22 @@
+{
+  "idle": {
+    "windows": 13,
+    "incident_starts": 0
+  },
+  "benign": {
+    "windows": 13,
+    "incident_starts": 0
+  },
+  "probe_tcp_burst": {
+    "windows": 4,
+    "incident_starts": 1
+  },
+  "probe_exec_burst": {
+    "windows": 4,
+    "incident_starts": 1
+  },
+  "probe_file_burst": {
+    "windows": 4,
+    "incident_starts": 1
+  }
+}

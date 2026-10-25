@@ -1,0 +1,652 @@
+{
+  "phases": [
+    {
+      "label": "controlled_collector_probe",
+      "requested_seconds": 22,
+      "windows": [
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 0,
+          "window_start": 1792338735.8951151,
+          "phase": "unlabeled",
+          "n_exec": 22,
+          "n_unique_pcomm": 3,
+          "n_open_raw": 1076,
+          "n_unique_paths_raw": 243,
+          "n_open_errors": 327,
+          "n_open": 6.981934677156389,
+          "n_unique_paths": 5.497168225293202,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2618,
+                "name": "python3",
+                "source": "opensnoop",
+                "observed_events": 146
+              },
+              {
+                "pid": 2201,
+                "name": "systemd-udevd",
+                "source": "opensnoop",
+                "observed_events": 117
+              },
+              {
+                "pid": 2617,
+                "name": "runuser",
+                "source": "opensnoop",
+                "observed_events": 107
+              },
+              {
+                "pid": 2619,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              },
+              {
+                "pid": 2620,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              }
+            ],
+            "sample_paths": [
+              "/sys/bus/event_source/devices/kprobe/type",
+              "/sys/bus/event_source/devices/kprobe/format/retprobe",
+              "/etc/localtime",
+              "/sys/devices/system/cpu/online",
+              "/sys/devices/system/cpu/possible"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "profile_union_g0.1": 0.6008934668314512
+          },
+          "anomalies": {
+            "profile_union_g0.1": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 1,
+          "window_start": 1792338740.8951151,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 266,
+          "n_unique_paths_raw": 97,
+          "n_open_errors": 139,
+          "n_open": 5.58724865840025,
+          "n_unique_paths": 4.584967478670572,
+          "n_tcp_connect": 100,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2618,
+                "name": "python3",
+                "source": "opensnoop",
+                "observed_events": 165
+              },
+              {
+                "pid": 2618,
+                "name": "python3",
+                "source": "tcpconnect",
+                "observed_events": 100
+              },
+              {
+                "pid": 2471,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 79
+              },
+              {
+                "pid": 327,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 2150,
+                "name": "systemd-journal",
+                "source": "opensnoop",
+                "observed_events": 7
+              }
+            ],
+            "sample_paths": [
+              "/tmp/sentinel-safe-check-e6p99ncl/known-clean.txt",
+              "/tmp/sentinel-safe-check-e6p99ncl/deliberately-missing.txt",
+              "/usr/lib/python312.zip",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/threadpoolctl-3.7.0.dist-info/entry_points.txt",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/narwhals-2.27.1.dist-info/entry_points.txt"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:46249"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "profile_union_g0.1": 0.00011227710929927704
+          },
+          "anomalies": {
+            "profile_union_g0.1": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 2,
+          "window_start": 1792338745.8951151,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 71,
+          "n_unique_paths_raw": 41,
+          "n_open_errors": 8,
+          "n_open": 4.276666119016055,
+          "n_unique_paths": 3.7376696182833684,
+          "n_tcp_connect": 1,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2150,
+                "name": "systemd-journal",
+                "source": "opensnoop",
+                "observed_events": 37
+              },
+              {
+                "pid": 2087,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 17
+              },
+              {
+                "pid": 327,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 8
+              },
+              {
+                "pid": 324,
+                "name": "GnsEngine",
+                "source": "opensnoop",
+                "observed_events": 4
+              },
+              {
+                "pid": 2339,
+                "name": "snapd",
+                "source": "opensnoop",
+                "observed_events": 2
+              }
+            ],
+            "sample_paths": [
+              "/proc/195/status",
+              "/proc/195/comm",
+              "/proc/195/cmdline",
+              "/var/lib/snapd/maintenance.json.xQ223Mh45l4C~",
+              "/var/lib/snapd"
+            ],
+            "sample_destinations": [
+              "23.48.226.18:80"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "profile_union_g0.1": 1.1856334255633487
+          },
+          "anomalies": {
+            "profile_union_g0.1": false
+          },
+          "anomaly": false
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 3,
+          "window_start": 1792338750.8951151,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 13,
+          "n_unique_paths_raw": 4,
+          "n_open_errors": 0,
+          "n_open": 2.639057329615259,
+          "n_unique_paths": 1.6094379124341003,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 327,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 1,
+                "name": "mini_init",
+                "source": "opensnoop",
+                "observed_events": 3
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6",
+              "/proc/stat",
+              "/proc/sys/vm/compact_memory"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "profile_union_g0.1": 1.1903899708147536
+          },
+          "anomalies": {
+            "profile_union_g0.1": false
+          },
+          "anomaly": false
+        }
+      ],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 4,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 2927
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 2792,
+        "execsnoop": 34,
+        "tcpconnect": 101
+      },
+      "raw_samples": {
+        "execsnoop": [
+          {
+            "pcomm": "runuser",
+            "pid": 2617,
+            "ppid": 2471,
+            "ret": 0
+          },
+          {
+            "pcomm": "python3",
+            "pid": 2618,
+            "ppid": 2617,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2619,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2620,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2621,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2622,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2623,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2624,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2625,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2626,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2627,
+            "ppid": 2618,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 2628,
+            "ppid": 2618,
+            "ret": 0
+          }
+        ],
+        "opensnoop": [
+          {
+            "pid": 2614,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 2614,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 2614,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/format/retprobe"
+          },
+          {
+            "pid": 2611,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          },
+          {
+            "pid": 2614,
+            "comm": "tcpconnect",
+            "fd": 23,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 2608,
+            "comm": "execsnoop",
+            "fd": 8,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/possible"
+          },
+          {
+            "pid": 2608,
+            "comm": "execsnoop",
+            "fd": 10,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_enter_execve/id"
+          },
+          {
+            "pid": 2608,
+            "comm": "execsnoop",
+            "fd": 12,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_exit_execve/id"
+          },
+          {
+            "pid": 2608,
+            "comm": "execsnoop",
+            "fd": 15,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 327,
+            "comm": "init",
+            "fd": 4,
+            "err": 0,
+            "path": "/proc/net/tcp"
+          },
+          {
+            "pid": 327,
+            "comm": "init",
+            "fd": 5,
+            "err": 0,
+            "path": "/proc/net/tcp6"
+          },
+          {
+            "pid": 2106,
+            "comm": "pulseaudio",
+            "fd": 13,
+            "err": 0,
+            "path": "/home/wslg/.config/pulse/Asus-TUF-F16-default-sink"
+          }
+        ],
+        "tcpconnect": [
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          },
+          {
+            "pid": 2618,
+            "comm": "python3",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 46249
+          }
+        ]
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 2618,
+          "name": "python3",
+          "events": 311
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2647,
+          "name": "(udev-worker)",
+          "events": 256
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2201,
+          "name": "systemd-udevd",
+          "events": 244
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2644,
+          "name": "(udev-worker)",
+          "events": 147
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2645,
+          "name": "(udev-worker)",
+          "events": 127
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2646,
+          "name": "(udev-worker)",
+          "events": 115
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2617,
+          "name": "runuser",
+          "events": 108
+        },
+        {
+          "source": "tcpconnect",
+          "pid": 2618,
+          "name": "python3",
+          "events": 100
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2648,
+          "name": "(udev-worker)",
+          "events": 98
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2471,
+          "name": "python",
+          "events": 79
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2649,
+          "name": "bash",
+          "events": 79
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2150,
+          "name": "systemd-journal",
+          "events": 71
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2649,
+          "name": "Relay",
+          "events": 46
+        },
+        {
+          "source": "opensnoop",
+          "pid": 327,
+          "name": "init",
+          "events": 42
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2657,
+          "name": "cp",
+          "events": 41
+        }
+      ],
+      "workload": {
+        "returncode": 0,
+        "stderr": "",
+        "pid": 462,
+        "successful_execs": 20,
+        "file_reads": 100,
+        "missing_file_attempts": 100,
+        "loopback_connections": 100,
+        "port": 46249
+      },
+      "error": null,
+      "malformed_samples": [],
+      "marker_counts": {
+        "clean_file_opens": 101,
+        "expected_missing_file_errors": 100
+      },
+      "controlled_observed": {
+        "printf_execs": 20,
+        "clean_file_opens": 101,
+        "expected_missing_file_errors": 100,
+        "controlled_loopback_connections": 100
+      },
+      "pid_note": "Workload PID is from procfs; collector PID may be in the kernel PID namespace on WSL. Match unique test paths and destination port instead."
+    }
+  ],
+  "limitation": "Short sequential diagnostic runs on one WSL host, not a randomized benchmark or independent malware test. Controlled activity is benign, not an attack."
+}

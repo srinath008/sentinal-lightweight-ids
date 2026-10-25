@@ -1,0 +1,21 @@
+{
+  "home": {
+    "error": "HTTP Error 403: Forbidden"
+  },
+  "downloads/release.json": {
+    "error": "HTTP Error 403: Forbidden"
+  },
+  "downloads/SHA256SUMS.txt": {
+    "error": "HTTP Error 403: Forbidden"
+  },
+  "downloads/sentinel-0.1.0-linux-x86_64.tar.gz": {
+    "error": "HTTP Error 403: Forbidden"
+  },
+  "local_package": {
+    "sha256": "053a04917d110ba9902ee9e562532c8ef7f3165c4bc959d284a5762f8b3b3d43",
+    "members": 24,
+    "safe_paths": true,
+    "has_scanner": false
+  },
+  "interpretation": "Direct non-browser requests were forbidden. Real-browser site and download verification succeeded; see FINAL_QA_PUBLIC_BROWSER_20261018.json and FINAL_QA_PUBLIC_DOWNLOAD_20261018.json."
+}

@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "name": "profile_union_g0.1",
+  "historical": {
+    "true_positives": 246,
+    "false_negatives": 2,
+    "false_positives": 7,
+    "true_negatives": 345
+  },
+  "wsl": {
+    "idle": {
+      "windows": 13,
+      "flagged": 0
+    },
+    "benign": {
+      "windows": 13,
+      "flagged": 0
+    },
+    "probe_tcp_burst": {
+      "windows": 4,
+      "flagged": 4
+    },
+    "probe_exec_burst": {
+      "windows": 4,
+      "flagged": 4
+    },
+    "probe_file_burst": {
+      "windows": 4,
+      "flagged": 4
+    }
+  },
+  "prediction_median_ms": 0.34901899994110863,
+  "prediction_p95_ms": 0.6134129999963989,
+  "process_peak_rss_mib": 145.11328125,
+  "note": "Standalone Python inference process RSS includes imported dependencies; excludes GUI, collectors and ClamAV. Scores match the saved Windows evaluation counts."
+}

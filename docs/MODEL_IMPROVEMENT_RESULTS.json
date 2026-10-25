@@ -1,0 +1,889 @@
+{
+  "dataset_sha256": "73791e2375009a9ebbf75c9518fda9801fd604ac674010e36010bd65e908c93e",
+  "protocol": "50/25/25 chronological split per phase/session; 2-window embargo at boundaries; selection uses validation only",
+  "limitation": "Same two previously examined sessions; no independent new session, machine, or malware validation. Test blocks are reserved for this run only.",
+  "selection_rule": "Meet >=95% recall for every validation attack phase at <=1% validation baseline FPR; prefer unsupervised if qualifying; then worst-phase recall, F1, model size.",
+  "split_manifest": [
+    {
+      "partition": "train",
+      "session_id": "20260914_120411",
+      "phase": "attack_fileaccess",
+      "count": 86,
+      "first_window": 1083,
+      "last_window": 1168
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260914_120411",
+      "phase": "attack_fileaccess",
+      "count": 41,
+      "first_window": 1173,
+      "last_window": 1213
+    },
+    {
+      "partition": "test",
+      "session_id": "20260914_120411",
+      "phase": "attack_fileaccess",
+      "count": 41,
+      "first_window": 1218,
+      "last_window": 1258
+    },
+    {
+      "partition": "train",
+      "session_id": "20260914_120411",
+      "phase": "attack_privesc",
+      "count": 86,
+      "first_window": 902,
+      "last_window": 987
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260914_120411",
+      "phase": "attack_privesc",
+      "count": 41,
+      "first_window": 992,
+      "last_window": 1032
+    },
+    {
+      "partition": "test",
+      "session_id": "20260914_120411",
+      "phase": "attack_privesc",
+      "count": 42,
+      "first_window": 1037,
+      "last_window": 1078
+    },
+    {
+      "partition": "train",
+      "session_id": "20260914_120411",
+      "phase": "attack_recon",
+      "count": 86,
+      "first_window": 722,
+      "last_window": 807
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260914_120411",
+      "phase": "attack_recon",
+      "count": 41,
+      "first_window": 812,
+      "last_window": 852
+    },
+    {
+      "partition": "test",
+      "session_id": "20260914_120411",
+      "phase": "attack_recon",
+      "count": 41,
+      "first_window": 857,
+      "last_window": 897
+    },
+    {
+      "partition": "train",
+      "session_id": "20260914_120411",
+      "phase": "baseline",
+      "count": 356,
+      "first_window": 2,
+      "last_window": 357
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260914_120411",
+      "phase": "baseline",
+      "count": 176,
+      "first_window": 362,
+      "last_window": 537
+    },
+    {
+      "partition": "test",
+      "session_id": "20260914_120411",
+      "phase": "baseline",
+      "count": 176,
+      "first_window": 542,
+      "last_window": 717
+    },
+    {
+      "partition": "train",
+      "session_id": "20260916_185643",
+      "phase": "attack_fileaccess",
+      "count": 86,
+      "first_window": 1083,
+      "last_window": 1168
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260916_185643",
+      "phase": "attack_fileaccess",
+      "count": 41,
+      "first_window": 1173,
+      "last_window": 1213
+    },
+    {
+      "partition": "test",
+      "session_id": "20260916_185643",
+      "phase": "attack_fileaccess",
+      "count": 41,
+      "first_window": 1218,
+      "last_window": 1258
+    },
+    {
+      "partition": "train",
+      "session_id": "20260916_185643",
+      "phase": "attack_privesc",
+      "count": 86,
+      "first_window": 902,
+      "last_window": 987
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260916_185643",
+      "phase": "attack_privesc",
+      "count": 41,
+      "first_window": 992,
+      "last_window": 1032
+    },
+    {
+      "partition": "test",
+      "session_id": "20260916_185643",
+      "phase": "attack_privesc",
+      "count": 42,
+      "first_window": 1037,
+      "last_window": 1078
+    },
+    {
+      "partition": "train",
+      "session_id": "20260916_185643",
+      "phase": "attack_recon",
+      "count": 86,
+      "first_window": 722,
+      "last_window": 807
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260916_185643",
+      "phase": "attack_recon",
+      "count": 41,
+      "first_window": 812,
+      "last_window": 852
+    },
+    {
+      "partition": "test",
+      "session_id": "20260916_185643",
+      "phase": "attack_recon",
+      "count": 41,
+      "first_window": 857,
+      "last_window": 897
+    },
+    {
+      "partition": "train",
+      "session_id": "20260916_185643",
+      "phase": "baseline",
+      "count": 356,
+      "first_window": 2,
+      "last_window": 357
+    },
+    {
+      "partition": "validation",
+      "session_id": "20260916_185643",
+      "phase": "baseline",
+      "count": 176,
+      "first_window": 362,
+      "last_window": 537
+    },
+    {
+      "partition": "test",
+      "session_id": "20260916_185643",
+      "phase": "baseline",
+      "count": 176,
+      "first_window": 542,
+      "last_window": 717
+    }
+  ],
+  "candidates": [
+    {
+      "name": "if_log_100_128",
+      "family": "unsupervised",
+      "threshold": -0.7067278479050746,
+      "artifact_bytes": 579526,
+      "training_seconds": 0.1186565000000428,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 227,
+        "false_negatives": 19,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9869565217391304,
+        "recall": 0.9227642276422764,
+        "f1": 0.9537815126050421,
+        "roc_auc": 0.9934982446415374,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.926829268292683,
+          "attack_privesc": 0.8536585365853658,
+          "attack_fileaccess": 0.9878048780487805
+        }
+      }
+    },
+    {
+      "name": "if_log_100_256",
+      "family": "unsupervised",
+      "threshold": -0.6894524328646054,
+      "artifact_bytes": 866582,
+      "training_seconds": 0.12997429999995802,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 238,
+        "false_negatives": 8,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9875518672199171,
+        "recall": 0.967479674796748,
+        "f1": 0.9774127310061602,
+        "roc_auc": 0.9945837952697708,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.975609756097561,
+          "attack_fileaccess": 0.975609756097561
+        }
+      }
+    },
+    {
+      "name": "if_log_200_128",
+      "family": "unsupervised",
+      "threshold": -0.7015608513638933,
+      "artifact_bytes": 1162614,
+      "training_seconds": 0.17578570000000582,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 216,
+        "false_negatives": 30,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9863013698630136,
+        "recall": 0.8780487804878049,
+        "f1": 0.9290322580645162,
+        "roc_auc": 0.9931748891352551,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.926829268292683,
+          "attack_privesc": 0.7195121951219512,
+          "attack_fileaccess": 0.9878048780487805
+        }
+      }
+    },
+    {
+      "name": "if_log_200_256",
+      "family": "unsupervised",
+      "threshold": -0.6854697143429438,
+      "artifact_bytes": 1748694,
+      "training_seconds": 0.1778297000000748,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 238,
+        "false_negatives": 8,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9875518672199171,
+        "recall": 0.967479674796748,
+        "f1": 0.9774127310061602,
+        "roc_auc": 0.9948378603104213,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.975609756097561,
+          "attack_fileaccess": 0.975609756097561
+        }
+      }
+    },
+    {
+      "name": "if_original_features",
+      "family": "unsupervised",
+      "threshold": -0.6990533199023942,
+      "artifact_bytes": 1394477,
+      "training_seconds": 0.18852549999996882,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 229,
+        "false_negatives": 17,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9870689655172413,
+        "recall": 0.9308943089430894,
+        "f1": 0.9581589958158996,
+        "roc_auc": 0.9937061160384332,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9146341463414634,
+          "attack_privesc": 0.9024390243902439,
+          "attack_fileaccess": 0.975609756097561
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g0.01_nu0.02",
+      "family": "unsupervised",
+      "threshold": 5.231506977960116,
+      "artifact_bytes": 4401,
+      "training_seconds": 0.0027056999999786058,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 237,
+        "false_negatives": 9,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9875,
+        "recall": 0.9634146341463414,
+        "f1": 0.9753086419753086,
+        "roc_auc": 0.9767415003695491,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.9634146341463414,
+          "attack_fileaccess": 0.975609756097561
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g0.01_nu0.05",
+      "family": "unsupervised",
+      "threshold": 13.968025580494603,
+      "artifact_bytes": 6673,
+      "training_seconds": 0.0031877999999778694,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 236,
+        "false_negatives": 10,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9874476987447699,
+        "recall": 0.959349593495935,
+        "f1": 0.9731958762886598,
+        "roc_auc": 0.9798480229120474,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.9512195121951219,
+          "attack_fileaccess": 0.975609756097561
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g0.1_nu0.02",
+      "family": "unsupervised",
+      "threshold": 0.734708821911347,
+      "artifact_bytes": 7217,
+      "training_seconds": 0.003273100000114937,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 244,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878542510121457,
+        "recall": 0.991869918699187,
+        "f1": 0.9898580121703854,
+        "roc_auc": 0.9976441241685144,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g0.1_nu0.05",
+      "family": "unsupervised",
+      "threshold": 1.9540671194723938,
+      "artifact_bytes": 8193,
+      "training_seconds": 0.003929999999854772,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 244,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878542510121457,
+        "recall": 0.991869918699187,
+        "f1": 0.9898580121703854,
+        "roc_auc": 0.9986372875092387,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g1.0_nu0.02",
+      "family": "unsupervised",
+      "threshold": 0.0029173454688379286,
+      "artifact_bytes": 15537,
+      "training_seconds": 0.005845599999929618,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 243,
+        "false_negatives": 3,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878048780487805,
+        "recall": 0.9878048780487805,
+        "f1": 0.9878048780487805,
+        "roc_auc": 0.9978519955654103,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 0.9878048780487805,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "ocsvm_log_g1.0_nu0.05",
+      "family": "unsupervised",
+      "threshold": 0.007253533433564829,
+      "artifact_bytes": 15425,
+      "training_seconds": 0.005842699999902834,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 243,
+        "false_negatives": 3,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878048780487805,
+        "recall": 0.9878048780487805,
+        "f1": 0.9878048780487805,
+        "roc_auc": 0.9978693181818181,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 0.9878048780487805,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "lof_log_k10",
+      "family": "unsupervised",
+      "threshold": -375078693.35136205,
+      "artifact_bytes": 208372,
+      "training_seconds": 0.007568799999944531,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 246,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.8087698632668145,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.0,
+          "attack_privesc": 0.0,
+          "attack_fileaccess": 0.0
+        }
+      }
+    },
+    {
+      "name": "lof_log_k20",
+      "family": "unsupervised",
+      "threshold": -512581782.3790148,
+      "artifact_bytes": 265332,
+      "training_seconds": 0.00869209999996201,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 246,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.6278004896526238,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.0,
+          "attack_privesc": 0.0,
+          "attack_fileaccess": 0.0
+        }
+      }
+    },
+    {
+      "name": "lof_log_k40",
+      "family": "unsupervised",
+      "threshold": -2374216944.609991,
+      "artifact_bytes": 379252,
+      "training_seconds": 0.012583700000050158,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 246,
+        "false_positives": 1,
+        "true_negatives": 351,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.8474801367331856,
+        "baseline_false_positive_rate": 0.002840909090909091,
+        "flagged_baseline_windows_per_hour": 2.0454545454545454,
+        "per_phase": {
+          "baseline": 0.002840909090909091,
+          "attack_recon": 0.0,
+          "attack_privesc": 0.0,
+          "attack_fileaccess": 0.0
+        }
+      }
+    },
+    {
+      "name": "extratrees_leaf2",
+      "family": "supervised_known_simulations",
+      "threshold": 0.6251987119602525,
+      "artifact_bytes": 1015890,
+      "training_seconds": 0.20782929999995758,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 0,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9879518072289156,
+        "recall": 1.0,
+        "f1": 0.9939393939393939,
+        "roc_auc": 0.9999422579453067,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "extratrees_leaf5",
+      "family": "supervised_known_simulations",
+      "threshold": 0.4451939073355053,
+      "artifact_bytes": 653970,
+      "training_seconds": 0.19566439999994145,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 0,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9879518072289156,
+        "recall": 1.0,
+        "f1": 0.9939393939393939,
+        "roc_auc": 0.9998267738359201,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "extratrees_leaf10",
+      "family": "supervised_known_simulations",
+      "threshold": 0.34563724271081037,
+      "artifact_bytes": 496530,
+      "training_seconds": 0.19387490000008256,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 245,
+        "false_negatives": 1,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9879032258064516,
+        "recall": 0.9959349593495935,
+        "f1": 0.9919028340080972,
+        "roc_auc": 0.999699741315595,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 1.0,
+          "attack_privesc": 0.9878048780487805,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "randomforest_leaf5",
+      "family": "supervised_known_simulations",
+      "threshold": 0.32004752396296526,
+      "artifact_bytes": 448866,
+      "training_seconds": 0.2438904000000548,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 244,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878542510121457,
+        "recall": 0.991869918699187,
+        "f1": 0.9898580121703854,
+        "roc_auc": 0.9996997413155948,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9878048780487805,
+          "attack_privesc": 0.9878048780487805,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "name": "logistic",
+      "family": "supervised_known_simulations",
+      "threshold": 0.23300400442803526,
+      "artifact_bytes": 2001,
+      "training_seconds": 0.006305599999905098,
+      "validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 239,
+        "false_negatives": 7,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.987603305785124,
+        "recall": 0.9715447154471545,
+        "f1": 0.9795081967213115,
+        "roc_auc": 0.9985218033998522,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.9390243902439024,
+          "attack_privesc": 0.9878048780487805,
+          "attack_fileaccess": 0.9878048780487805
+        }
+      }
+    }
+  ],
+  "selected": {
+    "name": "ocsvm_log_g0.1_nu0.02",
+    "family": "unsupervised",
+    "threshold": 0.734708821911347,
+    "artifact_bytes": 7217,
+    "training_seconds": 0.003273100000114937,
+    "validation": {
+      "windows": 598,
+      "excluded_windows": 0,
+      "true_positives": 244,
+      "false_negatives": 2,
+      "false_positives": 3,
+      "true_negatives": 349,
+      "precision": 0.9878542510121457,
+      "recall": 0.991869918699187,
+      "f1": 0.9898580121703854,
+      "roc_auc": 0.9976441241685144,
+      "baseline_false_positive_rate": 0.008522727272727272,
+      "flagged_baseline_windows_per_hour": 6.136363636363637,
+      "per_phase": {
+        "baseline": 0.008522727272727272,
+        "attack_recon": 0.975609756097561,
+        "attack_privesc": 1.0,
+        "attack_fileaccess": 1.0
+      }
+    }
+  },
+  "test": {
+    "windows": 600,
+    "excluded_windows": 0,
+    "true_positives": 246,
+    "false_negatives": 2,
+    "false_positives": 9,
+    "true_negatives": 343,
+    "precision": 0.9647058823529412,
+    "recall": 0.9919354838709677,
+    "f1": 0.9781312127236581,
+    "roc_auc": 0.9975027492668622,
+    "baseline_false_positive_rate": 0.02556818181818182,
+    "flagged_baseline_windows_per_hour": 18.40909090909091,
+    "per_phase": {
+      "baseline": 0.02556818181818182,
+      "attack_recon": 0.975609756097561,
+      "attack_privesc": 1.0,
+      "attack_fileaccess": 1.0
+    }
+  },
+  "test_per_session": {
+    "20260914_120411": {
+      "windows": 300,
+      "excluded_windows": 0,
+      "true_positives": 124,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 176,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "baseline_false_positive_rate": 0.0,
+      "flagged_baseline_windows_per_hour": 0.0,
+      "per_phase": {
+        "baseline": 0.0,
+        "attack_recon": 1.0,
+        "attack_privesc": 1.0,
+        "attack_fileaccess": 1.0
+      }
+    },
+    "20260916_185643": {
+      "windows": 300,
+      "excluded_windows": 0,
+      "true_positives": 122,
+      "false_negatives": 2,
+      "false_positives": 9,
+      "true_negatives": 167,
+      "precision": 0.9312977099236641,
+      "recall": 0.9838709677419355,
+      "f1": 0.9568627450980393,
+      "roc_auc": 0.9937225073313783,
+      "baseline_false_positive_rate": 0.05113636363636364,
+      "flagged_baseline_windows_per_hour": 36.81818181818182,
+      "per_phase": {
+        "baseline": 0.05113636363636364,
+        "attack_recon": 0.9512195121951219,
+        "attack_privesc": 1.0,
+        "attack_fileaccess": 1.0
+      }
+    }
+  },
+  "test_incidents": {
+    "consecutive": 2,
+    "cooldown_seconds": 60,
+    "incident_starts": 8,
+    "notifications": 7,
+    "baseline_notifications": 1,
+    "baseline_notifications_per_hour": 2.0454545454545454,
+    "scenarios": [
+      {
+        "session_id": "20260914_120411",
+        "phase": "attack_recon",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      },
+      {
+        "session_id": "20260914_120411",
+        "phase": "attack_privesc",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      },
+      {
+        "session_id": "20260914_120411",
+        "phase": "attack_fileaccess",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      },
+      {
+        "session_id": "20260916_185643",
+        "phase": "attack_recon",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      },
+      {
+        "session_id": "20260916_185643",
+        "phase": "attack_privesc",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      },
+      {
+        "session_id": "20260916_185643",
+        "phase": "attack_fileaccess",
+        "detected": true,
+        "incident_active_at_phase_start": false,
+        "detection_delay_seconds": 10.0,
+        "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+      }
+    ]
+  },
+  "incident_metric_scope": "Rates extrapolated from retained test-block duration; gaps reset incident state. Attack delays refer to retained fragments, not actual attack onsets.",
+  "fair_reference_default_if_test": {
+    "windows": 600,
+    "excluded_windows": 0,
+    "true_positives": 248,
+    "false_negatives": 0,
+    "false_positives": 21,
+    "true_negatives": 331,
+    "precision": 0.9219330855018587,
+    "recall": 1.0,
+    "f1": 0.9593810444874274,
+    "roc_auc": 0.9919984879032258,
+    "baseline_false_positive_rate": 0.05965909090909091,
+    "flagged_baseline_windows_per_hour": 42.95454545454545,
+    "per_phase": {
+      "baseline": 0.05965909090909091,
+      "attack_recon": 1.0,
+      "attack_privesc": 1.0,
+      "attack_fileaccess": 1.0
+    }
+  },
+  "artifact": {
+    "path": "models\\output\\improved\\detector_bundle.joblib",
+    "bytes": 7763,
+    "sha256": "88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a",
+    "sklearn_version": "1.9.1"
+  }
+}

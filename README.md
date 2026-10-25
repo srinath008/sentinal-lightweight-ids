@@ -1,178 +1,177 @@
-# eBPF-Based Intrusion Detection System
+# Sentinel application preview
 
-An unsupervised anomaly detection system that passively monitors Linux kernel
-events via eBPF tracing tools and detects multi-stage cyber attacks using
-Isolation Forest and One-Class SVM.
+For team revision: [concepts and viva study guide](docs/SENTINEL_TEAMMATE_CONCEPTS_AND_VIVA_STUDY_GUIDE.md).
 
----
+Full project and presentation context: [complete self-contained report](docs/SENTINEL_COMPLETE_PROJECT_REPORT_AND_PPT_HANDOFF.md).
 
-## Project Overview
+Final QA (18 October 2026): the installed Ubuntu app passed native startup,
+15 browser flow checks, real collector/helper checks, and file scanning.
+The full Windows suite passed 117 tests (one Linux-only skip); all 15 Ubuntu
+desktop/protection tests passed. Four runtime/display issues were corrected.
+Ready for a supervised faculty demonstration as a research prototype; fresh
+harmless activity still produced behavioral false alerts. The public download
+is an older build. See [final QA and faculty demo steps](docs/FINAL_QA_20261018.md).
 
-This system collects three types of kernel-level telemetry using BCC tools:
+Local Ubuntu WSL now has an experimental host-adapted model and HTTP connection
+reuse installed. See [measured results and rollback](docs/WSL_ADAPTATION_REPORT.md).
+The original source model and public download remain the historical fallback;
+the adapted artifact is kept separately in `models/output/host_adapted_20261017/`.
 
-| Source | Tool | Events captured |
-|---|---|---|
-| Process execution | `execsnoop` | Every exec syscall — command, PID, return code |
-| File access | `opensnoop` | Every open syscall — path, file descriptor, error |
-| Network connections | `tcpconnect` | Every outbound TCP connection — IP version, addresses, port |
+The current model is now integrated into the Sentinel desktop application in
+`desktop/`, with a Linux installer in `release_tools/` and a download landing
+page in `landing/`. See [installation and limitations](docs/APP_INSTALL.md).
 
-Events are aggregated into **5-second windows** and scored by two trained models.
-A window is flagged as anomalous when it deviates significantly from the
-**baseline (normal operation)** behaviour learned during training.
+Download page: https://sentinel-linux-ids.srinathb308.chatgpt.site
 
----
-
-## Attack Scenario
-
-The dataset simulates a realistic multi-stage intrusion:
-
-| Phase | Duration | Activity |
-|---|---|---|
-| `baseline` | 60 min | Normal workload — Firefox browsing, background daemons |
-| `attack_recon` | 15 min | `nmap` port scans — burst TCP connection events |
-| `attack_privesc` | 15 min | `getcap`/`find` filesystem crawls — massive file access volume |
-| `attack_fileaccess` | 15 min | Targeted credential harvesting — elevated exec activity |
-
----
-
-## Results
-
-Both models trained **only on baseline data** (unsupervised — no attack labels used during training):
-
-| Metric | Isolation Forest | One-Class SVM |
-|---|---|---|
-| **Precision** | 0.905 | 0.900 |
-| **Recall** | **1.000** | 0.993 |
-| **F1** | **0.950** | 0.944 |
-| **ROC-AUC** | **0.997** | 0.996 |
-| **PR-AUC** | 0.990 | **0.997** |
-
-**Per-phase detection rate:**
-
-| Phase | Isolation Forest | One-Class SVM |
-|---|---|---|
-| `attack_recon` | 100.0% | 97.8% |
-| `attack_privesc` | 100.0% | 100.0% |
-| `attack_fileaccess` | 100.0% | 100.0% |
-| `baseline` (FP rate) | 7.8% | 8.2% |
-
-> **Recommendation:** Use Isolation Forest as the primary detector (perfect recall —
-> zero missed attacks). Use the OC-SVM score as a secondary severity signal to
-> rank and filter alerts.
-
----
-
-## Dataset
-
-Collected on a Ubuntu 22.04 VM with BCC tools during two independent sessions:
-
-| File | Session 1 | Session 2 |
-|---|---|---|
-| `execsnoop.csv` | 10,496 rows | 10,804 rows |
-| `opensnoop.csv` | 8,195,946 rows | 7,777,434 rows |
-| `tcpconnect.csv` | 165,191 rows | 164,288 rows |
-
-Raw dataset is **not committed** (gitignored). Contact project owner for access.
-
----
-
-## Tech Stack
-
-- **Python 3.14** — pandas 3.0, scikit-learn 1.9, numpy 2.5, pyarrow 25
-- **eBPF / BCC** — execsnoop, opensnoop, tcpconnect (data collection, Linux only)
-- **Models** — `sklearn.ensemble.IsolationForest`, `sklearn.svm.OneClassSVM`
-- **Storage** — Apache Parquet (feature table + model scores)
-- **Tests** — pytest 9.1 — **72 unit tests, 100% passing**
-
----
-
-## Repo Structure
-
-```
-.
-├── collection/                   # BCC collection scripts (Linux only)
-├── feature_engineering/
-│   ├── parsing.py                # Raw CSV loaders (3 eBPF tools)
-│   ├── labeling.py               # Phase-label joining via IntervalIndex
-│   ├── features.py               # Windowed feature aggregation
-│   ├── eda.py                    # Exploratory analysis + plots
-│   ├── output/                   # features_window5s.parquet + EDA plots
-│   └── tests/                    # 72 unit tests (pytest)
-├── models/
-│   ├── train_isolation_forest.py # WP-07: IF training
-│   ├── train_ocsvm.py            # WP-08: OC-SVM + StandardScaler training
-│   ├── evaluation.py             # WP-09: Side-by-side comparison
-│   └── output/                   # .joblib models + score parquets (gitignored)
-├── inference/
-│   └── live_pipeline.py          # WP-11: End-to-end scoring pipeline
-├── docs/
-│   └── PROJECT_HANDOFF.md        # Full technical specification
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Quick Start
+To preview the interface from this checkout with the existing Python environment:
 
 ```bash
-# 1. Create and activate the virtual environment
-python -m venv .venv
-source .venv/bin/activate        # Linux/macOS
-.venv\Scripts\Activate.ps1       # Windows PowerShell
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Run tests
-pytest feature_engineering/tests/
-
-# 4. Build feature table (requires dataset in ids_dataset/)
-python feature_engineering/features.py   # not a script — use the pipeline below
-
-# 5. Train models
-python models/train_isolation_forest.py
-python models/train_ocsvm.py
-
-# 6. Evaluate
-python models/evaluation.py
-
-# 7. Run live inference on a session
-python inference/live_pipeline.py --session-dir ids_dataset/20260914_120411
+python -m desktop.app --browser
 ```
 
----
+The landing directory has its own Sites source repository. Keep it separate
+from unrelated changes in the parent project repository.
 
-## Progress
+The original source model flags 255 of the 600 recorded replay windows.
+The installed Ubuntu adaptation flags 253. Native startup and privileged
+collector checks passed on the existing Ubuntu installation; installation
+on a clean Linux machine remains unverified.
+The existing model is unchanged. This is behavioral detection, not file scanning.
 
-- [x] WP-00 — Dataset verification (row counts, schema, phase timestamps)
-- [x] WP-01 — Repository structure and version control
-- [x] WP-02 — Python environment and dependencies
-- [x] WP-03 — Raw log parsing (`parsing.py` — 29 unit tests)
-- [x] WP-04 — Phase-label joining (`labeling.py` — 21 unit tests)
-- [x] WP-05 — Feature engineering (`features.py` — 22 unit tests)
-- [x] WP-06 — Exploratory data analysis (`eda.py` — 4 plot types)
-- [x] WP-07 — Isolation Forest training (F1=0.950, ROC-AUC=0.997)
-- [x] WP-08 — One-Class SVM training (F1=0.944, ROC-AUC=0.996)
-- [x] WP-09 — Model evaluation and comparison report
-- [x] WP-11 — Live inference pipeline (`live_pipeline.py`)
-- [x] WP-12 — Documentation and final report
+# eBPF behaviour-based intrusion detection prototype
 
----
+## Existing-data improvement
 
-## Key Engineering Decisions
+The current selected model is a calibrated One-Class SVM trained on normal
+blocks from both existing profiles, with eleven derived inputs. In an
+exploratory chronological-block comparison it reduced normal-window false
+positives from 5.97% (reference IF) to 2.56%, with simulated-window recall
+changing from 100% to 99.19%. Independent-session/VM validation remains open.
+See [model improvement details](docs/MODEL_IMPROVEMENT.md) for the protocol,
+limitations, saved bundle, and commands. Fast offline scoring:
 
-| Decision | Rationale |
-|---|---|
-| **log1p on opensnoop counts** | `attack_privesc` crawls generate up to 87k opens/window vs baseline's ~200. log1p prevents scale dominance while preserving ordering |
-| **Baseline-only training** | True unsupervised IDS — no attack labels needed. Contamination set to `'auto'` (IF) and `nu=0.05` (OC-SVM) |
-| **Right-anchored COMM parsing** | Real data had multi-word process names (`Socket Thread`, `StreamT~ns #132`) — simple split misaligns FD/ERR columns |
-| **ERR range constraint (±4096)** | Dataset folder names (e.g. `20260914_120411`) are valid integers but not errno codes — range check prevents misclassification |
-| **5-second windows** | Balances temporal resolution vs noise. Tunable via `--window` flag |
-| **IF as primary detector** | Perfect recall (zero missed attacks) is critical for a security system |
+```bash
+python -m inference.score_features
+```
 
----
+The earlier project implementation and independent-session findings below
+are preserved as background; the improvement uses a different evaluation split.
 
-## Authors
+An academic Linux security-monitoring project using CO-RE `execsnoop`,
+`opensnoop`, and `tcpconnect`, with Isolation Forest and One-Class SVM.
+It detects anomalous activity windows. File-virus scanning is a future,
+separate component; this ML model does not inspect file contents.
 
-Team 2 — Amrita Vishwa Vidyapeetham, SEM3 AIM OS Project
+## Current implementation
+
+- Shared five-second windows across all three sources, including idle windows.
+- Incremental CSV replay with one active window instead of millions of in-memory rows.
+- Strictly disjoint training, validation, and test sessions.
+- Baseline-only model/scaler fitting; threshold calibration on validation baseline.
+- Versioned model bundle with feature order, transformations (schema), window duration,
+  thresholds, and exact scikit-learn version.
+- Consecutive-window incident grouping and notification cooldown.
+- Linux live-ingestion and collection code, pending hardware integration testing.
+
+The original model artifacts and raw logs are preserved. Their published
+F1=0.950 / 0.944 results include normal training data in evaluation and are
+historical demonstration numbers. The old training/replay CLI entry points
+are retired because old models must not score the corrected feature schema.
+
+## What independent-session checks show
+
+Corrected features were rebuilt from the two original sessions. Fixed-default
+thresholds were used without test-based tuning:
+
+| Model | Train on media, test idle: normal FPR | Train idle, test media: normal FPR |
+|---|---|---|
+| Isolation Forest | 2.92% | 53.61% |
+| One-Class SVM | 9.44% | 30.69% |
+
+Isolation Forest detected all simulated attack windows in both folds.
+These are repeated scan/enumeration/file-access simulations, not a malware
+coverage test. The FPR difference demonstrates insufficient normal workload
+coverage. Incident grouping alone does not fix that: the harder IF fold still
+produced 37 baseline notifications in one hour at the default grouping policy.
+
+Full results: [cross-session report](docs/CROSS_SESSION_RESULTS.json).
+With only two sessions, a final three-way calibrated evaluation is unavailable.
+Collect additional independent sessions before training a deployment bundle.
+
+## Development setup
+
+Run commands from the repository root. Python 3.12+ is recommended. Use a
+project-local virtual environment; the requirements file below is intentionally
+smaller than the historical 115-package environment snapshot.
+
+```bash
+python -m venv .venv
+# Linux: .venv/bin/python; Windows: .venv/Scripts/python.exe
+python -m pip install -r requirements-runtime.txt pytest
+python -m pytest feature_engineering/tests tests -q
+```
+
+Activate the environment or replace `python` with its absolute executable path.
+Windows verification at the initial extension checkpoint: 84 passing tests,
+including a synthetic end-to-end training/bundle/inference integration test.
+
+## Replay and evaluation
+
+```bash
+python -m feature_engineering.replay \
+  --session-dir ids_dataset/20260914_120411 \
+  --session-dir ids_dataset/20260916_185643 \
+  --output feature_engineering/output/features_window5s_v2.parquet
+
+python -m models.cross_session \
+  --features feature_engineering/output/features_window5s_v2.parquet \
+  --output docs/CROSS_SESSION_RESULTS.json
+```
+
+The rebuild also writes schema metadata and malformed/header counts. It does
+not alter raw logs or historical feature/model artifacts. Session IDs are the
+input directory names and must uniquely identify collection sessions.
+
+For final training, first build features including fresh independent sessions:
+
+```bash
+python -m models.validated_training \
+  --features feature_engineering/output/features_window5s_v2.parquet \
+  --train TRAIN_SESSION --validation VALIDATION_SESSION --test TEST_SESSION
+```
+
+Replace placeholders with actual session IDs. Each partition needs baseline
+activity; test needs simulated scenarios. The default 1% validation FPR target
+is configurable and does not guarantee a 1% test FPR. Thresholds are never
+chosen from test data. Reports distinguish flagged windows from notifications.
+
+```bash
+python -m inference.replay \
+  --bundle models/output/validated/detector_bundle.joblib \
+  --session-dir ids_dataset/TEST_SESSION
+```
+
+## Linux continuation
+
+[IdeaPad setup, collection, and live-testing checklist](docs/NEXT_STEPS_LINUX.md)
+contains exact commands and remaining checks. CO-RE binaries require Linux,
+BTF, and suitable eBPF privileges. Collection timestamps are userspace receipt
+times. Output format compatibility and lost-event reporting must be checked
+against the actual binary builds.
+
+Live monitoring code uses a bounded queue and incremental windows. It reports
+collector failure/loss and aborts on incomplete ingestion. Complete windows
+are scored; an unfinished window is discarded at shutdown. Memory for exact
+distinct paths remains proportional to each window's unique values and must
+be benchmarked on the IdeaPad. Model inference overhead alone does not prove
+that the complete application is lightweight.
+
+## Remaining work
+
+Broader normal-use data, genuinely held-out calibration/test sessions, Linux
+live integration, CPU/RAM and latency measurements, installer/service/UI,
+log rotation, and an attributed file-scanning engine. No actual malware
+execution is required for the planned demonstration.
+
+The original background is in docs/PROJECT_HANDOFF.md; corrected current
+status is at the top of docs/PROJECT_STATUS.md. Load only trusted joblib bundles.

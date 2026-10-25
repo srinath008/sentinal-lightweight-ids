@@ -1,4 +1,176 @@
-# eBPF IDS Project — Complete Status Report
+# eBPF IDS Project — Status and Historical Report
+
+## Final QA — 2026-10-18
+
+See [final QA and faculty demonstration steps](FINAL_QA_20261018.md).
+117 Windows tests passed with one Linux-only skip; all 15 Ubuntu desktop/
+protection tests and 15 real-browser flow checks passed. Native startup,
+ClamAV, export, actual collectors and ordinary-user helper shutdown passed.
+Four issues were corrected in source and the installed app. A fresh harmless
+probe flagged 2/4 windows, so behavioral alerts remain experimental. The public
+archive is accessible with matching checksum but remains an older release.
+
+## Local host adaptation installed — 2026-10-17
+
+Three safe aggregate-recording rounds and candidate comparisons produced an
+experimental normal-profile union SVM, now active only in local Ubuntu WSL.
+Fresh final normal windows: 0/26 flagged versus the reference model's 13/26.
+All 12 retained harmless stress windows were flagged, producing one incident
+per stress run. Historical recall remains 246/248 (99.19%); normal flags improved
+from 9/352 to 7/352 (1.99%), F1 0.982. Ubuntu scoring exactly matched the saved
+Windows evaluation. Linux p95 standalone scoring was 0.61 ms.
+
+Dashboard HTTP connection reuse reduced measured idle local TCP events from
+about 11 per window to zero. UI model metrics are now bundle-driven and labelled
+as an experimental preview. ClamAV EICAR/clean-file scanning and JSON/HTML export
+passed again. Full suite: 44 passed, one Linux-only test skipped on Windows.
+
+Original model/raw datasets are preserved. Ubuntu's original model has a verified
+rollback backup; the source adapted artifact and aggregate sessions are retained
+outside temporary output. The source historical model and public archive still
+contain the original detector. These short single-host tests do not establish
+general malware accuracy. See WSL_ADAPTATION_REPORT.md, protocol and JSON results.
+
+## Controlled WSL verification — 2026-10-17
+
+Human-authorized live collection and native alerts now work (51-window user
+report). Follow-up controlled tests verified process, file/error and TCP events
+and fixed multiline exec-argument ingestion using execsnoop `--quote`. The
+fix is installed in Ubuntu. Four diagnostic phases and a final isolated probe
+finished without malformed/late rows or collector stderr. ClamAV EICAR and
+clean-file scanning plus JSON/HTML export passed again without changing files.
+
+The existing model still flags ordinary WSL workloads excessively. Lowering
+its cutoff reduced historical attack recall from 99.19% to 31.45%, so no model
+or cutoff change was deployed. Ubuntu automatic upgrades confounded file-noise
+comparison; local WebKit interface traffic was directly observed. See
+WSL_TESTING_REPORT.md and its JSON evidence. 38 automated tests passed with one
+Linux-only test skipped on Windows; 24 relevant checks passed after the fix.
+Earlier entries below describe historical installation states.
+
+## Protection tools and storage recovery — 2026-10-16
+
+Added direct local JSON/HTML report export, persistent explained alerts,
+native-popup fallback, bounded live process/path/network context, and real
+on-demand ClamAV scanning. Official signatures and collectors are installed
+locally. EICAR detection and report saves were verified; 107 regression tests
+passed. A 15-second live smoke check scored two windows without malformed/late
+events. Human administrator authorization from the GUI is still to be tested.
+
+Ubuntu filled C: during setup. After user approval it was backed up and moved
+to E:\WSL\Ubuntu; read/write health was restored. See PROTECTION_TOOLS.md.
+Scanner peak RSS was about 1,000 MiB, so no whole-app ultra-lightweight claim
+is justified. Original behavioral model and raw data remain unchanged.
+
+## Local WSL installation — 2026-10-16
+
+Sentinel is now installed in Ubuntu WSL 2 at `/opt/sentinel`, with a `sentinel`
+launcher and desktop menu entry. The installed model checksum and 600-window
+replay passed. The native launcher starts its WebKit renderer and serves the
+local interface successfully; visual window inspection remains pending.
+CO-RE collectors are still missing, so live monitoring is unavailable.
+Installation followed the release's user/system steps separately; this does
+not verify the interactive installer end-to-end. See INSTALLATION_WSL.md.
+
+## Sentinel application preview — 2026-10-13
+
+Added a local desktop UI, accelerated/real-time recorded replay, incident
+history (1,000 retained health/incident events), JSON report export, live
+prerequisite checks, and a fixed privileged collector helper. A root-owned
+Ubuntu installer, launcher, menu entry and recoverable uninstall are supplied.
+The Linux preview archive includes the unchanged selected model and 600
+reserved historical feature windows, not raw syscall logs. A responsive
+Watermelon-inspired landing page includes the real archive and checksum.
+
+Verification: 103 tests pass; the actual archive replays all 600 windows with
+255 flagged on Ubuntu WSL 2/Python 3.12 as well as Windows/Python 3.14. Browser
+checks cover replay, score chart, history and system checks. Clean system
+installation, native Linux window and live privileged collection remain
+unverified. WSL has BTF but no installed CO-RE tools or pkexec at this check.
+See APP_INSTALL.md; earlier statements that no UI/packaging exists are historical.
+
+## LID-DS pilot completed
+
+The locally supplied CVE-2012-2122 archive was fully audited (1,152 recordings,
+41.5 million exported events). A fixed diagnostic augmentation of normal
+training data reduced native reserved-test false positives from 9 to 8, with
+unchanged 99.19% simulated-attack recall, but validation did not improve. The
+external diagnostic representation failed to distinguish normal activity from
+post-onset attack exposure. No merge or model promotion was made. See
+LIDDS_TRIAL.md, LIDDS_TRIAL_RESULTS.json and LIDDS_AUDIT_SUMMARY.json. Earlier
+statements that no external recording has been inspected are historical.
+
+## External compatibility and workload transfer review
+
+See EXTERNAL_DATASETS.md for the source-backed dataset comparison and audit CLI.
+LID-DS 2021 is the closest candidate but is not yet semantically interchangeable;
+no external recordings have been imported. A frozen-settings workload transfer
+check found selected SVM idle-to-media FPR 25.69%, versus media-to-idle 0.28%
+(recall 100% and 95.75%, respectively). These newly fitted stress-test models
+are separate from the deployed bundle trained with both profiles. Results in
+WORKLOAD_TRANSFER_RESULTS.json reinforce the need for independent validation.
+
+## Existing-data model improvement
+
+The collection laptop is unavailable; work continues with the two locally
+preserved sessions. Nineteen model configurations were compared using
+chronological train/validation/test blocks from both sessions. A calibrated
+One-Class SVM with derived features was selected from validation alone.
+
+Reserved-test normal-window FPR: 2.56% versus a 5.97% reference IF on the same
+split. Simulated-window recall: 99.19% versus 100%; F1: 0.9781 versus 0.9594.
+False positives were 9/352 normal windows, with 2/248 attack windows missed.
+The media-session baseline FPR remains 5.11%; idle test baseline FPR is 0%.
+
+This is exploratory within two previously examined sessions, not independent
+validation on a new machine/session. Model bundle is saved separately at
+`models/output/improved/detector_bundle.joblib` and works with the inference
+adapter. See MODEL_IMPROVEMENT.md and MODEL_IMPROVEMENT_RESULTS.json.
+Verification at this checkpoint: 89 tests passed. VM/live checks remain open.
+
+
+## Correction — 2026-10-02 development extension
+
+The report below is historical. Its claims that all packages are complete,
+that live inference was verified, and that the models generalize are not
+supported by the implementation. Historical evaluation reuses training
+baseline windows; the original `live_pipeline.py` replays saved logs.
+The handoff identifies WP-10 as optional extra baseline collection, not
+hyperparameter tuning, and does not define an F1=0.85 skip threshold.
+Dataset collection is documented on a physical Ubuntu IdeaPad; VM claims
+below conflict with the handoff and should not be treated as verified.
+
+Implemented here: shared-origin windows with empty-window handling, a
+memory-efficient raw-log replay/parser, disjoint session training/validation/
+test partitions, validation-only threshold calibration, model settings in a
+single versioned bundle, incident grouping, Linux streaming and collection
+code, minimal runtime dependencies, and regression/integration tests.
+Old model artifacts/raw logs are preserved; legacy training/replay CLI entry
+points are retired to avoid mixing old models with corrected features.
+
+Corrected features were rebuilt from both existing sessions. There were 13
+malformed rows in session 1 and 11 in session 2; each had three tool headers.
+These rejects are counted, not silently treated as successful events.
+
+Exploratory leave-one-session-out Isolation Forest results:
+
+| Training baseline | Test session | Simulated-window recall | Normal-window FPR |
+|---|---|---|---|
+| Browsing/media | Idle/light | 100% | 2.92% |
+| Idle/light | Browsing/media | 100% | 53.61% |
+
+These use fixed default thresholds, not a final calibrated three-way split.
+The asymmetric FPR shows the need for broader normal-workload coverage.
+See `CROSS_SESSION_RESULTS.json` for both models and grouped incident rates.
+
+Verification: 84 tests passed on Windows at this checkpoint; Linux collectors
+and live integration still require the IdeaPad. Final calibration requires
+additional independent sessions. Packaging, UI, resource benchmarks, and
+file-virus scanning are not yet implemented. See `NEXT_STEPS_LINUX.md`.
+
+---
+
+## Historical report (preserved)
 
 **Project:** eBPF-Based Intrusion Detection System
 **Repository:** https://github.com/srinath008/ebpf-detection

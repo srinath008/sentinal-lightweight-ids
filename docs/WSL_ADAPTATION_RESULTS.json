@@ -1,0 +1,1124 @@
+{
+  "selection": {
+    "selected": {
+      "name": "hist_gradient",
+      "family": "supervised_known_simulations",
+      "threshold": 0.8664357600112351,
+      "artifact_bytes": 163289,
+      "training_seconds": 0.0791877999999997,
+      "historical_validation": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 0,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9879518072289156,
+        "recall": 1.0,
+        "f1": 0.9939393939393939,
+        "roc_auc": 0.9999307095343681,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "wsl_validation": {
+        "idle": {
+          "windows": 19,
+          "flagged": 0,
+          "flagged_fraction": 0.0
+        },
+        "benign": {
+          "windows": 19,
+          "flagged": 0,
+          "flagged_fraction": 0.0
+        }
+      }
+    },
+    "candidates": [
+      {
+        "name": "svm_g0.001_nu0.01",
+        "family": "unsupervised",
+        "threshold": 12.614102818904632,
+        "artifact_bytes": 4193,
+        "training_seconds": 0.01224510000065493,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 173,
+          "false_negatives": 73,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9829545454545454,
+          "recall": 0.7032520325203252,
+          "f1": 0.8199052132701422,
+          "roc_auc": 0.9131790465631929,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9390243902439024,
+            "attack_privesc": 0.8780487804878049,
+            "attack_fileaccess": 0.2926829268292683
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g0.001_nu0.05",
+        "family": "unsupervised",
+        "threshold": 62.93572817344068,
+        "artifact_bytes": 10241,
+        "training_seconds": 0.007514299999456853,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 212,
+          "false_negatives": 34,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.986046511627907,
+          "recall": 0.8617886178861789,
+          "f1": 0.9197396963123644,
+          "roc_auc": 0.968253418329638,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9390243902439024,
+            "attack_privesc": 0.8170731707317073,
+            "attack_fileaccess": 0.8292682926829268
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g0.01_nu0.01",
+        "family": "unsupervised",
+        "threshold": 6.194373900570186,
+        "artifact_bytes": 4305,
+        "training_seconds": 0.0040130999996108585,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 233,
+          "false_negatives": 13,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9872881355932204,
+          "recall": 0.9471544715447154,
+          "f1": 0.966804979253112,
+          "roc_auc": 0.9621327605321507,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9512195121951219,
+            "attack_privesc": 0.9512195121951219,
+            "attack_fileaccess": 0.9390243902439024
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g0.01_nu0.05",
+        "family": "unsupervised",
+        "threshold": 28.671728624719137,
+        "artifact_bytes": 10353,
+        "training_seconds": 0.007629199999428238,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 164,
+          "false_negatives": 82,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9820359281437125,
+          "recall": 0.6666666666666666,
+          "f1": 0.7941888619854721,
+          "roc_auc": 0.9824810606060606,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9390243902439024,
+            "attack_privesc": 0.8170731707317073,
+            "attack_fileaccess": 0.24390243902439024
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g0.1_nu0.01",
+        "family": "unsupervised",
+        "threshold": 0.8797639616345793,
+        "artifact_bytes": 6993,
+        "training_seconds": 0.004688799999712501,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 241,
+          "false_negatives": 5,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9877049180327869,
+          "recall": 0.9796747967479674,
+          "f1": 0.9836734693877551,
+          "roc_auc": 0.9966856060606061,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9634146341463414,
+            "attack_privesc": 0.9878048780487805,
+            "attack_fileaccess": 0.9878048780487805
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g0.1_nu0.05",
+        "family": "unsupervised",
+        "threshold": 4.926215389147576,
+        "artifact_bytes": 11105,
+        "training_seconds": 0.007454199999301636,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 240,
+          "false_negatives": 6,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9876543209876543,
+          "recall": 0.975609756097561,
+          "f1": 0.9815950920245399,
+          "roc_auc": 0.999295546932742,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9512195121951219,
+            "attack_privesc": 0.9878048780487805,
+            "attack_fileaccess": 0.9878048780487805
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g1_nu0.01",
+        "family": "unsupervised",
+        "threshold": 0.032100440689246834,
+        "artifact_bytes": 15089,
+        "training_seconds": 0.009861499999715306,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 244,
+          "false_negatives": 2,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9878542510121457,
+          "recall": 0.991869918699187,
+          "f1": 0.9898580121703854,
+          "roc_auc": 0.9990876755358463,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.975609756097561,
+            "attack_privesc": 1.0,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "svm_g1_nu0.05",
+        "family": "unsupervised",
+        "threshold": 0.16314097738880518,
+        "artifact_bytes": 15185,
+        "training_seconds": 0.008901500000320084,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 244,
+          "false_negatives": 2,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9878542510121457,
+          "recall": 0.991869918699187,
+          "f1": 0.9898580121703854,
+          "roc_auc": 0.9990876755358462,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.975609756097561,
+            "attack_privesc": 1.0,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "if_log_128",
+        "family": "unsupervised",
+        "threshold": -0.6971771750497027,
+        "artifact_bytes": 1067926,
+        "training_seconds": 0.15371150000009948,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 124,
+          "false_negatives": 122,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9763779527559056,
+          "recall": 0.5040650406504065,
+          "f1": 0.6648793565683646,
+          "roc_auc": 0.9837167405764967,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.0,
+            "attack_privesc": 0.524390243902439,
+            "attack_fileaccess": 0.9878048780487805
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "if_log_256",
+        "family": "unsupervised",
+        "threshold": -0.6883335611090453,
+        "artifact_bytes": 1479590,
+        "training_seconds": 0.16396979999990435,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 162,
+          "false_negatives": 84,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9818181818181818,
+          "recall": 0.6585365853658537,
+          "f1": 0.7883211678832117,
+          "roc_auc": 0.9838437730968219,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.0,
+            "attack_privesc": 0.9878048780487805,
+            "attack_fileaccess": 0.9878048780487805
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "if_log_512",
+        "family": "unsupervised",
+        "threshold": -0.6924888987981165,
+        "artifact_bytes": 2098406,
+        "training_seconds": 0.15991680000024644,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 161,
+          "false_negatives": 85,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9817073170731707,
+          "recall": 0.6544715447154471,
+          "f1": 0.7853658536585366,
+          "roc_auc": 0.9842710643015522,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.0,
+            "attack_privesc": 0.975609756097561,
+            "attack_fileaccess": 0.9878048780487805
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "lof_10",
+        "family": "unsupervised",
+        "threshold": -4831748852.581915,
+        "artifact_bytes": 406548,
+        "training_seconds": 0.050096200000552926,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 158,
+          "false_negatives": 88,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9813664596273292,
+          "recall": 0.6422764227642277,
+          "f1": 0.7764127764127764,
+          "roc_auc": 0.8944821692535108,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9512195121951219,
+            "attack_privesc": 0.024390243902439025,
+            "attack_fileaccess": 0.9512195121951219
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "lof_30",
+        "family": "unsupervised",
+        "threshold": -2497198105.7286305,
+        "artifact_bytes": 629908,
+        "training_seconds": 0.04587619999983872,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 0,
+          "false_negatives": 246,
+          "false_positives": 0,
+          "true_negatives": 352,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.6749584257206208,
+          "baseline_false_positive_rate": 0.0,
+          "flagged_baseline_windows_per_hour": 0.0,
+          "per_phase": {
+            "baseline": 0.0,
+            "attack_recon": 0.0,
+            "attack_privesc": 0.0,
+            "attack_fileaccess": 0.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "lof_60",
+        "family": "unsupervised",
+        "threshold": -2497198105.7286305,
+        "artifact_bytes": 964948,
+        "training_seconds": 0.04633499999999913,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 0,
+          "false_negatives": 246,
+          "false_positives": 0,
+          "true_negatives": 352,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.8197408536585366,
+          "baseline_false_positive_rate": 0.0,
+          "flagged_baseline_windows_per_hour": 0.0,
+          "per_phase": {
+            "baseline": 0.0,
+            "attack_recon": 0.0,
+            "attack_privesc": 0.0,
+            "attack_fileaccess": 0.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "extratrees_2",
+        "family": "supervised_known_simulations",
+        "threshold": 0.5588247951168596,
+        "artifact_bytes": 922482,
+        "training_seconds": 0.1986657000006744,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 246,
+          "false_negatives": 0,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9879518072289156,
+          "recall": 1.0,
+          "f1": 0.9939393939393939,
+          "roc_auc": 0.9999191611234294,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 1.0,
+            "attack_privesc": 1.0,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "extratrees_5",
+        "family": "supervised_known_simulations",
+        "threshold": 0.3830038357510971,
+        "artifact_bytes": 645042,
+        "training_seconds": 0.18453650000083144,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 244,
+          "false_negatives": 2,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9878542510121457,
+          "recall": 0.991869918699187,
+          "f1": 0.9898580121703854,
+          "roc_auc": 0.9998267738359201,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.975609756097561,
+            "attack_privesc": 1.0,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "extratrees_10",
+        "family": "supervised_known_simulations",
+        "threshold": 0.2802563107625345,
+        "artifact_bytes": 501682,
+        "training_seconds": 0.19144109999979264,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 240,
+          "false_negatives": 6,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9876543209876543,
+          "recall": 0.975609756097561,
+          "f1": 0.9815950920245399,
+          "roc_auc": 0.9995611603843311,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 0.9390243902439024,
+            "attack_privesc": 0.9878048780487805,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      },
+      {
+        "name": "hist_gradient",
+        "family": "supervised_known_simulations",
+        "threshold": 0.8664357600112351,
+        "artifact_bytes": 163289,
+        "training_seconds": 0.0791877999999997,
+        "historical_validation": {
+          "windows": 598,
+          "excluded_windows": 0,
+          "true_positives": 246,
+          "false_negatives": 0,
+          "false_positives": 3,
+          "true_negatives": 349,
+          "precision": 0.9879518072289156,
+          "recall": 1.0,
+          "f1": 0.9939393939393939,
+          "roc_auc": 0.9999307095343681,
+          "baseline_false_positive_rate": 0.008522727272727272,
+          "flagged_baseline_windows_per_hour": 6.136363636363637,
+          "per_phase": {
+            "baseline": 0.008522727272727272,
+            "attack_recon": 1.0,
+            "attack_privesc": 1.0,
+            "attack_fileaccess": 1.0
+          }
+        },
+        "wsl_validation": {
+          "idle": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          },
+          "benign": {
+            "windows": 19,
+            "flagged": 0,
+            "flagged_fraction": 0.0
+          }
+        }
+      }
+    ],
+    "rule": ">=95% validation recall in each historical attack phase, <=2% historical baseline flags and <=5% WSL normal flags per workload; maximize worst recall minus worst WSL flag rate, then prefer smaller unsupervised model.",
+    "partition_counts": {
+      "train": 38,
+      "validation": 38,
+      "test": 59
+    },
+    "wsl_training_repeats": 18
+  },
+  "test": {
+    "historical": {
+      "windows": 600,
+      "excluded_windows": 0,
+      "true_positives": 248,
+      "false_negatives": 0,
+      "false_positives": 2,
+      "true_negatives": 350,
+      "precision": 0.992,
+      "recall": 1.0,
+      "f1": 0.9959839357429718,
+      "roc_auc": 0.9999541788856304,
+      "baseline_false_positive_rate": 0.005681818181818182,
+      "flagged_baseline_windows_per_hour": 4.090909090909091,
+      "per_phase": {
+        "baseline": 0.005681818181818182,
+        "attack_recon": 1.0,
+        "attack_privesc": 1.0,
+        "attack_fileaccess": 1.0
+      }
+    },
+    "historical_incidents": {
+      "consecutive": 2,
+      "cooldown_seconds": 60,
+      "incident_starts": 7,
+      "notifications": 7,
+      "baseline_notifications": 1,
+      "baseline_notifications_per_hour": 2.0454545454545454,
+      "scenarios": [
+        {
+          "session_id": "20260914_120411",
+          "phase": "attack_recon",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        },
+        {
+          "session_id": "20260914_120411",
+          "phase": "attack_privesc",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        },
+        {
+          "session_id": "20260914_120411",
+          "phase": "attack_fileaccess",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        },
+        {
+          "session_id": "20260916_185643",
+          "phase": "attack_recon",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        },
+        {
+          "session_id": "20260916_185643",
+          "phase": "attack_privesc",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        },
+        {
+          "session_id": "20260916_185643",
+          "phase": "attack_fileaccess",
+          "detected": true,
+          "incident_active_at_phase_start": false,
+          "detection_delay_seconds": 10.0,
+          "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+        }
+      ]
+    },
+    "wsl": {
+      "idle": {
+        "windows": 19,
+        "flagged": 0,
+        "flagged_fraction": 0.0
+      },
+      "benign": {
+        "windows": 19,
+        "flagged": 0,
+        "flagged_fraction": 0.0
+      },
+      "probe_tcp_burst": {
+        "windows": 7,
+        "flagged": 1,
+        "flagged_fraction": 0.14285714285714285
+      },
+      "probe_exec_burst": {
+        "windows": 7,
+        "flagged": 7,
+        "flagged_fraction": 1.0
+      },
+      "probe_file_burst": {
+        "windows": 7,
+        "flagged": 0,
+        "flagged_fraction": 0.0
+      }
+    }
+  },
+  "reference": {
+    "historical": {
+      "windows": 600,
+      "excluded_windows": 0,
+      "true_positives": 246,
+      "false_negatives": 2,
+      "false_positives": 9,
+      "true_negatives": 343,
+      "precision": 0.9647058823529412,
+      "recall": 0.9919354838709677,
+      "f1": 0.9781312127236581,
+      "roc_auc": 0.9975027492668622,
+      "baseline_false_positive_rate": 0.02556818181818182,
+      "flagged_baseline_windows_per_hour": 18.40909090909091,
+      "per_phase": {
+        "baseline": 0.02556818181818182,
+        "attack_recon": 0.975609756097561,
+        "attack_privesc": 1.0,
+        "attack_fileaccess": 1.0
+      }
+    },
+    "wsl": {
+      "idle": {
+        "windows": 19,
+        "flagged": 19,
+        "flagged_fraction": 1.0
+      },
+      "benign": {
+        "windows": 19,
+        "flagged": 19,
+        "flagged_fraction": 1.0
+      },
+      "probe_tcp_burst": {
+        "windows": 7,
+        "flagged": 7,
+        "flagged_fraction": 1.0
+      },
+      "probe_exec_burst": {
+        "windows": 7,
+        "flagged": 7,
+        "flagged_fraction": 1.0
+      },
+      "probe_file_burst": {
+        "windows": 7,
+        "flagged": 7,
+        "flagged_fraction": 1.0
+      }
+    }
+  },
+  "gates": {
+    "validation": true,
+    "historical_each_phase_recall": true,
+    "historical_baseline_fpr": true,
+    "wsl_each_normal_profile_fpr": true,
+    "each_stress_probe_flag_rate": false
+  },
+  "all_gates_pass": false,
+  "artifact": {
+    "path": ".test-output\\wsl-adapted-models\\candidate_bundle.joblib",
+    "sha256": "64f4b6bf5dc563490891c406e0a9f1cd3d57d5afb27641239564eeb2bedc2c15",
+    "bytes": 164791,
+    "prediction_p95_ms": 1.4954499999930695
+  },
+  "manifest": {
+    "protocol": "Separate sequential training, validation and test sessions; frozen plan. Benign synthetic tasks and bounded stress probes, not malware.",
+    "expected_seconds": 900,
+    "plan": [
+      [
+        "train",
+        "idle",
+        120
+      ],
+      [
+        "train",
+        "benign",
+        120
+      ],
+      [
+        "validation",
+        "idle",
+        120
+      ],
+      [
+        "validation",
+        "benign",
+        120
+      ],
+      [
+        "test",
+        "idle",
+        120
+      ],
+      [
+        "test",
+        "benign",
+        120
+      ],
+      [
+        "test",
+        "probe_tcp_burst",
+        60
+      ],
+      [
+        "test",
+        "probe_exec_burst",
+        60
+      ],
+      [
+        "test",
+        "probe_file_burst",
+        60
+      ]
+    ],
+    "status": "complete",
+    "sessions": [
+      {
+        "session_id": "wsl_train_idle_0",
+        "partition": "train",
+        "workload": "idle",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 3712
+        }
+      },
+      {
+        "session_id": "wsl_train_benign_1",
+        "partition": "train",
+        "workload": "benign",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 9604
+        }
+      },
+      {
+        "session_id": "wsl_validation_idle_2",
+        "partition": "validation",
+        "workload": "idle",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 1110
+        }
+      },
+      {
+        "session_id": "wsl_validation_benign_3",
+        "partition": "validation",
+        "workload": "benign",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 7706
+        }
+      },
+      {
+        "session_id": "wsl_test_idle_4",
+        "partition": "test",
+        "workload": "idle",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 2553
+        }
+      },
+      {
+        "session_id": "wsl_test_benign_5",
+        "partition": "test",
+        "workload": "benign",
+        "complete_windows": 23,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 23,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 9078
+        }
+      },
+      {
+        "session_id": "wsl_test_probe_tcp_burst_6",
+        "partition": "test",
+        "workload": "probe_tcp_burst",
+        "complete_windows": 11,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 11,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 50376
+        }
+      },
+      {
+        "session_id": "wsl_test_probe_exec_burst_7",
+        "partition": "test",
+        "workload": "probe_exec_burst",
+        "complete_windows": 11,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 11,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 39048
+        }
+      },
+      {
+        "session_id": "wsl_test_probe_file_burst_8",
+        "partition": "test",
+        "workload": "probe_file_burst",
+        "complete_windows": 11,
+        "health": {
+          "type": "monitor_stopped",
+          "complete_windows": 11,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 191906
+        }
+      }
+    ]
+  },
+  "previous_session_audit": {
+    "windows": 51,
+    "flagged": 0,
+    "limitation": "Earlier user session has no verified ground-truth labels; diagnostic audit only, not a training or selection input."
+  },
+  "limitations": [
+    "One WSL host and short sequential sessions, not representative user browsing or an independent machine.",
+    "Historical attack data are previously examined scripted simulations, not real malware.",
+    "Stress probes are harmless unusual workloads; detecting them does not prove malicious intent.",
+    "Model selection is frozen before this run uses test scores. No candidate is automatically installed."
+  ]
+}

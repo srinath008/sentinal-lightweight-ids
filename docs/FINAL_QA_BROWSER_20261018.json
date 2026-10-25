@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-18",
+  "checks": [
+    "Installed adapted model displayed",
+    "All Linux prerequisites pass",
+    "Adapted historical recall displayed",
+    "Adapted historical false alarms displayed",
+    "Replay stop works",
+    "All 600 replay windows scored",
+    "Adapted replay yields expected 253 flags",
+    "Chart renders scores",
+    "Persistent history renders",
+    "JSON and HTML report export works",
+    "ClamAV completes existing fixtures",
+    "Existing harmless signature fixture detected",
+    "In-app test alert appears",
+    "Alert dismiss works",
+    "No browser JavaScript exceptions"
+  ],
+  "scanner": "ClamAV ready · signatures downloaded 16/10/2026, 10:24:29 am · completed · 3 files scanned · 1 detections · 0 skipped · scan peak: 999.2 MiB",
+  "status": "passed",
+  "browser_errors": []
+}

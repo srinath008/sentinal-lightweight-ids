@@ -1,0 +1,149 @@
+{
+  "note": "Exploratory leave-one-session-out; fixed default thresholds; not final validation.",
+  "folds": [
+    {
+      "test_session": "20260914_120411",
+      "training_sessions": [
+        "20260916_185643"
+      ],
+      "isolation_forest": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "precision": 0.9626334519572953,
+        "recall": 1.0,
+        "f1": 0.9809610154125114,
+        "roc_auc": 0.9960181762168823,
+        "baseline_false_positive_rate": 0.029166666666666667,
+        "flagged_baseline_windows_per_hour": 21.0,
+        "per_phase": {
+          "baseline": 0.029166666666666667,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "isolation_forest_incidents": {
+        "consecutive": 2,
+        "cooldown_seconds": 60,
+        "incident_starts": 1,
+        "notifications": 1,
+        "baseline_notifications": 0,
+        "baseline_notifications_per_hour": 0.0,
+        "scenarios": [
+          {
+            "session_id": "20260914_120411",
+            "phase": "attack_recon",
+            "detected": true,
+            "incident_active_at_phase_start": false,
+            "detection_delay_seconds": 10.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          },
+          {
+            "session_id": "20260914_120411",
+            "phase": "attack_privesc",
+            "detected": true,
+            "incident_active_at_phase_start": true,
+            "detection_delay_seconds": 5.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          },
+          {
+            "session_id": "20260914_120411",
+            "phase": "attack_fileaccess",
+            "detected": true,
+            "incident_active_at_phase_start": true,
+            "detection_delay_seconds": 5.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          }
+        ]
+      },
+      "ocsvm": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "precision": 0.8883415435139573,
+        "recall": 1.0,
+        "f1": 0.9408695652173913,
+        "roc_auc": 0.9981079277058944,
+        "baseline_false_positive_rate": 0.09444444444444444,
+        "flagged_baseline_windows_per_hour": 68.0,
+        "per_phase": {
+          "baseline": 0.09444444444444444,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "test_session": "20260916_185643",
+      "training_sessions": [
+        "20260914_120411"
+      ],
+      "isolation_forest": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "precision": 0.5836030204962244,
+        "recall": 1.0,
+        "f1": 0.7370572207084468,
+        "roc_auc": 0.9705470835900595,
+        "baseline_false_positive_rate": 0.5361111111111111,
+        "flagged_baseline_windows_per_hour": 386.0,
+        "per_phase": {
+          "baseline": 0.5361111111111111,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "isolation_forest_incidents": {
+        "consecutive": 2,
+        "cooldown_seconds": 60,
+        "incident_starts": 49,
+        "notifications": 37,
+        "baseline_notifications": 37,
+        "baseline_notifications_per_hour": 37.0,
+        "scenarios": [
+          {
+            "session_id": "20260916_185643",
+            "phase": "attack_recon",
+            "detected": true,
+            "incident_active_at_phase_start": true,
+            "detection_delay_seconds": 5.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          },
+          {
+            "session_id": "20260916_185643",
+            "phase": "attack_privesc",
+            "detected": true,
+            "incident_active_at_phase_start": true,
+            "detection_delay_seconds": 5.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          },
+          {
+            "session_id": "20260916_185643",
+            "phase": "attack_fileaccess",
+            "detected": true,
+            "incident_active_at_phase_start": true,
+            "detection_delay_seconds": 5.0,
+            "note": "Time until incident active in this phase; may carry over from earlier activity. Includes window completion, excludes ingestion overhead."
+          }
+        ]
+      },
+      "ocsvm": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "precision": 0.7088274044795784,
+        "recall": 0.9944547134935305,
+        "f1": 0.8276923076923077,
+        "roc_auc": 0.9745045183815979,
+        "baseline_false_positive_rate": 0.30694444444444446,
+        "flagged_baseline_windows_per_hour": 221.0,
+        "per_phase": {
+          "baseline": 0.30694444444444446,
+          "attack_recon": 0.9833333333333333,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,508 @@
+{
+  "protocol": {
+    "augmentation_windows": 356,
+    "seed": 2026,
+    "model_settings": "Previously selected SVM gamma=.1 nu=.02",
+    "calibration": "Native normal validation only; 1% target, same as reference",
+    "candidate_threshold": 1.0499786380241862,
+    "original_threshold": 0.734708821911347,
+    "native_split": [
+      {
+        "partition": "train",
+        "session_id": "20260914_120411",
+        "phase": "attack_fileaccess",
+        "count": 86,
+        "first_window": 1083,
+        "last_window": 1168
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260914_120411",
+        "phase": "attack_fileaccess",
+        "count": 41,
+        "first_window": 1173,
+        "last_window": 1213
+      },
+      {
+        "partition": "test",
+        "session_id": "20260914_120411",
+        "phase": "attack_fileaccess",
+        "count": 41,
+        "first_window": 1218,
+        "last_window": 1258
+      },
+      {
+        "partition": "train",
+        "session_id": "20260914_120411",
+        "phase": "attack_privesc",
+        "count": 86,
+        "first_window": 902,
+        "last_window": 987
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260914_120411",
+        "phase": "attack_privesc",
+        "count": 41,
+        "first_window": 992,
+        "last_window": 1032
+      },
+      {
+        "partition": "test",
+        "session_id": "20260914_120411",
+        "phase": "attack_privesc",
+        "count": 42,
+        "first_window": 1037,
+        "last_window": 1078
+      },
+      {
+        "partition": "train",
+        "session_id": "20260914_120411",
+        "phase": "attack_recon",
+        "count": 86,
+        "first_window": 722,
+        "last_window": 807
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260914_120411",
+        "phase": "attack_recon",
+        "count": 41,
+        "first_window": 812,
+        "last_window": 852
+      },
+      {
+        "partition": "test",
+        "session_id": "20260914_120411",
+        "phase": "attack_recon",
+        "count": 41,
+        "first_window": 857,
+        "last_window": 897
+      },
+      {
+        "partition": "train",
+        "session_id": "20260914_120411",
+        "phase": "baseline",
+        "count": 356,
+        "first_window": 2,
+        "last_window": 357
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260914_120411",
+        "phase": "baseline",
+        "count": 176,
+        "first_window": 362,
+        "last_window": 537
+      },
+      {
+        "partition": "test",
+        "session_id": "20260914_120411",
+        "phase": "baseline",
+        "count": 176,
+        "first_window": 542,
+        "last_window": 717
+      },
+      {
+        "partition": "train",
+        "session_id": "20260916_185643",
+        "phase": "attack_fileaccess",
+        "count": 86,
+        "first_window": 1083,
+        "last_window": 1168
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260916_185643",
+        "phase": "attack_fileaccess",
+        "count": 41,
+        "first_window": 1173,
+        "last_window": 1213
+      },
+      {
+        "partition": "test",
+        "session_id": "20260916_185643",
+        "phase": "attack_fileaccess",
+        "count": 41,
+        "first_window": 1218,
+        "last_window": 1258
+      },
+      {
+        "partition": "train",
+        "session_id": "20260916_185643",
+        "phase": "attack_privesc",
+        "count": 86,
+        "first_window": 902,
+        "last_window": 987
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260916_185643",
+        "phase": "attack_privesc",
+        "count": 41,
+        "first_window": 992,
+        "last_window": 1032
+      },
+      {
+        "partition": "test",
+        "session_id": "20260916_185643",
+        "phase": "attack_privesc",
+        "count": 42,
+        "first_window": 1037,
+        "last_window": 1078
+      },
+      {
+        "partition": "train",
+        "session_id": "20260916_185643",
+        "phase": "attack_recon",
+        "count": 86,
+        "first_window": 722,
+        "last_window": 807
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260916_185643",
+        "phase": "attack_recon",
+        "count": 41,
+        "first_window": 812,
+        "last_window": 852
+      },
+      {
+        "partition": "test",
+        "session_id": "20260916_185643",
+        "phase": "attack_recon",
+        "count": 41,
+        "first_window": 857,
+        "last_window": 897
+      },
+      {
+        "partition": "train",
+        "session_id": "20260916_185643",
+        "phase": "baseline",
+        "count": 356,
+        "first_window": 2,
+        "last_window": 357
+      },
+      {
+        "partition": "validation",
+        "session_id": "20260916_185643",
+        "phase": "baseline",
+        "count": 176,
+        "first_window": 362,
+        "last_window": 537
+      },
+      {
+        "partition": "test",
+        "session_id": "20260916_185643",
+        "phase": "baseline",
+        "count": 176,
+        "first_window": 542,
+        "last_window": 717
+      }
+    ],
+    "external_recording_partitions": "Official partitions preserved",
+    "certification": "Diagnostic container-derived features; not native-compatible",
+    "promotion_allowed": false
+  },
+  "dataset_sha256": "33bed8afd1ce0b928bb9cbbff1f49df4d4c5033c9656e5dd4477c67033ec0a6c",
+  "current_bundle_sha256": "88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a",
+  "native_training_windows": 712,
+  "eligible_external_training_windows": 1680,
+  "excluded_external_recordings": [],
+  "external_training_records": 210,
+  "added_training_records": 177,
+  "native_validation_gate": false,
+  "native_test_gate": true,
+  "results": {
+    "native_validation": {
+      "native_only": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 244,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878542510121457,
+        "recall": 0.991869918699187,
+        "f1": 0.9898580121703854,
+        "roc_auc": 0.9976441241685144,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "augmented": {
+        "windows": 598,
+        "excluded_windows": 0,
+        "true_positives": 244,
+        "false_negatives": 2,
+        "false_positives": 3,
+        "true_negatives": 349,
+        "precision": 0.9878542510121457,
+        "recall": 0.991869918699187,
+        "f1": 0.9898580121703854,
+        "roc_auc": 0.9972745750184775,
+        "baseline_false_positive_rate": 0.008522727272727272,
+        "flagged_baseline_windows_per_hour": 6.136363636363637,
+        "per_phase": {
+          "baseline": 0.008522727272727272,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    "native_test": {
+      "native_only": {
+        "windows": 600,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 2,
+        "false_positives": 9,
+        "true_negatives": 343,
+        "precision": 0.9647058823529412,
+        "recall": 0.9919354838709677,
+        "f1": 0.9781312127236581,
+        "roc_auc": 0.9975027492668622,
+        "baseline_false_positive_rate": 0.02556818181818182,
+        "flagged_baseline_windows_per_hour": 18.40909090909091,
+        "per_phase": {
+          "baseline": 0.02556818181818182,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "augmented": {
+        "windows": 600,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 2,
+        "false_positives": 8,
+        "true_negatives": 344,
+        "precision": 0.968503937007874,
+        "recall": 0.9919354838709677,
+        "f1": 0.9800796812749004,
+        "roc_auc": 0.995268969941349,
+        "baseline_false_positive_rate": 0.022727272727272728,
+        "flagged_baseline_windows_per_hour": 16.363636363636363,
+        "per_phase": {
+          "baseline": 0.022727272727272728,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    "external_validation": {
+      "native_only": {
+        "windows": 480,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 0,
+        "false_positives": 480,
+        "true_negatives": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "roc_auc": null,
+        "baseline_false_positive_rate": 1.0,
+        "flagged_baseline_windows_per_hour": 720.0,
+        "per_phase": {
+          "baseline": 1.0
+        }
+      },
+      "augmented": {
+        "windows": 480,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 480,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "roc_auc": null,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0
+        }
+      }
+    },
+    "external_test": {
+      "native_only": {
+        "windows": 24896,
+        "excluded_windows": 0,
+        "true_positives": 18630,
+        "false_negatives": 0,
+        "false_positives": 6266,
+        "true_negatives": 0,
+        "precision": 0.7483129820051414,
+        "recall": 1.0,
+        "f1": 0.8560400680053302,
+        "roc_auc": 0.5903246465216518,
+        "baseline_false_positive_rate": 1.0,
+        "flagged_baseline_windows_per_hour": 720.0,
+        "per_phase": {
+          "baseline": 1.0,
+          "attack_exposure": 1.0
+        }
+      },
+      "augmented": {
+        "windows": 24896,
+        "excluded_windows": 0,
+        "true_positives": 0,
+        "false_negatives": 18630,
+        "false_positives": 0,
+        "true_negatives": 6266,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5841011198128283,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0,
+          "attack_exposure": 0.0
+        }
+      }
+    }
+  },
+  "promoted": false,
+  "normal_feature_medians": {
+    "native_training": {
+      "n_exec": 0.0,
+      "n_unique_pcomm": 0.0,
+      "n_open": 4.07753744390572,
+      "n_unique_paths": 3.1354942159291497,
+      "n_open_errors": 0.0,
+      "n_tcp_connect": 0.0,
+      "n_unique_daddr": 0.0,
+      "n_open_raw": 58.0
+    },
+    "external_training": {
+      "n_exec": 0.0,
+      "n_unique_pcomm": 0.0,
+      "n_open": 0.0,
+      "n_unique_paths": 0.0,
+      "n_open_errors": 0.0,
+      "n_tcp_connect": 0.0,
+      "n_unique_daddr": 0.0,
+      "n_open_raw": 0.0
+    }
+  },
+  "limitations": [
+    "Victim container scope differs from whole-host scope",
+    "Origin uses first exported syscall, not first native collector event",
+    "Attack exposure after recorded onset is not proof every window is malicious",
+    "No capture-loss completeness certificate",
+    "One old MySQL authentication scenario is not desktop activity diversity",
+    "External attack_exposure means time after onset, not per-window malicious ground truth",
+    "Native test blocks were historically examined; only external recordings are new to this project",
+    "Window sampling is training-only; external evaluation keeps complete retained recordings",
+    "1% native validation quantile usually fixes FP count; strict improvement gate can fail by design"
+  ],
+  "native_test_per_profile": {
+    "native_only": {
+      "20260914_120411": {
+        "windows": 300,
+        "excluded_windows": 0,
+        "true_positives": 124,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 176,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "20260916_185643": {
+        "windows": 300,
+        "excluded_windows": 0,
+        "true_positives": 122,
+        "false_negatives": 2,
+        "false_positives": 9,
+        "true_negatives": 167,
+        "precision": 0.9312977099236641,
+        "recall": 0.9838709677419355,
+        "f1": 0.9568627450980393,
+        "roc_auc": 0.9937225073313783,
+        "baseline_false_positive_rate": 0.05113636363636364,
+        "flagged_baseline_windows_per_hour": 36.81818181818182,
+        "per_phase": {
+          "baseline": 0.05113636363636364,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    "augmented": {
+      "20260914_120411": {
+        "windows": 300,
+        "excluded_windows": 0,
+        "true_positives": 124,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 176,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "20260916_185643": {
+        "windows": 300,
+        "excluded_windows": 0,
+        "true_positives": 122,
+        "false_negatives": 2,
+        "false_positives": 8,
+        "true_negatives": 168,
+        "precision": 0.9384615384615385,
+        "recall": 0.9838709677419355,
+        "f1": 0.9606299212598425,
+        "roc_auc": 0.9893236803519061,
+        "baseline_false_positive_rate": 0.045454545454545456,
+        "flagged_baseline_windows_per_hour": 32.72727272727273,
+        "per_phase": {
+          "baseline": 0.045454545454545456,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    }
+  },
+  "feature_overlap": {
+    "constant_features": [
+      "n_exec",
+      "n_unique_pcomm",
+      "n_open_errors",
+      "n_tcp_connect",
+      "n_unique_daddr"
+    ],
+    "attack_exposure_windows_in_normal_training_support": 18630,
+    "attack_exposure_windows": 18630,
+    "attack_recordings_with_retained_exposure": 117
+  }
+}

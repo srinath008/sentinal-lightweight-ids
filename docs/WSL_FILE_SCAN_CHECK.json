@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "target": "/home/srinath/Sentinel-Test-Files",
+  "detections": [
+    {
+      "path": "/home/srinath/Sentinel-Test-Files/eicar.com.txt",
+      "signature": "Eicar-Test-Signature",
+      "kind": "signature detection"
+    }
+  ],
+  "candidates": 3,
+  "skipped": 0,
+  "scanned": 3,
+  "limit_reached": false,
+  "error": null,
+  "peak_memory_mib": 999.8,
+  "engine": {
+    "installed": true,
+    "ready": true,
+    "signature_updated": 1792126469.749822,
+    "note": "On-demand scanning; not automatic file-access protection. Scan engine memory is additional to the behavioral model."
+  },
+  "export_json_and_html_verified": true,
+  "scanned_files_unchanged": true
+}

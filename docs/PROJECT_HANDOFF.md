@@ -1,4 +1,36 @@
+# Current local deployment — 2026-10-17
+
+Read WSL_ADAPTATION_REPORT.md and the latest PROJECT_STATUS.md entry first.
+Local Ubuntu uses an experimental profile-union SVM with a checked original
+backup. The source historical model and public download still use the original
+SVM; do not inadvertently overwrite the adapted local model with the source
+fallback during future installation work. Aggregate development sessions and
+the adapted artifact are preserved in ids_dataset/host_adaptation_20261017/ and
+models/output/host_adapted_20261017/. Three adaptive rounds and their limitations
+are documented. Current regression suite: 44 passed, one Windows skip.
+
+# Sentinel application update — 2026-10-13
+
+The current detector is now integrated into `desktop/` (local web UI with an
+optional pywebview native window). `release_tools/` builds and installs a Linux
+preview; `landing/` provides a download page and actual release archive. See
+`docs/APP_INSTALL.md`. Raw logs and the selected model were not modified.
+
+Verified: 103 tests; package replay on Ubuntu WSL 2/Python 3.12 and Windows.
+Both reproduce 600 scored windows, 255 flagged. UI browser checks passed after
+fixing the chart's SVG hidden state. Linux venv support was installed for an
+isolated test. Full installation/native window/live CO-RE collection remain
+open; WSL kernel BTF is present but collectors and pkexec are absent.
+
+---
+
 # Project Handoff: eBPF-Based Host Intrusion Detection System
+
+> 2026-10-02 extension: this document preserves the original background and
+> planned packages. Consult the correction at the top of PROJECT_STATUS.md,
+> CROSS_SESSION_RESULTS.json, and NEXT_STEPS_LINUX.md for current implementation
+> and verified limitations. New development uses corrected shared-origin
+> features and versioned model bundles; old model artifacts are historical.
 
 **Document purpose:** This is a self-contained handoff document for an AI coding agent (Claude Code, Antigravity, Codex, or similar) picking up this project with no prior conversational context. Every claim below reflects what has actually been verified in this project's history — where something has *not* been verified or confirmed, it is explicitly flagged as such rather than assumed.
 

@@ -1,0 +1,16 @@
+{
+  "windows": 2,
+  "has_process_context": true,
+  "health": [
+    {
+      "type": "monitor_stopped",
+      "complete_windows": 2,
+      "partial_windows_discarded": 1,
+      "malformed": 0,
+      "late": 0,
+      "stderr_lines": 0,
+      "events": 2550
+    }
+  ],
+  "note": "15-second Linux collector smoke test; not a detection accuracy benchmark."
+}

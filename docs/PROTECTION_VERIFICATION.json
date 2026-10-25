@@ -1,0 +1,68 @@
+{
+  "scan": {
+    "status": "completed",
+    "target": "/home/srinath/Sentinel-Test-Files",
+    "detections": [
+      {
+        "path": "/home/srinath/Sentinel-Test-Files/eicar.com.txt",
+        "signature": "Eicar-Test-Signature",
+        "kind": "signature detection"
+      }
+    ],
+    "candidates": 3,
+    "skipped": 0,
+    "scanned": 3,
+    "limit_reached": false,
+    "error": null,
+    "peak_memory_mib": 1000.0,
+    "engine": {
+      "installed": true,
+      "ready": true,
+      "signature_updated": 1792126469.749822,
+      "note": "On-demand scanning; not automatic file-access protection. Scan engine memory is additional to the behavioral model."
+    }
+  },
+  "reports": {
+    "saved_files": [
+      "/home/srinath/Documents/Sentinel Reports/sentinel-20261016-051022-738461.json",
+      "/home/srinath/Documents/Sentinel Reports/sentinel-20261016-051022-738461.html"
+    ],
+    "message": "Report saved locally as JSON and readable HTML."
+  },
+  "notification": {
+    "delivered": false,
+    "detail": "Error calling StartServiceByName for org.freedesktop.Notifications: Process org.freedesktop.Notifications received signal 11"
+  },
+  "protection": {
+    "scanner": {
+      "status": "completed",
+      "target": "/home/srinath/Sentinel-Test-Files",
+      "detections": [
+        {
+          "path": "/home/srinath/Sentinel-Test-Files/eicar.com.txt",
+          "signature": "Eicar-Test-Signature",
+          "kind": "signature detection"
+        }
+      ],
+      "candidates": 3,
+      "skipped": 0,
+      "scanned": 3,
+      "limit_reached": false,
+      "error": null,
+      "peak_memory_mib": 1000.0,
+      "engine": {
+        "installed": true,
+        "ready": true,
+        "signature_updated": 1792126469.749822,
+        "note": "On-demand scanning; not automatic file-access protection. Scan engine memory is additional to the behavioral model."
+      }
+    },
+    "notifications": {
+      "delivered": false,
+      "detail": "Error calling StartServiceByName for org.freedesktop.Notifications: Process org.freedesktop.Notifications received signal 11"
+    },
+    "app_memory_mib": 150.1,
+    "scope": "Linux behavioral monitoring and on-demand ClamAV scanning. No automatic blocking or quarantine."
+  },
+  "fixture": "Harmless official EICAR test file; no malware executed"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "activated",
+  "active_linux": "/opt/sentinel/models/output/improved/detector_bundle.joblib",
+  "backup_linux": "/opt/sentinel/models/backups/detector-original-20261017.joblib",
+  "original_sha256": "88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a",
+  "active_sha256": "f1be5d61c9f198e97df270f015546c28bd5ace1b329814b97f33778e1d25fb8d",
+  "source_artifact": "models/output/host_adapted_20261017/detector_bundle.joblib",
+  "scope": "Experimental local Ubuntu WSL preview; public archive and original source model remain unchanged."
+}

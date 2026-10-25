@@ -1,0 +1,227 @@
+{
+  "model_sha256": "88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a",
+  "protocol": "Frozen model; two exploratory lower cutoffs calibrated separately from later WSL windows. No parameter or artifact promotion.",
+  "limitations": [
+    "Short sequential benign diagnostics on one WSL host; not malware accuracy validation.",
+    "The previous 51-window session has no ground-truth labels; its first 25 are assumed normal only for a sensitivity experiment.",
+    "Historical 600 windows have previously been examined and are regression evidence, not a new independent test.",
+    "The short app-open calibration has very few windows; zero observed false alerts would not establish a reliable population rate."
+  ],
+  "feature_ranges": {
+    "n_exec": {
+      "historical_baseline_min": 0.0,
+      "historical_baseline_max": 17.0,
+      "wsl_idle_min": 0.0,
+      "wsl_idle_max": 296.0
+    },
+    "n_unique_pcomm": {
+      "historical_baseline_min": 0.0,
+      "historical_baseline_max": 8.0,
+      "wsl_idle_min": 0.0,
+      "wsl_idle_max": 79.0
+    },
+    "n_open": {
+      "historical_baseline_min": 3.332204510175204,
+      "historical_baseline_max": 9.593559871137028,
+      "wsl_idle_min": 2.1972245773362196,
+      "wsl_idle_max": 11.099090426517867
+    },
+    "n_unique_paths": {
+      "historical_baseline_min": 2.302585092994046,
+      "historical_baseline_max": 7.382124365737512,
+      "wsl_idle_min": 1.0986122886681096,
+      "wsl_idle_max": 9.384713758920963
+    },
+    "n_open_errors": {
+      "historical_baseline_min": 0.0,
+      "historical_baseline_max": 1143.0,
+      "wsl_idle_min": 0.0,
+      "wsl_idle_max": 4366.0
+    },
+    "n_tcp_connect": {
+      "historical_baseline_min": 0.0,
+      "historical_baseline_max": 23.0,
+      "wsl_idle_min": 0.0,
+      "wsl_idle_max": 12.0
+    },
+    "n_unique_daddr": {
+      "historical_baseline_min": 0.0,
+      "historical_baseline_max": 16.0,
+      "wsl_idle_min": 0.0,
+      "wsl_idle_max": 1.0
+    }
+  },
+  "comparisons": {
+    "installed": {
+      "threshold": 0.734708821911347,
+      "historical_reserved": {
+        "windows": 600,
+        "excluded_windows": 0,
+        "true_positives": 246,
+        "false_negatives": 2,
+        "false_positives": 9,
+        "true_negatives": 343,
+        "precision": 0.9647058823529412,
+        "recall": 0.9919354838709677,
+        "f1": 0.9781312127236581,
+        "roc_auc": 0.9975027492668622,
+        "baseline_false_positive_rate": 0.02556818181818182,
+        "flagged_baseline_windows_per_hour": 18.40909090909091,
+        "per_phase": {
+          "baseline": 0.02556818181818182,
+          "attack_recon": 0.975609756097561,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      },
+      "previous_later_26_assumed_normal": {
+        "windows": 26,
+        "flagged": 26
+      },
+      "diagnostic_phases": {
+        "app_closed_idle": {
+          "windows": 6,
+          "flagged": 4,
+          "flagged_fraction": 0.6666666666666666,
+          "min_score": 0.4176613982761964,
+          "max_score": 0.9859946301439924
+        },
+        "app_open_idle": {
+          "windows": 6,
+          "flagged": 6,
+          "flagged_fraction": 1.0,
+          "min_score": 5.5031043277864455e-08,
+          "max_score": 2.031568272586881e-05
+        },
+        "app_open_controlled_benign": {
+          "windows": 4,
+          "flagged": 4,
+          "flagged_fraction": 1.0,
+          "min_score": 0.0,
+          "max_score": 2.503879201998238e-05
+        },
+        "app_open_idle_holdout": {
+          "windows": 6,
+          "flagged": 6,
+          "flagged_fraction": 1.0,
+          "min_score": 0.0,
+          "max_score": 2.208323524044431e-10
+        }
+      }
+    },
+    "previous_first_25_assumed_normal": {
+      "threshold": 1.1102230246251565e-16,
+      "historical_reserved": {
+        "windows": 600,
+        "excluded_windows": 0,
+        "true_positives": 78,
+        "false_negatives": 170,
+        "false_positives": 0,
+        "true_negatives": 352,
+        "precision": 1.0,
+        "recall": 0.31451612903225806,
+        "f1": 0.4785276073619632,
+        "roc_auc": 0.9975027492668622,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.0,
+          "attack_fileaccess": 0.0
+        }
+      },
+      "previous_later_26_assumed_normal": {
+        "windows": 26,
+        "flagged": 0
+      },
+      "diagnostic_phases": {
+        "app_closed_idle": {
+          "windows": 6,
+          "flagged": 0,
+          "flagged_fraction": 0.0,
+          "min_score": 0.4176613982761964,
+          "max_score": 0.9859946301439924
+        },
+        "app_open_idle": {
+          "windows": 6,
+          "flagged": 0,
+          "flagged_fraction": 0.0,
+          "min_score": 5.5031043277864455e-08,
+          "max_score": 2.031568272586881e-05
+        },
+        "app_open_controlled_benign": {
+          "windows": 4,
+          "flagged": 2,
+          "flagged_fraction": 0.5,
+          "min_score": 0.0,
+          "max_score": 2.503879201998238e-05
+        },
+        "app_open_idle_holdout": {
+          "windows": 6,
+          "flagged": 1,
+          "flagged_fraction": 0.16666666666666666,
+          "min_score": 0.0,
+          "max_score": 2.208323524044431e-10
+        }
+      }
+    },
+    "short_app_open_normal": {
+      "threshold": 5.5031043277864455e-08,
+      "historical_reserved": {
+        "windows": 600,
+        "excluded_windows": 0,
+        "true_positives": 78,
+        "false_negatives": 170,
+        "false_positives": 0,
+        "true_negatives": 352,
+        "precision": 1.0,
+        "recall": 0.31451612903225806,
+        "f1": 0.4785276073619632,
+        "roc_auc": 0.9975027492668622,
+        "baseline_false_positive_rate": 0.0,
+        "flagged_baseline_windows_per_hour": 0.0,
+        "per_phase": {
+          "baseline": 0.0,
+          "attack_recon": 0.9512195121951219,
+          "attack_privesc": 0.0,
+          "attack_fileaccess": 0.0
+        }
+      },
+      "previous_later_26_assumed_normal": {
+        "windows": 26,
+        "flagged": 26
+      },
+      "diagnostic_phases": {
+        "app_closed_idle": {
+          "windows": 6,
+          "flagged": 0,
+          "flagged_fraction": 0.0,
+          "min_score": 0.4176613982761964,
+          "max_score": 0.9859946301439924
+        },
+        "app_open_idle": {
+          "windows": 6,
+          "flagged": 0,
+          "flagged_fraction": 0.0,
+          "min_score": 5.5031043277864455e-08,
+          "max_score": 2.031568272586881e-05
+        },
+        "app_open_controlled_benign": {
+          "windows": 4,
+          "flagged": 2,
+          "flagged_fraction": 0.5,
+          "min_score": 0.0,
+          "max_score": 2.503879201998238e-05
+        },
+        "app_open_idle_holdout": {
+          "windows": 6,
+          "flagged": 6,
+          "flagged_fraction": 1.0,
+          "min_score": 0.0,
+          "max_score": 2.208323524044431e-10
+        }
+      }
+    }
+  }
+}

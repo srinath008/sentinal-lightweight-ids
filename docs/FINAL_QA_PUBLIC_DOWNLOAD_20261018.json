@@ -1,0 +1,17 @@
+{
+  "downloads/release.json": {
+    "status": 200,
+    "text": "{\r\n  \"version\": \"0.1.0\",\r\n  \"filename\": \"sentinel-0.1.0-linux-x86_64.tar.gz\",\r\n  \"bytes\": 44990,\r\n  \"sha256\": \"053a04917d110ba9902ee9e562532c8ef7f3165c4bc959d284a5762f8b3b3d43\",\r\n  \"model_sha256\": \"88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a\",\r\n  \"replay_windows\": 600,\r\n  \"runtime\": {\r\n    \"numpy\": \"2.5.3\",\r\n    \"pandas\": \"3.0.6\",\r\n    \"scikit-learn\": \"1.9.1\",\r\n    \"joblib\": \"1.6.0\"\r\n  },\r\n  \"status\": \"research-preview-linux-installation-unverified\"\r\n}"
+  },
+  "downloads/SHA256SUMS.txt": {
+    "status": 200,
+    "text": "053a04917d110ba9902ee9e562532c8ef7f3165c4bc959d284a5762f8b3b3d43  sentinel-0.1.0-linux-x86_64.tar.gz\r\n"
+  },
+  "downloads/sentinel-0.1.0-linux-x86_64.tar.gz": {
+    "status": 200,
+    "sha256": "053a04917d110ba9902ee9e562532c8ef7f3165c4bc959d284a5762f8b3b3d43",
+    "size": 44990
+  },
+  "manifest_matches_archive": true,
+  "checksum_matches_archive": true
+}

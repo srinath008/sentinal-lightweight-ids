@@ -1,0 +1,2751 @@
+{
+  "phases": [
+    {
+      "label": "app_closed_idle",
+      "requested_seconds": 35,
+      "windows": [
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 0,
+          "window_start": 1792218077.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 25,
+          "n_unique_paths_raw": 14,
+          "n_open_errors": 0,
+          "n_open": 3.258096538021482,
+          "n_unique_paths": 2.70805020110221,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 3371,
+                "name": "tcpconnect",
+                "source": "opensnoop",
+                "observed_events": 4
+              },
+              {
+                "pid": 3365,
+                "name": "execsnoop",
+                "source": "opensnoop",
+                "observed_events": 4
+              },
+              {
+                "pid": 1,
+                "name": "mini_init",
+                "source": "opensnoop",
+                "observed_events": 3
+              },
+              {
+                "pid": 2789,
+                "name": "systemd-udevd",
+                "source": "opensnoop",
+                "observed_events": 3
+              }
+            ],
+            "sample_paths": [
+              "/sys/bus/event_source/devices/kprobe/type",
+              "/sys/bus/event_source/devices/kprobe/format/retprobe",
+              "/sys/devices/system/cpu/online",
+              "/etc/localtime",
+              "/sys/devices/system/cpu/possible"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.7385342785314193
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": false
+          },
+          "anomaly": false
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 1,
+          "window_start": 1792218082.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 242,
+          "n_unique_paths_raw": 112,
+          "n_open_errors": 76,
+          "n_open": 5.493061443340548,
+          "n_unique_paths": 4.727387818712341,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2789,
+                "name": "systemd-udevd",
+                "source": "opensnoop",
+                "observed_events": 119
+              },
+              {
+                "pid": 3318,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 79
+              },
+              {
+                "pid": 3374,
+                "name": "(udev-worker)",
+                "source": "opensnoop",
+                "observed_events": 15
+              },
+              {
+                "pid": 3376,
+                "name": "(udev-worker)",
+                "source": "opensnoop",
+                "observed_events": 15
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/usr/lib/python312.zip",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/threadpoolctl-3.7.0.dist-info/entry_points.txt",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/narwhals-2.27.1.dist-info/entry_points.txt",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/bottle-0.13.4.dist-info/entry_points.txt",
+              "/opt/sentinel/.venv/lib/python3.12/site-packages/pip-24.0.dist-info/entry_points.txt"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.5162927364821223
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 2,
+          "window_start": 1792218087.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 256,
+          "n_unique_paths_raw": 131,
+          "n_open_errors": 7,
+          "n_open": 5.54907608489522,
+          "n_unique_paths": 4.882801922586371,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2742,
+                "name": "systemd-journal",
+                "source": "opensnoop",
+                "observed_events": 234
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 5
+              },
+              {
+                "pid": 2844,
+                "name": "systemd-timesyn",
+                "source": "opensnoop",
+                "observed_events": 2
+              },
+              {
+                "pid": 2742,
+                "name": "journal-offline",
+                "source": "opensnoop",
+                "observed_events": 2
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6",
+              "/proc/159/status",
+              "/proc/159/comm",
+              "/proc/159/cmdline"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.9859946301439924
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": false
+          },
+          "anomaly": false
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 3,
+          "window_start": 1792218092.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 8,
+          "n_unique_paths_raw": 2,
+          "n_open_errors": 0,
+          "n_open": 2.1972245773362196,
+          "n_unique_paths": 1.0986122886681096,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 8
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.4176613982761964
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 4,
+          "window_start": 1792218097.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 10,
+          "n_unique_paths_raw": 2,
+          "n_open_errors": 0,
+          "n_open": 2.3978952727983707,
+          "n_unique_paths": 1.0986122886681096,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.4190564508088237
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 5,
+          "window_start": 1792218102.9438257,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 10,
+          "n_unique_paths_raw": 2,
+          "n_open_errors": 0,
+          "n_open": 2.3978952727983707,
+          "n_unique_paths": 1.0986122886681096,
+          "n_tcp_connect": 0,
+          "n_unique_daddr": 0,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6"
+            ],
+            "sample_destinations": [],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.4190564508088237
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        }
+      ],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 6,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 562
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 562
+      },
+      "raw_samples": {
+        "execsnoop": [],
+        "opensnoop": [
+          {
+            "pid": 3371,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3371,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3371,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/format/retprobe"
+          },
+          {
+            "pid": 3371,
+            "comm": "tcpconnect",
+            "fd": 23,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 3368,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          },
+          {
+            "pid": 3365,
+            "comm": "execsnoop",
+            "fd": 8,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/possible"
+          },
+          {
+            "pid": 3365,
+            "comm": "execsnoop",
+            "fd": 10,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_enter_execve/id"
+          },
+          {
+            "pid": 3365,
+            "comm": "execsnoop",
+            "fd": 12,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_exit_execve/id"
+          },
+          {
+            "pid": 3365,
+            "comm": "execsnoop",
+            "fd": 15,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 4,
+            "err": 0,
+            "path": "/proc/net/tcp"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 5,
+            "err": 0,
+            "path": "/proc/net/tcp6"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 4,
+            "err": 0,
+            "path": "/proc/net/tcp"
+          }
+        ],
+        "tcpconnect": []
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 2742,
+          "name": "systemd-journal",
+          "events": 234
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2789,
+          "name": "systemd-udevd",
+          "events": 124
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3318,
+          "name": "python",
+          "events": 79
+        },
+        {
+          "source": "opensnoop",
+          "pid": 326,
+          "name": "init",
+          "events": 66
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3374,
+          "name": "(udev-worker)",
+          "events": 15
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3376,
+          "name": "(udev-worker)",
+          "events": 15
+        },
+        {
+          "source": "opensnoop",
+          "pid": 1,
+          "name": "mini_init",
+          "events": 6
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2679,
+          "name": "systemd",
+          "events": 5
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3371,
+          "name": "tcpconnect",
+          "events": 4
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3365,
+          "name": "execsnoop",
+          "events": 4
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3375,
+          "name": "(udev-worker)",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3377,
+          "name": "(udev-worker)",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2844,
+          "name": "systemd-timesyn",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2742,
+          "name": "journal-offline",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3368,
+          "name": "opensnoop",
+          "events": 1
+        }
+      ],
+      "workload": {},
+      "error": null,
+      "malformed_samples": []
+    },
+    {
+      "label": "app_open_idle",
+      "requested_seconds": 35,
+      "windows": [
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 0,
+          "window_start": 1792218116.2889829,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 249,
+          "n_unique_paths_raw": 226,
+          "n_open_errors": 5,
+          "n_open": 5.521460917862246,
+          "n_unique_paths": 5.424950017481403,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2704,
+                "name": "Xwayland",
+                "source": "opensnoop",
+                "observed_events": 204
+              },
+              {
+                "pid": 3381,
+                "name": "PressureMonitor",
+                "source": "opensnoop",
+                "observed_events": 11
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 10
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/sys/bus/event_source/devices/kprobe/type",
+              "/sys/bus/event_source/devices/kprobe/format/retprobe",
+              "/etc/localtime",
+              "/sys/devices/system/cpu/online",
+              "/mnt/wslg/runtime-dir/xwayland-shared-QRU822"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 1.675763848041356e-05
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 1,
+          "window_start": 1792218121.2889829,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 34,
+          "n_unique_paths_raw": 16,
+          "n_open_errors": 0,
+          "n_open": 3.5553480614894135,
+          "n_unique_paths": 2.833213344056216,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 12
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 12
+              },
+              {
+                "pid": 2704,
+                "name": "Xwayland",
+                "source": "opensnoop",
+                "observed_events": 12
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-4KBagA",
+              "/mnt/wslg/runtime-dir/xwayland-shared-wzo4Ci",
+              "/proc/net/tcp"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 5.5031043277864455e-08
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 2,
+          "window_start": 1792218126.2889829,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 30,
+          "n_unique_paths_raw": 14,
+          "n_open_errors": 0,
+          "n_open": 3.4339872044851463,
+          "n_unique_paths": 2.70805020110221,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 10
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 2704,
+                "name": "Xwayland",
+                "source": "opensnoop",
+                "observed_events": 10
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6",
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-SlZpl7"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 2.018004906900739e-05
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 3,
+          "window_start": 1792218131.2889829,
+          "phase": "unlabeled",
+          "n_exec": 70,
+          "n_unique_pcomm": 23,
+          "n_open_raw": 3410,
+          "n_unique_paths_raw": 636,
+          "n_open_errors": 867,
+          "n_open": 8.134760782418645,
+          "n_unique_paths": 6.456769655572163,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 314
+              },
+              {
+                "pid": 2742,
+                "name": "systemd-journal",
+                "source": "opensnoop",
+                "observed_events": 233
+              },
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 181
+              },
+              {
+                "pid": 3713,
+                "name": "apt-get",
+                "source": "opensnoop",
+                "observed_events": 75
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 70
+              }
+            ],
+            "sample_paths": [
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-GPhQxz",
+              "/mnt/wslg/runtime-dir/xwayland-shared-3uXptZ",
+              "/proc/net/tcp"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 6.812633823738423e-08
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 4,
+          "window_start": 1792218136.2889829,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 37,
+          "n_unique_paths_raw": 18,
+          "n_open_errors": 0,
+          "n_open": 3.6375861597263857,
+          "n_unique_paths": 2.9444389791664403,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 12
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 12
+              },
+              {
+                "pid": 2704,
+                "name": "Xwayland",
+                "source": "opensnoop",
+                "observed_events": 12
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 1,
+                "name": "mini_init",
+                "source": "opensnoop",
+                "observed_events": 3
+              }
+            ],
+            "sample_paths": [
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-2KcrBY",
+              "/mnt/wslg/runtime-dir/xwayland-shared-yf8gmJ",
+              "/proc/net/tcp"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 5.808727843170658e-08
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 5,
+          "window_start": 1792218141.2889829,
+          "phase": "unlabeled",
+          "n_exec": 0,
+          "n_unique_pcomm": 0,
+          "n_open_raw": 31,
+          "n_unique_paths_raw": 15,
+          "n_open_errors": 0,
+          "n_open": 3.4657359027997265,
+          "n_unique_paths": 2.772588722239781,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 10
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 2704,
+                "name": "Xwayland",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 326,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 10
+              },
+              {
+                "pid": 3541,
+                "name": "WebKitWebProces",
+                "source": "opensnoop",
+                "observed_events": 1
+              }
+            ],
+            "sample_paths": [
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-mu0IeF",
+              "/mnt/wslg/runtime-dir/xwayland-shared-pyFE1i",
+              "/proc/net/tcp"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 2.031568272586881e-05
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        }
+      ],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 6,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 3984
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 3838,
+        "tcpconnect": 76,
+        "execsnoop": 70
+      },
+      "raw_samples": {
+        "execsnoop": [
+          {
+            "pcomm": "9",
+            "pid": 3686,
+            "ppid": 2679,
+            "ret": 0
+          },
+          {
+            "pcomm": "apt-helper",
+            "pid": 3686,
+            "ppid": 2679,
+            "ret": 0
+          },
+          {
+            "pcomm": "systemctl",
+            "pid": 3687,
+            "ppid": 3686,
+            "ret": 0
+          },
+          {
+            "pcomm": "systemctl",
+            "pid": 3688,
+            "ppid": 3686,
+            "ret": 0
+          },
+          {
+            "pcomm": "systemctl",
+            "pid": 3689,
+            "ppid": 3686,
+            "ret": 0
+          },
+          {
+            "pcomm": "9",
+            "pid": 3691,
+            "ppid": 2679,
+            "ret": 0
+          },
+          {
+            "pcomm": "apt.systemd.dai",
+            "pid": 3691,
+            "ppid": 2679,
+            "ret": 0
+          },
+          {
+            "pcomm": "apt-config",
+            "pid": 3692,
+            "ppid": 3691,
+            "ret": 0
+          },
+          {
+            "pcomm": "dpkg",
+            "pid": 3693,
+            "ppid": 3692,
+            "ret": 0
+          },
+          {
+            "pcomm": "flock",
+            "pid": 3694,
+            "ppid": 3691,
+            "ret": 0
+          },
+          {
+            "pcomm": "apt.systemd.dai",
+            "pid": 3695,
+            "ppid": 3691,
+            "ret": 0
+          },
+          {
+            "pcomm": "cmp",
+            "pid": 3696,
+            "ppid": 3695,
+            "ret": 0
+          }
+        ],
+        "opensnoop": [
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 16,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 16,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 16,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/format/retprobe"
+          },
+          {
+            "pid": 3634,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 18,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 18,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/type"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 20,
+            "err": 0,
+            "path": "/sys/bus/event_source/devices/kprobe/format/retprobe"
+          },
+          {
+            "pid": 3637,
+            "comm": "tcpconnect",
+            "fd": 23,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 2704,
+            "comm": "Xwayland",
+            "fd": 9,
+            "err": 0,
+            "path": "/mnt/wslg/runtime-dir/xwayland-shared-QRU822"
+          },
+          {
+            "pid": 2704,
+            "comm": "Xwayland",
+            "fd": 10,
+            "err": 0,
+            "path": "/mnt/wslg/runtime-dir/xwayland-shared-ttz7fR"
+          }
+        ],
+        "tcpconnect": [
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          }
+        ]
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 3733,
+          "name": "unattended-upgr",
+          "events": 314
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2704,
+          "name": "Xwayland",
+          "events": 270
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2742,
+          "name": "systemd-journal",
+          "events": 243
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2679,
+          "name": "systemd",
+          "events": 183
+        },
+        {
+          "source": "tcpconnect",
+          "pid": 3435,
+          "name": "WebKitNetworkPr",
+          "events": 76
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3381,
+          "name": "python",
+          "events": 76
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3713,
+          "name": "apt-get",
+          "events": 75
+        },
+        {
+          "source": "opensnoop",
+          "pid": 326,
+          "name": "init",
+          "events": 70
+        },
+        {
+          "source": "opensnoop",
+          "pid": 328,
+          "name": "init",
+          "events": 70
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3692,
+          "name": "apt-config",
+          "events": 61
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3709,
+          "name": "apt-config",
+          "events": 61
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3711,
+          "name": "apt-config",
+          "events": 61
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3719,
+          "name": "apt-config",
+          "events": 61
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3721,
+          "name": "apt-config",
+          "events": 61
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3723,
+          "name": "apt-config",
+          "events": 61
+        }
+      ],
+      "workload": {},
+      "error": null,
+      "malformed_samples": []
+    },
+    {
+      "label": "app_open_controlled_benign",
+      "requested_seconds": 22,
+      "windows": [
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 0,
+          "window_start": 1792218148.4934542,
+          "phase": "unlabeled",
+          "n_exec": 21,
+          "n_unique_pcomm": 3,
+          "n_open_raw": 852,
+          "n_unique_paths_raw": 202,
+          "n_open_errors": 275,
+          "n_open": 6.748759547491679,
+          "n_unique_paths": 5.313205979041787,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3844,
+                "name": "runuser",
+                "source": "opensnoop",
+                "observed_events": 107
+              },
+              {
+                "pid": 3845,
+                "name": "python3",
+                "source": "opensnoop",
+                "observed_events": 107
+              },
+              {
+                "pid": 3846,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              },
+              {
+                "pid": 3847,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              },
+              {
+                "pid": 3848,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              }
+            ],
+            "sample_paths": [
+              "/sys/devices/system/cpu/online",
+              "/etc/localtime",
+              "/sys/devices/system/cpu/possible",
+              "/sys/kernel/debug/tracing/events/syscalls/sys_enter_execve/id",
+              "/sys/kernel/debug/tracing/events/syscalls/sys_exit_execve/id"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 1.2297099689639879e-06
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 1,
+          "window_start": 1792218153.4934542,
+          "phase": "unlabeled",
+          "n_exec": 1,
+          "n_unique_pcomm": 1,
+          "n_open_raw": 277,
+          "n_unique_paths_raw": 61,
+          "n_open_errors": 114,
+          "n_open": 5.627621113690637,
+          "n_unique_paths": 4.127134385045092,
+          "n_tcp_connect": 112,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3845,
+                "name": "python3",
+                "source": "opensnoop",
+                "observed_events": 204
+              },
+              {
+                "pid": 3845,
+                "name": "python3",
+                "source": "tcpconnect",
+                "observed_events": 100
+              },
+              {
+                "pid": 3869,
+                "name": "printf",
+                "source": "opensnoop",
+                "observed_events": 30
+              },
+              {
+                "pid": 3435,
+                "name": "WebKitNetworkPr",
+                "source": "tcpconnect",
+                "observed_events": 12
+              },
+              {
+                "pid": 3381,
+                "name": "python",
+                "source": "opensnoop",
+                "observed_events": 12
+              }
+            ],
+            "sample_paths": [
+              "/dev/null",
+              "/proc/3869/cmdline",
+              "/etc/ld.so.cache",
+              "/lib/x86_64-linux-gnu/libc.so.6",
+              "/usr/lib/locale/locale-archive"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188",
+              "127.0.0.1:60831"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.0
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 2,
+          "window_start": 1792218158.4934542,
+          "phase": "unlabeled",
+          "n_exec": 23,
+          "n_unique_pcomm": 8,
+          "n_open_raw": 1676,
+          "n_unique_paths_raw": 488,
+          "n_open_errors": 288,
+          "n_open": 7.424761761823209,
+          "n_unique_paths": 6.192362489474872,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 535
+              },
+              {
+                "pid": 3906,
+                "name": "dpkg-preconfigu",
+                "source": "opensnoop",
+                "observed_events": 129
+              },
+              {
+                "pid": 3914,
+                "name": "dpkg-preconfigu",
+                "source": "opensnoop",
+                "observed_events": 129
+              },
+              {
+                "pid": 3909,
+                "name": "apt-extracttemp",
+                "source": "opensnoop",
+                "observed_events": 67
+              },
+              {
+                "pid": 3917,
+                "name": "apt-extracttemp",
+                "source": "opensnoop",
+                "observed_events": 67
+              }
+            ],
+            "sample_paths": [
+              "/proc/net/tcp",
+              "/proc/net/tcp6",
+              "/proc/self/status",
+              "/var/lib/clamav",
+              "/mnt/wslg/runtime-dir/xwayland-shared-dPa3YU"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": false
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 2.503879201998238e-05
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 3,
+          "window_start": 1792218163.4934542,
+          "phase": "unlabeled",
+          "n_exec": 373,
+          "n_unique_pcomm": 63,
+          "n_open_raw": 45901,
+          "n_unique_paths_raw": 7980,
+          "n_open_errors": 4027,
+          "n_open": 10.734263968084111,
+          "n_unique_paths": 8.984818995876008,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 7093
+              },
+              {
+                "pid": 3997,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 2631
+              },
+              {
+                "pid": 3923,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1551
+              },
+              {
+                "pid": 3954,
+                "name": "(polkitd)",
+                "source": "opensnoop",
+                "observed_events": 388
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 373
+              }
+            ],
+            "sample_paths": [
+              "/proc/3924/cmdline",
+              "/etc/ld.so.cache",
+              "/lib/x86_64-linux-gnu/libmd.so.0",
+              "/lib/x86_64-linux-gnu/libc.so.6",
+              "/usr/lib/locale/locale-archive"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.0
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        }
+      ],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 4,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 71404
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 70730,
+        "tcpconnect": 148,
+        "execsnoop": 526
+      },
+      "raw_samples": {
+        "execsnoop": [
+          {
+            "pcomm": "runuser",
+            "pid": 3844,
+            "ppid": 3318,
+            "ret": 0
+          },
+          {
+            "pcomm": "python3",
+            "pid": 3845,
+            "ppid": 3844,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3846,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3847,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3848,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3849,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3850,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3853,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3854,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3855,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3856,
+            "ppid": 3845,
+            "ret": 0
+          },
+          {
+            "pcomm": "printf",
+            "pid": 3857,
+            "ppid": 3845,
+            "ret": 0
+          }
+        ],
+        "opensnoop": [
+          {
+            "pid": 3835,
+            "comm": "tcpconnect",
+            "fd": 23,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 3832,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          },
+          {
+            "pid": 3829,
+            "comm": "execsnoop",
+            "fd": 8,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/possible"
+          },
+          {
+            "pid": 3829,
+            "comm": "execsnoop",
+            "fd": 10,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_enter_execve/id"
+          },
+          {
+            "pid": 3829,
+            "comm": "execsnoop",
+            "fd": 12,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_exit_execve/id"
+          },
+          {
+            "pid": 3829,
+            "comm": "execsnoop",
+            "fd": 15,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 4,
+            "err": 0,
+            "path": "/proc/net/tcp"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 5,
+            "err": 0,
+            "path": "/proc/net/tcp6"
+          },
+          {
+            "pid": 3381,
+            "comm": "python",
+            "fd": 31,
+            "err": 0,
+            "path": "/proc/self/status"
+          },
+          {
+            "pid": 3381,
+            "comm": "python",
+            "fd": 31,
+            "err": 0,
+            "path": "/var/lib/clamav"
+          },
+          {
+            "pid": 2704,
+            "comm": "Xwayland",
+            "fd": 9,
+            "err": 0,
+            "path": "/mnt/wslg/runtime-dir/xwayland-shared-HDvThG"
+          },
+          {
+            "pid": 2704,
+            "comm": "Xwayland",
+            "fd": 10,
+            "err": 0,
+            "path": "/mnt/wslg/runtime-dir/xwayland-shared-Alncdq"
+          }
+        ],
+        "tcpconnect": [
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          }
+        ]
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 2679,
+          "name": "systemd",
+          "events": 14519
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4238,
+          "name": "mandb",
+          "events": 6617
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4623,
+          "name": "mandb",
+          "events": 6603
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4309,
+          "name": "dpkg",
+          "events": 3073
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3997,
+          "name": "dpkg",
+          "events": 2631
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4481,
+          "name": "dpkg",
+          "events": 1960
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4414,
+          "name": "dpkg",
+          "events": 1773
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4445,
+          "name": "dpkg",
+          "events": 1749
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4133,
+          "name": "dpkg",
+          "events": 1736
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4298,
+          "name": "dpkg",
+          "events": 1691
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3923,
+          "name": "dpkg",
+          "events": 1608
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4468,
+          "name": "dpkg",
+          "events": 1602
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4434,
+          "name": "dpkg",
+          "events": 1596
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4363,
+          "name": "systemd-sysv-ge",
+          "events": 910
+        },
+        {
+          "source": "opensnoop",
+          "pid": 4405,
+          "name": "systemd-sysv-ge",
+          "events": 910
+        }
+      ],
+      "workload": {
+        "returncode": 0,
+        "stderr": "",
+        "pid": 1097,
+        "successful_execs": 20,
+        "file_reads": 100,
+        "missing_file_attempts": 100,
+        "loopback_connections": 100,
+        "port": 60831
+      },
+      "error": null,
+      "malformed_samples": [],
+      "controlled_observed": {
+        "printf_execs": 20,
+        "worker_file_events": 0,
+        "worker_tcp_events": 0
+      }
+    },
+    {
+      "label": "app_open_idle_holdout",
+      "requested_seconds": 35,
+      "windows": [
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 0,
+          "window_start": 1792218168.8640597,
+          "phase": "unlabeled",
+          "n_exec": 225,
+          "n_unique_pcomm": 29,
+          "n_open_raw": 24137,
+          "n_unique_paths_raw": 5874,
+          "n_open_errors": 2735,
+          "n_open": 10.091542641177844,
+          "n_unique_paths": 8.67846133901236,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 4913,
+                "name": "mandb",
+                "source": "opensnoop",
+                "observed_events": 3233
+              },
+              {
+                "pid": 5014,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 2993
+              },
+              {
+                "pid": 4957,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1612
+              },
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 300
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 228
+              }
+            ],
+            "sample_paths": [
+              "/proc/2151/cgroup",
+              "/proc/2151/comm",
+              "/proc/2151/cmdline",
+              "/proc/2151/status",
+              "/proc/2151/sessionid"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 3.586919650189202e-11
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 1,
+          "window_start": 1792218173.8640597,
+          "phase": "unlabeled",
+          "n_exec": 209,
+          "n_unique_pcomm": 34,
+          "n_open_raw": 21451,
+          "n_unique_paths_raw": 5239,
+          "n_open_errors": 2746,
+          "n_open": 9.973573160102816,
+          "n_unique_paths": 8.564076777315087,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2851,
+                "name": "dbus-daemon",
+                "source": "opensnoop",
+                "observed_events": 1570
+              },
+              {
+                "pid": 5210,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 862
+              },
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 612
+              },
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 262
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 209
+              }
+            ],
+            "sample_paths": [
+              "/lib/x86_64-linux-gnu/libzstd.so.1",
+              "/lib/x86_64-linux-gnu/libkmod.so.2",
+              "/lib/x86_64-linux-gnu/libm.so.6",
+              "/lib/x86_64-linux-gnu/libpcre2-8.so.0",
+              "/lib/x86_64-linux-gnu/libmount.so.1"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 5.2735593669694936e-14
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 2,
+          "window_start": 1792218178.8640597,
+          "phase": "unlabeled",
+          "n_exec": 258,
+          "n_unique_pcomm": 61,
+          "n_open_raw": 38769,
+          "n_unique_paths_raw": 7463,
+          "n_open_errors": 3657,
+          "n_open": 10.565402030664975,
+          "n_unique_paths": 8.91784674252718,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 3713
+              },
+              {
+                "pid": 2851,
+                "name": "dbus-daemon",
+                "source": "opensnoop",
+                "observed_events": 2756
+              },
+              {
+                "pid": 5666,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1616
+              },
+              {
+                "pid": 5609,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1607
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 258
+              }
+            ],
+            "sample_paths": [
+              "/var/run/unattended-upgrades.progress",
+              "/var/cache/apt/archives/lock",
+              "/etc/passwd",
+              "/proc/sys/kernel/ngroups_max",
+              "/var/log/unattended-upgrades/unattended-upgrades-dpkg.log"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 1.2645440250480533e-13
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 3,
+          "window_start": 1792218183.8640597,
+          "phase": "unlabeled",
+          "n_exec": 296,
+          "n_unique_pcomm": 79,
+          "n_open_raw": 66110,
+          "n_unique_paths_raw": 11904,
+          "n_open_errors": 4366,
+          "n_open": 11.099090426517867,
+          "n_unique_paths": 9.384713758920963,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 2679,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 14359
+              },
+              {
+                "pid": 3235,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 2144
+              },
+              {
+                "pid": 3062,
+                "name": "systemd",
+                "source": "opensnoop",
+                "observed_events": 2134
+              },
+              {
+                "pid": 6055,
+                "name": "systemd-tmpfile",
+                "source": "opensnoop",
+                "observed_events": 1444
+              },
+              {
+                "pid": 5943,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1396
+              }
+            ],
+            "sample_paths": [
+              "/usr/lib/systemd/catalog/systemd.be.catalog.dpkg-new",
+              "/usr/lib/systemd/catalog/systemd.be@latin.catalog.dpkg-new",
+              "/usr/lib/systemd/catalog/systemd.bg.catalog.dpkg-new",
+              "/usr/lib/systemd/catalog/systemd.catalog.dpkg-new",
+              "/usr/lib/systemd/catalog/systemd.da.catalog.dpkg-new"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 0.0
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 4,
+          "window_start": 1792218188.8640597,
+          "phase": "unlabeled",
+          "n_exec": 202,
+          "n_unique_pcomm": 24,
+          "n_open_raw": 20411,
+          "n_unique_paths_raw": 3871,
+          "n_open_errors": 2301,
+          "n_open": 9.923878242183862,
+          "n_unique_paths": 8.261526448396468,
+          "n_tcp_connect": 10,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 6550,
+                "name": "mandb",
+                "source": "opensnoop",
+                "observed_events": 3806
+              },
+              {
+                "pid": 6520,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1759
+              },
+              {
+                "pid": 6456,
+                "name": "mandb",
+                "source": "opensnoop",
+                "observed_events": 1667
+              },
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 287
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 202
+              }
+            ],
+            "sample_paths": [
+              "/usr/share/man/man1/grep.1.gz",
+              "/usr/share/man/man1/gresource.1.gz",
+              "/usr/share/man/man1/groff.1.gz",
+              "/usr/share/man/man1/grog.1.gz",
+              "/usr/share/man/man1/grops.1.gz"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 2.208323524044431e-10
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        },
+        {
+          "type": "window",
+          "session_id": "live",
+          "window_index": 5,
+          "window_start": 1792218193.8640597,
+          "phase": "unlabeled",
+          "n_exec": 201,
+          "n_unique_pcomm": 40,
+          "n_open_raw": 35665,
+          "n_unique_paths_raw": 8424,
+          "n_open_errors": 2228,
+          "n_open": 10.481953133012459,
+          "n_unique_paths": 9.038958755220563,
+          "n_tcp_connect": 12,
+          "n_unique_daddr": 1,
+          "evidence": {
+            "processes": [
+              {
+                "pid": 6835,
+                "name": "mandb",
+                "source": "opensnoop",
+                "observed_events": 6603
+              },
+              {
+                "pid": 6799,
+                "name": "dpkg",
+                "source": "opensnoop",
+                "observed_events": 1814
+              },
+              {
+                "pid": 3733,
+                "name": "unattended-upgr",
+                "source": "opensnoop",
+                "observed_events": 243
+              },
+              {
+                "pid": 328,
+                "name": "init",
+                "source": "opensnoop",
+                "observed_events": 201
+              },
+              {
+                "pid": 6782,
+                "name": "dpkg-preconfigu",
+                "source": "opensnoop",
+                "observed_events": 129
+              }
+            ],
+            "sample_paths": [
+              "/var/lib/apt/extended_states",
+              "/var/lib/dpkg/status",
+              "/var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_multiverse_i18n_Translation-en",
+              "/var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages",
+              "/var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_i18n_Translation-en"
+            ],
+            "sample_destinations": [
+              "127.0.0.1:4188"
+            ],
+            "truncated": true
+          },
+          "scores": {
+            "ocsvm_log_g0.1_nu0.02": 2.1649348980190553e-14
+          },
+          "anomalies": {
+            "ocsvm_log_g0.1_nu0.02": true
+          },
+          "anomaly": true
+        }
+      ],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 6,
+          "partial_windows_discarded": 1,
+          "malformed": 0,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 342388
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 337227,
+        "execsnoop": 5085,
+        "tcpconnect": 76
+      },
+      "raw_samples": {
+        "execsnoop": [
+          {
+            "pcomm": "dpkg",
+            "pid": 4914,
+            "ppid": 4668,
+            "ret": 0
+          },
+          {
+            "pcomm": "dpkg",
+            "pid": 4915,
+            "ppid": 4668,
+            "ret": 0
+          },
+          {
+            "pcomm": "dpkg",
+            "pid": 4916,
+            "ppid": 4668,
+            "ret": 0
+          },
+          {
+            "pcomm": "sh",
+            "pid": 4918,
+            "ppid": 4917,
+            "ret": 0
+          },
+          {
+            "pcomm": "test",
+            "pid": 4919,
+            "ppid": 4918,
+            "ret": 0
+          },
+          {
+            "pcomm": "test",
+            "pid": 4920,
+            "ppid": 4918,
+            "ret": 0
+          },
+          {
+            "pcomm": "gdbus",
+            "pid": 4921,
+            "ppid": 4918,
+            "ret": 0
+          },
+          {
+            "pcomm": "echo",
+            "pid": 4925,
+            "ppid": 4918,
+            "ret": 0
+          },
+          {
+            "pcomm": "sh",
+            "pid": 4926,
+            "ppid": 4917,
+            "ret": 0
+          },
+          {
+            "pcomm": "test",
+            "pid": 4927,
+            "ppid": 4926,
+            "ret": 0
+          },
+          {
+            "pcomm": "test",
+            "pid": 4928,
+            "ppid": 4926,
+            "ret": 0
+          },
+          {
+            "pcomm": "gdbus",
+            "pid": 4929,
+            "ppid": 4926,
+            "ret": 0
+          }
+        ],
+        "opensnoop": [
+          {
+            "pid": 2679,
+            "comm": "systemd",
+            "fd": 62,
+            "err": 0,
+            "path": "/proc/2151/cgroup"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/comm"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/cmdline"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/status"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/sessionid"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/loginuid"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": 34,
+            "err": 0,
+            "path": "/proc/2151/cgroup"
+          },
+          {
+            "pid": 2742,
+            "comm": "systemd-journal",
+            "fd": -1,
+            "err": 2,
+            "path": "/run/systemd/units/log-extra-fields:rsyslog.service"
+          },
+          {
+            "pid": 3733,
+            "comm": "unattended-upgr",
+            "fd": 10,
+            "err": 0,
+            "path": "/var/run/unattended-upgrades.progress"
+          },
+          {
+            "pid": 4908,
+            "comm": "rs:main Q:Reg",
+            "fd": 7,
+            "err": 0,
+            "path": "/var/log/syslog"
+          },
+          {
+            "pid": 4720,
+            "comm": "dpkg",
+            "fd": 9,
+            "err": 0,
+            "path": "/var/lib/dpkg/diversions"
+          },
+          {
+            "pid": 4900,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          }
+        ],
+        "tcpconnect": [
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          },
+          {
+            "pid": 3435,
+            "comm": "WebKitNetworkPr",
+            "ip": 4,
+            "saddr": "127.0.0.1",
+            "daddr": "127.0.0.1",
+            "dport": 4188
+          }
+        ]
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 2679,
+          "name": "systemd",
+          "events": 18803
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6953,
+          "name": "dpkg",
+          "events": 12557
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6434,
+          "name": "dpkg",
+          "events": 7999
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6308,
+          "name": "mandb",
+          "events": 7685
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6374,
+          "name": "dpkg",
+          "events": 7572
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6835,
+          "name": "mandb",
+          "events": 6603
+        },
+        {
+          "source": "opensnoop",
+          "pid": 5943,
+          "name": "dpkg",
+          "events": 6569
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2851,
+          "name": "dbus-daemon",
+          "events": 5480
+        },
+        {
+          "source": "opensnoop",
+          "pid": 328,
+          "name": "init",
+          "events": 5088
+        },
+        {
+          "source": "opensnoop",
+          "pid": 5827,
+          "name": "mandb",
+          "events": 4946
+        },
+        {
+          "source": "opensnoop",
+          "pid": 7045,
+          "name": "mandb",
+          "events": 4943
+        },
+        {
+          "source": "opensnoop",
+          "pid": 5093,
+          "name": "mandb",
+          "events": 3806
+        },
+        {
+          "source": "opensnoop",
+          "pid": 5460,
+          "name": "mandb",
+          "events": 3806
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6456,
+          "name": "mandb",
+          "events": 3806
+        },
+        {
+          "source": "opensnoop",
+          "pid": 6550,
+          "name": "mandb",
+          "events": 3806
+        }
+      ],
+      "workload": {},
+      "error": null,
+      "malformed_samples": []
+    }
+  ],
+  "limitation": "Short sequential diagnostic runs on one WSL host, not a randomized benchmark or independent malware test. Controlled activity is benign, not an attack."
+}

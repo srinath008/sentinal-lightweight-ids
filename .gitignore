@@ -2,11 +2,20 @@
 # Raw dataset — never commit syscall capture data
 # ──────────────────────────────────────────────
 ids_dataset/
+external_data/
 *.csv
 *.parquet
 
 # Python environment
 .venv/
+.test-deps/
+.pytest_cache/
+.test-output/
+models/output/validated/
+models/output/improved/
+models/output/host_adapted_*/
+inference/output/*.jsonl
+feature_engineering/output/*v2.metadata.json
 __pycache__/
 *.pyc
 *.pyo
@@ -37,3 +46,10 @@ desktop.ini
 id_rsa
 id_ed25519
 .env
+
+# Generated application and UI reference downloads
+desktop/replay.jsonl
+desktop/watermelon-*.json
+desktop/watermelon-*.mdx
+.install-venv/
+landing/.openai/*.tar.gz

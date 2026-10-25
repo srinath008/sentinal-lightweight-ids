@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "method": "Browser state fixtures test UI rendering; actual replay and live backend were checked separately",
+  "checks": [
+    "Completed live session correctly labeled",
+    "New session clears previous telemetry"
+  ]
+}

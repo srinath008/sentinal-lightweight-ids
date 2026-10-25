@@ -1,0 +1,221 @@
+{
+  "phases": [
+    {
+      "label": "controlled_collector_probe",
+      "requested_seconds": 22,
+      "windows": [],
+      "health": [
+        {
+          "type": "monitor_stopped",
+          "complete_windows": 0,
+          "partial_windows_discarded": 1,
+          "malformed": 3,
+          "late": 0,
+          "stderr_lines": 0,
+          "events": 30
+        }
+      ],
+      "collector_messages": [],
+      "event_counts": {
+        "opensnoop": 59,
+        "execsnoop": 1
+      },
+      "raw_samples": {
+        "execsnoop": [
+          {
+            "pcomm": "runuser",
+            "pid": 3164,
+            "ppid": 3001,
+            "ret": 0
+          }
+        ],
+        "opensnoop": [
+          {
+            "pid": 3161,
+            "comm": "tcpconnect",
+            "fd": 23,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 3158,
+            "comm": "opensnoop",
+            "fd": 50,
+            "err": 0,
+            "path": "/etc/localtime"
+          },
+          {
+            "pid": 3155,
+            "comm": "execsnoop",
+            "fd": 8,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/possible"
+          },
+          {
+            "pid": 3155,
+            "comm": "execsnoop",
+            "fd": 10,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_enter_execve/id"
+          },
+          {
+            "pid": 3155,
+            "comm": "execsnoop",
+            "fd": 12,
+            "err": 0,
+            "path": "/sys/kernel/debug/tracing/events/syscalls/sys_exit_execve/id"
+          },
+          {
+            "pid": 3155,
+            "comm": "execsnoop",
+            "fd": 15,
+            "err": 0,
+            "path": "/sys/devices/system/cpu/online"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 4,
+            "err": 0,
+            "path": "/proc/net/tcp"
+          },
+          {
+            "pid": 326,
+            "comm": "init",
+            "fd": 5,
+            "err": 0,
+            "path": "/proc/net/tcp6"
+          },
+          {
+            "pid": 2789,
+            "comm": "systemd-udevd",
+            "fd": 14,
+            "err": 0,
+            "path": "/run/udev/links"
+          },
+          {
+            "pid": 2789,
+            "comm": "systemd-udevd",
+            "fd": 14,
+            "err": 0,
+            "path": "/sys/fs/cgroup/system.slice/systemd-udevd.service/udev/cgroup.procs"
+          },
+          {
+            "pid": 2789,
+            "comm": "systemd-udevd",
+            "fd": 14,
+            "err": 0,
+            "path": "/sys/fs/cgroup/system.slice/systemd-udevd.service/udev/cgroup.threads"
+          },
+          {
+            "pid": 2858,
+            "comm": "snapd",
+            "fd": 3,
+            "err": 0,
+            "path": "/var/lib/snapd/maintenance.json.4250QRhhNJ3V~"
+          }
+        ],
+        "tcpconnect": []
+      },
+      "top_processes": [
+        {
+          "source": "opensnoop",
+          "pid": 3164,
+          "name": "runuser",
+          "events": 28
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2742,
+          "name": "systemd-journal",
+          "events": 10
+        },
+        {
+          "source": "opensnoop",
+          "pid": 326,
+          "name": "init",
+          "events": 6
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3155,
+          "name": "execsnoop",
+          "events": 5
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2789,
+          "name": "systemd-udevd",
+          "events": 3
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2858,
+          "name": "snapd",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 2698,
+          "name": "pulseaudio",
+          "events": 2
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3161,
+          "name": "tcpconnect",
+          "events": 1
+        },
+        {
+          "source": "opensnoop",
+          "pid": 3158,
+          "name": "opensnoop",
+          "events": 1
+        },
+        {
+          "source": "opensnoop",
+          "pid": 328,
+          "name": "init",
+          "events": 1
+        },
+        {
+          "source": "execsnoop",
+          "pid": 3164,
+          "name": "runuser",
+          "events": 1
+        }
+      ],
+      "workload": {
+        "returncode": 0,
+        "stderr": "",
+        "pid": 418,
+        "successful_execs": 20,
+        "file_reads": 100,
+        "missing_file_attempts": 100,
+        "loopback_connections": 100,
+        "port": 46185
+      },
+      "error": "Event loss, incompatible collector output or queue overflow: monitoring results are incomplete",
+      "malformed_samples": [
+        {
+          "source": "execsnoop",
+          "row": "import json, os, socket, subprocess, tempfile, time"
+        },
+        {
+          "source": "execsnoop",
+          "row": "from pathlib import Path"
+        },
+        {
+          "source": "execsnoop",
+          "row": "with tempfile.TemporaryDirectory(prefix='sentinel"
+        }
+      ],
+      "controlled_observed": {
+        "printf_execs": 0,
+        "worker_file_events": 0,
+        "worker_tcp_events": 0
+      }
+    }
+  ],
+  "limitation": "Short sequential diagnostic runs on one WSL host, not a randomized benchmark or independent malware test. Controlled activity is benign, not an attack."
+}

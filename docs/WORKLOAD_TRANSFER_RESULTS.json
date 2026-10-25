@@ -1,0 +1,117 @@
+{
+  "note": "Frozen settings; historically examined sessions; no new independent data. Checks transfer between idle and media workloads. No model promotion or retuning.",
+  "results": [
+    {
+      "model": "selected_ocsvm",
+      "training_session": "20260914_120411",
+      "test_session": "20260916_185643",
+      "training_baseline_windows": 538,
+      "calibration_baseline_windows": 178,
+      "threshold": 0.612112463997467,
+      "metrics": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "true_positives": 541,
+        "false_negatives": 0,
+        "false_positives": 185,
+        "true_negatives": 535,
+        "precision": 0.7451790633608816,
+        "recall": 1.0,
+        "f1": 0.8539857932123125,
+        "roc_auc": 0.9601150133497638,
+        "baseline_false_positive_rate": 0.2569444444444444,
+        "flagged_baseline_windows_per_hour": 185.0,
+        "per_phase": {
+          "baseline": 0.2569444444444444,
+          "attack_recon": 1.0,
+          "attack_privesc": 1.0,
+          "attack_fileaccess": 1.0
+        }
+      }
+    },
+    {
+      "model": "reference_if",
+      "training_session": "20260914_120411",
+      "test_session": "20260916_185643",
+      "training_baseline_windows": 538,
+      "calibration_baseline_windows": 178,
+      "threshold": -0.6865778883981818,
+      "metrics": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "true_positives": 524,
+        "false_negatives": 17,
+        "false_positives": 61,
+        "true_negatives": 659,
+        "precision": 0.8957264957264958,
+        "recall": 0.9685767097966729,
+        "f1": 0.9307282415630551,
+        "roc_auc": 0.9705239782296159,
+        "baseline_false_positive_rate": 0.08472222222222223,
+        "flagged_baseline_windows_per_hour": 61.0,
+        "per_phase": {
+          "baseline": 0.08472222222222223,
+          "attack_recon": 0.9333333333333333,
+          "attack_privesc": 0.9834254143646409,
+          "attack_fileaccess": 0.9888888888888889
+        }
+      }
+    },
+    {
+      "model": "selected_ocsvm",
+      "training_session": "20260916_185643",
+      "test_session": "20260914_120411",
+      "training_baseline_windows": 538,
+      "calibration_baseline_windows": 178,
+      "threshold": 0.19904476172151253,
+      "metrics": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "true_positives": 518,
+        "false_negatives": 23,
+        "false_positives": 2,
+        "true_negatives": 718,
+        "precision": 0.9961538461538462,
+        "recall": 0.9574861367837338,
+        "f1": 0.9764373232799246,
+        "roc_auc": 0.9924009036763196,
+        "baseline_false_positive_rate": 0.002777777777777778,
+        "flagged_baseline_windows_per_hour": 2.0,
+        "per_phase": {
+          "baseline": 0.002777777777777778,
+          "attack_recon": 0.9555555555555556,
+          "attack_privesc": 0.9337016574585635,
+          "attack_fileaccess": 0.9833333333333333
+        }
+      }
+    },
+    {
+      "model": "reference_if",
+      "training_session": "20260916_185643",
+      "test_session": "20260914_120411",
+      "training_baseline_windows": 538,
+      "calibration_baseline_windows": 178,
+      "threshold": -0.7883445095956564,
+      "metrics": {
+        "windows": 1261,
+        "excluded_windows": 0,
+        "true_positives": 12,
+        "false_negatives": 529,
+        "false_positives": 1,
+        "true_negatives": 719,
+        "precision": 0.9230769230769231,
+        "recall": 0.022181146025878003,
+        "f1": 0.04332129963898917,
+        "roc_auc": 0.9960027726432532,
+        "baseline_false_positive_rate": 0.001388888888888889,
+        "flagged_baseline_windows_per_hour": 1.0,
+        "per_phase": {
+          "baseline": 0.001388888888888889,
+          "attack_recon": 0.005555555555555556,
+          "attack_privesc": 0.0055248618784530384,
+          "attack_fileaccess": 0.05555555555555555
+        }
+      }
+    }
+  ]
+}

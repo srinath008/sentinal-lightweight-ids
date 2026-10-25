@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "health": {
+    "type": "monitor_stopped",
+    "complete_windows": 2,
+    "partial_windows_discarded": 1,
+    "malformed": 0,
+    "late": 0,
+    "stderr_lines": 0,
+    "events": 446
+  },
+  "ordinary_user_stop": true,
+  "helper_exit": 0,
+  "note": "Fixed root helper exercised directly; interactive password entry and native popup were not automated.",
+  "duplicate_launch_preserves_stop_request": true
+}
