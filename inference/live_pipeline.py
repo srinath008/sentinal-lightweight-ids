@@ -3,6 +3,11 @@ inference/live_pipeline.py
 ----------------------------
 WP-11: Live inference pipeline for the eBPF IDS.
 
+LEGACY REPLAY ONLY: use python -m inference.replay with a validated bundle
+for corrected replay, or python -m inference.streaming on Linux for monitoring.
+This legacy path uses historical models that are incompatible with corrected
+shared-origin feature windows and must not be used for new inference.
+
 Simulates real-time anomaly detection by processing a directory of eBPF
 log files, extracting features in sliding windows, and scoring them with
 the trained Isolation Forest + One-Class SVM models.
@@ -238,6 +243,7 @@ def run_pipeline(
 
 
 def main() -> None:
+    raise SystemExit('Legacy replay retired: use python -m inference.replay --help or python -m inference.streaming --help')
     parser = argparse.ArgumentParser(
         description='Live eBPF IDS inference pipeline'
     )
