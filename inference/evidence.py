@@ -7,9 +7,15 @@ from feature_engineering.events import Window
 INFRASTRUCTURE = frozenset({'init', 'systemd', 'systemd-journal', 'systemd-journald', 'systemd-udevd', 'snapd'})
 
 
+# Path fragments whose access is rarely routine; the file contents are never read, only the path is kept.
+SENSITIVE_FRAGMENTS = ('/etc/shadow', '/etc/gshadow', '/etc/sudoers', '/.ssh/', '/id_rsa', '/id_ed25519',
+                       '/.aws/credentials', '/.gnupg/private-keys')
+
+
 class EvidenceWindow(Window):
     def __init__(self):
         super().__init__()
+        self.sensitive_paths = []
         self.context_processes = Counter()
         self.exec_commands = Counter()
         self.sample_paths, self.sample_destinations = [], []
@@ -24,6 +30,10 @@ class EvidenceWindow(Window):
             self.context_truncated = True
         if source == 'execsnoop' and (event['pcomm'] in self.exec_commands or len(self.exec_commands) < 100):
             self.exec_commands[str(event['pcomm'])[:80]] += 1
+        if source == 'opensnoop' and len(self.sensitive_paths) < 5:
+            path = str(event['path'])[:200]
+            if any(fragment in path for fragment in SENSITIVE_FRAGMENTS) and path not in self.sensitive_paths:
+                self.sensitive_paths.append(path)
         if source == 'opensnoop' and len(self.sample_paths) < 5:
             sample = str(event['path'])[:200]
             if sample not in self.sample_paths:
@@ -40,6 +50,6 @@ class EvidenceWindow(Window):
         row['evidence'] = dict(processes=[dict(pid=k[0], name=k[1], source=k[2], observed_events=n)
                                           for k, n in ranked],
                                exec_commands=[dict(name=name, count=n) for name, n in self.exec_commands.most_common(5)],
-                               sample_paths=self.sample_paths, sample_destinations=self.sample_destinations,
+                               sensitive_paths=self.sensitive_paths, sample_paths=self.sample_paths, sample_destinations=self.sample_destinations,
                                truncated=self.context_truncated)
         return row

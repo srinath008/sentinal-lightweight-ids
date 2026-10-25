@@ -15,7 +15,7 @@ import time
 from contextlib import nullcontext
 
 from inference.detector import Detector, IncidentGrouper
-from desktop.alerts import explain, desktop_notify
+from desktop.alerts import explain, desktop_notify, windows_alert, expected_maintenance
 from desktop.scanner import Scanner
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,6 +90,12 @@ class Service:
             event = dict(event, mode=event.get('mode', self.mode), event_id=self.sequence, recorded_at=time.time())
             if event['type'] == 'incident_start':
                 event['explanation'] = explain(event)
+                if event['mode'] == 'live' and expected_maintenance(event.get('evidence')):
+                    event['expected'] = True
+                    event['explanation']['summary'] = ('Looks like routine package maintenance (apt/dpkg). Recorded in history; '
+                                                       'no popup was shown. Review it if you did not expect an update.')
+                    event['explanation']['severity'] = 'low'
+                    event['explanation']['severity_reason'] = 'Matches routine system maintenance.'
             if event['type'] == 'window':
                 self.total += 1
                 self.flagged += int(event['anomaly'])
@@ -102,12 +108,24 @@ class Service:
                     db.execute('DELETE FROM events WHERE id NOT IN (SELECT id FROM events ORDER BY id DESC LIMIT 1000)')
         # Every live incident alerts (incidents are already grouped, so this cannot spam);
         # the model's 60 s cooldown only decides the quiet 'notification' flag.
-        if event['type'] == 'incident_start' and event['mode'] == 'live':
-            threading.Thread(target=self._notify, args=('Unusual Linux activity', '; '.join(event['explanation']['observations'])), daemon=True).start()
+        if event['type'] == 'incident_start' and event['mode'] == 'live' and not event.get('expected'):
+            x = event['explanation']
+            lines = [x['severity_reason']] + x['observations']
+            ctx = x.get('context') or {}
+            if ctx.get('exec_commands'):
+                lines.append('Commands started: ' + ', '.join(f"{c['name']} x{c['count']}" for c in ctx['exec_commands'][:4]))
+            if ctx.get('sensitive_paths'):
+                lines.append('Sensitive paths: ' + ', '.join(ctx['sensitive_paths'][:3]))
+            title = 'Sentinel ' + x['severity'].upper() + ': unusual Linux activity'
+            threading.Thread(target=self._notify, args=(title, '\n'.join(lines)), daemon=True).start()
         if event['type'] == 'file_scan_result' and event.get('scan', {}).get('detections'):
             threading.Thread(target=self._notify, args=('ClamAV scan needs review', event['message']), daemon=True).start()
 
     def _notify(self, title, message):
+        shown = windows_alert(title, message)
+        if shown['delivered']:
+            self.notification_status = dict(delivered=True, detail='Windows alert window shown; in-app alert is also available.')
+            return
         if self.alert_popup:
             try:
                 if self.alert_popup(title, message):

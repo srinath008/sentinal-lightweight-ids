@@ -128,3 +128,59 @@ def test_windows_path_is_derived_only_under_wsl(tmp_path, monkeypatch):
     monkeypatch.setattr('platform.release', lambda: '6.8-generic')
     assert service._windows_path('/home/u/x') is None
     service.close()
+
+
+def test_sensitive_paths_are_recorded_without_reading_content():
+    live = EvidenceWindow()
+    live.add('opensnoop', dict(pid=5, comm='cat', fd=3, err=0, path='/etc/shadow'))
+    live.add('opensnoop', dict(pid=5, comm='cat', fd=3, err=0, path='/home/u/.ssh/id_rsa'))
+    live.add('opensnoop', dict(pid=5, comm='cat', fd=3, err=0, path='/etc/passwd'))
+    assert live.row('live', 0, 0, 5)['evidence']['sensitive_paths'] == ['/etc/shadow', '/home/u/.ssh/id_rsa']
+
+
+def test_severity_rules():
+    from desktop.alerts import severity
+    assert severity({}, dict(sensitive_paths=['/etc/shadow']))[0] == 'high'
+    assert severity(dict(n_tcp_connect=900), {})[0] == 'high'
+    assert severity(dict(n_exec=300), {})[0] == 'medium'
+    assert severity(dict(n_exec=2, n_open=3), {})[0] == 'low'
+
+
+def test_expected_maintenance_requires_only_routine_programs():
+    from desktop.alerts import expected_maintenance
+    apt = dict(processes=[dict(name='apt-get'), dict(name='gpgv'), dict(name='init')],
+               exec_commands=[dict(name='dpkg'), dict(name='sh')], sensitive_paths=[])
+    assert expected_maintenance(apt)
+    assert expected_maintenance(dict(apt, processes=apt['processes'] + [dict(name='python')]))
+    assert not expected_maintenance(dict(apt, processes=apt['processes'] + [dict(name='python3')]))
+    assert not expected_maintenance(dict(apt, sensitive_paths=['/etc/shadow']))
+    assert not expected_maintenance(dict(apt, exec_commands=[dict(name='nmap')]))
+    assert not expected_maintenance(dict(apt, processes=[dict(name='apt-get'), dict(name='curl')]))
+    assert not expected_maintenance(dict(processes=[dict(name='sh')], exec_commands=[]))  # no recognised program
+    assert not expected_maintenance({})
+
+
+def test_expected_live_incident_is_recorded_but_does_not_alert(tmp_path, monkeypatch):
+    import time
+    service = Service(data_dir=tmp_path)
+    notified = []
+    monkeypatch.setattr(service, '_notify', lambda *args: notified.append(args))
+    service.mode = 'live'
+    features = dict(n_exec=119, n_open_errors=282, n_open=8, n_tcp_connect=1)
+    routine = dict(processes=[dict(name='apt-get', pid=1, source='opensnoop', observed_events=9)],
+                   exec_commands=[dict(name='dpkg', count=3)], sensitive_paths=[])
+    service.record(dict(type='incident_start', notification=True, features=features, evidence=routine))
+    service.record(dict(type='incident_start', notification=True, features=features,
+                        evidence=dict(routine, sensitive_paths=['/etc/shadow'])))
+    time.sleep(.2)
+    first, second = service.events[1], service.events[0]
+    assert first['expected'] and not second.get('expected')
+    assert second['explanation']['severity'] == 'high'
+    assert len(notified) == 1 and 'HIGH' in notified[0][0] and '/etc/shadow' in notified[0][1]
+    service.close()
+
+
+def test_windows_alert_is_not_attempted_outside_wsl(monkeypatch):
+    from desktop import alerts
+    monkeypatch.setattr('platform.release', lambda: '6.8-generic')
+    assert alerts.windows_alert('t', 'm')['delivered'] is False

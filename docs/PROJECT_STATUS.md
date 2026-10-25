@@ -1,3 +1,15 @@
+# Sentinel — Windows alerts, severity, routine-maintenance filter — 2026-10-25
+
+Added an always-on-top Windows alert window (shown through WSL interop, independent of
+Windows toast settings, which are switched off on the test PC). Alerts now carry a severity
+(low/medium/high, rule-based triage of an already flagged window), credential-path evidence
+(path only, never contents) and a routine package-maintenance filter: an incident made only
+of apt/dpkg-type programs is still recorded in history but raises no popup. The filter matches
+process names, which a local attacker could spoof; it never applies when a sensitive path
+was opened. Live re-test on Ubuntu WSL: 60 s idle 0 flagged/0 popups; apt update no popup;
+burst workload medium popup; simulated /etc/shadow access high popup; EICAR scan, export and
+test alert passed. 126 tests pass, one Linux-only skip on Windows.
+
 # Sentinel — live QA fixes — 2026-10-25
 
 Live QA found that export looked broken (its confirmation sat off-screen), that
