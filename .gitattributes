@@ -1,0 +1,3 @@
+*.sh text eol=lf
+release_tools/sentinel text eol=lf
+release_tools/sentinel-collector text eol=lf
