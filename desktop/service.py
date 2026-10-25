@@ -14,6 +14,7 @@ import threading
 import time
 from contextlib import nullcontext
 
+from feature_engineering.events import FEATURES
 from inference.detector import Detector, IncidentGrouper
 from desktop.alerts import explain, desktop_notify, windows_alert, expected_maintenance
 from desktop.scanner import Scanner
@@ -33,6 +34,7 @@ class Service:
         self.stop_event = threading.Event()
         self.worker = None
         self.process = None
+        self.window_log = None
         self.windows = deque(maxlen=120)
         self.events = deque(maxlen=100)
         self.status, self.mode, self.error = 'idle', None, None
@@ -53,6 +55,32 @@ class Service:
         self.notification_status = dict(delivered=False, detail='In-app alerts active. Use Test alert to check Linux desktop notifications.')
         self.sequence = 0
         self.alert_popup = None
+
+    def _open_window_log(self):
+        """Live sessions keep a private per-window record (numbers and process names only) for later review."""
+        folder = self.data_dir / 'sessions'
+        folder.mkdir(parents=True, exist_ok=True)
+        path = folder / ('live-' + datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S') + '.jsonl')
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+        self.window_log = os.fdopen(fd, 'a', encoding='utf-8')
+        return path
+
+    def _log_window(self, event):
+        if self.window_log is None or event.get('mode') != 'live':
+            return
+        evidence = event.get('evidence') or {}
+        row = dict(window_start=event['window_start'], anomaly=bool(event['anomaly']), scores=event['scores'],
+                   features={k: event[k] for k in FEATURES},
+                   commands=evidence.get('exec_commands', []),
+                   processes=[dict(name=p['name'], events=p['observed_events']) for p in evidence.get('processes', [])],
+                   sensitive_paths=evidence.get('sensitive_paths', []))
+        self.window_log.write(json.dumps(row) + '\n')
+        self.window_log.flush()
+
+    def _close_window_log(self):
+        log, self.window_log = self.window_log, None
+        if log:
+            log.close()
 
     def checks(self):
         linux = sys.platform == 'linux'
@@ -97,6 +125,7 @@ class Service:
                     event['explanation']['severity'] = 'low'
                     event['explanation']['severity_reason'] = 'Matches routine system maintenance.'
             if event['type'] == 'window':
+                self._log_window(event)
                 self.total += 1
                 self.flagged += int(event['anomaly'])
                 self.windows.append(event)
@@ -223,6 +252,9 @@ class Service:
             self.mode, self.status, self.error = mode, 'starting', None
             self.total = self.flagged = self.incidents = 0
             self.windows.clear()
+            self._close_window_log()
+            if mode == 'live':
+                self._open_window_log()
             self.events.clear()
             self.stop_event.clear()
             self.worker = threading.Thread(target=self._work, args=(mode, speed), daemon=True)
@@ -244,6 +276,7 @@ class Service:
         finally:
             with self.lock:
                 self.process = None
+                self._close_window_log()
 
     def _replay(self, speed):
         self.status = 'running'

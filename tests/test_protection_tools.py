@@ -207,3 +207,26 @@ def test_windows_alert_keeps_output_piped_and_caps_open_windows(monkeypatch):
     assert len(launched) == alerts.MAX_OPEN_ALERTS
     assert launched[0]['stdout'] == subprocess.PIPE and launched[0]['stderr'] == subprocess.PIPE
     alerts._alert_processes.clear()
+
+
+def test_live_windows_are_logged_privately_and_replay_is_not(tmp_path):
+    import json, stat, sys
+    service = Service(data_dir=tmp_path)
+    window = dict(type='window', mode='live', window_start=100.0, anomaly=True, scores={'m': -1.0},
+                  n_exec=1, n_unique_pcomm=1, n_open=2.0, n_unique_paths=2.0, n_open_errors=0, n_tcp_connect=0,
+                  n_unique_daddr=0, evidence=dict(exec_commands=[dict(name='ls', count=1)], sample_paths=['/secret/x'],
+                                                  processes=[dict(name='ls', pid=3, source='execsnoop', observed_events=1)],
+                                                  sensitive_paths=[]))
+    path = service._open_window_log()
+    service.mode = 'live'
+    service.record(window)
+    service.record(dict(window, mode='replay', window_start=101.0))
+    service._close_window_log()
+    lines = path.read_text().splitlines()
+    assert len(lines) == 1
+    row = json.loads(lines[0])
+    assert row['anomaly'] is True and row['commands'][0]['name'] == 'ls'
+    assert '/secret/x' not in lines[0]          # sample file paths are not retained
+    if sys.platform != 'win32':
+        assert stat.S_IMODE(path.stat().st_mode) == 0o600
+    service.close()

@@ -36,7 +36,7 @@ def main():
         command = ['/opt/sentinel/.venv/bin/python', '-I', '-c',
                    "import sys; sys.path.insert(0, '/opt/sentinel'); from inference.streaming import main; main()",
                    '--bundle', '/opt/sentinel/models/output/improved/detector_bundle.joblib',
-                   '--tools-dir', '/opt/sentinel/collectors', '--duration', '3600']
+                   '--tools-dir', '/opt/sentinel/collectors', '--duration', '14400']
         env = {'PATH': '/usr/sbin:/usr/bin:/sbin:/bin', 'HOME': '/root', 'LANG': 'C.UTF-8'}
         stopping = False
         def stop(*_):
