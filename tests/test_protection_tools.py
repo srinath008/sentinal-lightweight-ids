@@ -184,3 +184,26 @@ def test_windows_alert_is_not_attempted_outside_wsl(monkeypatch):
     from desktop import alerts
     monkeypatch.setattr('platform.release', lambda: '6.8-generic')
     assert alerts.windows_alert('t', 'm')['delivered'] is False
+
+
+def test_windows_alert_keeps_output_piped_and_caps_open_windows(monkeypatch):
+    import subprocess
+    from desktop import alerts
+    monkeypatch.setattr('platform.release', lambda: '6.6-microsoft-standard-WSL2')
+    monkeypatch.setattr(alerts.shutil, 'which', lambda _: '/bin/true')
+    monkeypatch.setattr(alerts.shutil.os.path, 'exists', lambda _: True)
+    launched = []
+
+    class Fake:
+        def poll(self): return None            # window still open
+        def communicate(self): return ('', '')
+    def popen(command, **kwargs):
+        launched.append(kwargs)
+        return Fake()
+    monkeypatch.setattr(alerts.subprocess, 'Popen', popen)
+    alerts._alert_processes.clear()
+    results = [alerts.windows_alert('t', 'm') for _ in range(alerts.MAX_OPEN_ALERTS + 3)]
+    assert all(r['delivered'] for r in results)
+    assert len(launched) == alerts.MAX_OPEN_ALERTS
+    assert launched[0]['stdout'] == subprocess.PIPE and launched[0]['stderr'] == subprocess.PIPE
+    alerts._alert_processes.clear()

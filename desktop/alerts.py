@@ -4,6 +4,11 @@ import math
 import platform
 import shutil
 import subprocess
+import threading
+
+MAX_OPEN_ALERTS = 5
+_alert_lock = threading.Lock()
+_alert_processes = []
 
 
 def severity(features, context):
@@ -141,9 +146,18 @@ def windows_alert(title, message):
     enc = lambda text: base64.b64encode(text[:1500].encode('utf-8')).decode()
     script = _WINDOWS_ALERT.replace('__TITLE__', enc(title)).replace('__TEXT__', enc(message))
     command = base64.b64encode(script.encode('utf-16-le')).decode()
-    try:
-        subprocess.Popen([binary, '-NoProfile', '-NonInteractive', '-WindowStyle', 'Hidden', '-EncodedCommand', command],
-                         stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        return dict(delivered=True, detail='Windows alert window requested.')
-    except OSError as exc:
-        return dict(delivered=False, detail=str(exc)[:300])
+    with _alert_lock:
+        _alert_processes[:] = [p for p in _alert_processes if p.poll() is None]
+        if len(_alert_processes) >= MAX_OPEN_ALERTS:
+            return dict(delivered=True, detail='Several alert windows are already open; in-app alert is also available.')
+        try:
+            # Piped (not DEVNULL) output: with DEVNULL the interop process was observed to exit within
+            # seconds, closing the window. A reaper thread drains the pipes until the window is dismissed.
+            process = subprocess.Popen([binary, '-NoProfile', '-NonInteractive', '-WindowStyle', 'Hidden',
+                                        '-EncodedCommand', command],
+                                       stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        except OSError as exc:
+            return dict(delivered=False, detail=str(exc)[:300])
+        _alert_processes.append(process)
+    threading.Thread(target=process.communicate, daemon=True).start()
+    return dict(delivered=True, detail='Windows alert window requested.')
