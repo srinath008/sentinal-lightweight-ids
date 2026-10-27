@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "filename": "sentinel-0.1.0-linux-x86_64.tar.gz",
+  "bytes": 63145,
+  "sha256": "9b93656c6f900d18f63154388640d102b1c113b566181a59e8fd918e876e30cc",
+  "model_sha256": "88167caf3a5250a99810bfb66604defa2425f9fc19e51b175ec22c4ba662b95a",
+  "replay_windows": 600,
+  "runtime": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "status": "research-preview-linux-installation-unverified"
+}

@@ -1,0 +1,3 @@
+'use strict';
+document.getElementById('copy').addEventListener('click',async()=>{const button=document.getElementById('copy');try{await navigator.clipboard.writeText(document.getElementById('install-commands').textContent);button.textContent='Copied ✓';}catch{button.textContent='Select commands below';}setTimeout(()=>button.textContent='Copy commands ⧉',2000);});
+fetch('downloads/release.json').then(r=>{if(!r.ok)throw Error('Release unavailable');return r.json();}).then(r=>{document.getElementById('release-size').textContent=(r.bytes/1024).toFixed(0)+' KB download · internet required for dependencies';}).catch(()=>{});

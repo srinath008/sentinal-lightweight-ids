@@ -23,6 +23,7 @@ __pycache__/
 .Python
 *.egg-info/
 dist/
+!landing/dist/
 build/
 *.egg
 
@@ -52,4 +53,3 @@ desktop/replay.jsonl
 desktop/watermelon-*.json
 desktop/watermelon-*.mdx
 .install-venv/
-landing/.openai/*.tar.gz
