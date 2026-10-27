@@ -152,7 +152,9 @@ def test_expected_maintenance_requires_only_routine_programs():
                exec_commands=[dict(name='dpkg'), dict(name='sh')], sensitive_paths=[])
     assert expected_maintenance(apt)
     assert expected_maintenance(dict(apt, processes=apt['processes'] + [dict(name='python')]))
-    assert not expected_maintenance(dict(apt, processes=apt['processes'] + [dict(name='python3')]))
+    # python3 is tolerated as a busy process (apt's own helpers) but never as a started command
+    assert expected_maintenance(dict(apt, processes=apt['processes'] + [dict(name='python3')]))
+    assert not expected_maintenance(dict(apt, exec_commands=apt['exec_commands'] + [dict(name='python3')]))
     assert not expected_maintenance(dict(apt, sensitive_paths=['/etc/shadow']))
     assert not expected_maintenance(dict(apt, exec_commands=[dict(name='nmap')]))
     assert not expected_maintenance(dict(apt, processes=[dict(name='apt-get'), dict(name='curl')]))
@@ -276,3 +278,15 @@ def test_worse_window_inside_a_low_incident_escalates_to_a_popup(tmp_path, monke
     time.sleep(.2)
     assert len(notified) == 1
     service.close()
+
+
+def test_scanner_counts_unreadable_files_and_remembers_the_summary():
+    lines = ["/tmp/a: OK", "/tmp/b: Access denied", "/tmp/c: Can't open file or directory ERROR",
+             "----------- SCAN SUMMARY -----------", "Scanned files: 1"]
+    scanner = Scanner(lambda _: None)
+    scanner.result = dict(scanned=0, skipped=0, detections=[])
+    scanner._read(SimpleNamespace(stdout=io.StringIO("\n".join(lines) + "\n")), [])
+    assert scanner.result['scanned'] == 1
+    assert scanner.result['skipped'] == 2
+    assert scanner.summary_seen
+

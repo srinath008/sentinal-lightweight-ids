@@ -51,8 +51,10 @@ def expected_maintenance(evidence):
         return False
     if not (processes | commands) & MAINTENANCE_PROGRAMS:
         return False  # at least one recognised maintenance program must be present
-    # 'python' is Sentinel's own virtualenv interpreter (UI and collector); scripts run as python3.
-    if processes - MAINTENANCE_PROGRAMS - MAINTENANCE_HELPERS - INFRASTRUCTURE - {'python'}:
+    # 'python' is Sentinel's own virtualenv interpreter (UI and collector). 'python3' is allowed only as a
+    # busy *process*: apt's own helpers (for example the Ubuntu apt-news hook) are python3 scripts. A python3
+    # *command* started in the window is still rejected below.
+    if processes - MAINTENANCE_PROGRAMS - MAINTENANCE_HELPERS - INFRASTRUCTURE - {'python', 'python3'}:
         return False
     return not (commands - MAINTENANCE_PROGRAMS - MAINTENANCE_HELPERS)
 

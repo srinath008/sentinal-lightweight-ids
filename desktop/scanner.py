@@ -25,6 +25,7 @@ class Scanner:
         self.cancel = threading.Event()
         self.worker = None
         self.process = None
+        self.summary_seen = False
         self.result = dict(status='idle', detections=[], detection_count=0, candidates=0, skipped=0, scanned=0)
 
     def snapshot(self):
@@ -45,6 +46,7 @@ class Scanner:
             self.result = dict(status='running', target=str(path.absolute()), detections=[], detection_count=0, candidates=0, skipped=0, scanned=0,
                                limit_reached=False, error=None, peak_memory_mib=0)
             self.cancel.clear()
+            self.summary_seen = False
             self.worker = threading.Thread(target=self._run, args=(path.absolute(),), daemon=True)
             self.worker.start()
 
@@ -110,7 +112,9 @@ class Scanner:
                                 break
                         code = process.wait()
                         reader.join(timeout=3)
-                    if code not in (0, 1) and not self.cancel.is_set():
+                    # clamscan exits 2 when any single file could not be read (for example "Access denied"),
+                    # but it still scans the rest and prints a summary: that is a partial scan, not a failure.
+                    if (code not in (0, 1, 2) or (code == 2 and not self.summary_seen)) and not self.cancel.is_set():
                         raise RuntimeError('ClamAV could not complete the scan: ' + '\n'.join(output)[-1500:])
             self.result['status'] = 'stopped' if self.cancel.is_set() else 'partial' if (self.result['limit_reached'] or self.result['skipped']) else 'completed'
         except Exception as exc:
@@ -132,8 +136,10 @@ class Scanner:
                     path, _, signature = line[:-6].rpartition(': ')
                     self.result['detections'].append(dict(path=path, signature=signature,
                                                         kind='scan limitation' if signature.startswith(('Heuristics.Limits.', 'Heuristics.Encrypted.')) else 'heuristic alert' if signature.startswith('Heuristics.') else 'signature detection'))
-            elif line.endswith(' ERROR'):
+            elif line.endswith(' ERROR') or line.endswith(': Access denied') or ": Can't open file" in line:
                 self.result['skipped'] += 1
+            elif 'SCAN SUMMARY' in line:
+                self.summary_seen = True
 
     def stop(self):
         self.cancel.set()
